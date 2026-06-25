@@ -1,0 +1,4 @@
+PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
+SELECT DISTINCT ?condition WHERE {
+  ?object crm:P44_has_condition ?condition .
+}

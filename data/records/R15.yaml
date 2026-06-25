@@ -1,0 +1,399 @@
+id: R15
+density_band: rich
+challenge_category: rich_fragmentary_composite_claviorgan_candidate
+label: The Theewes Claviorgan
+instrument_type: claviorgan
+category: keyboard
+held_by: Victoria and Albert Museum
+accession: "125 to CC-1890"
+associated_object: "125EE-1890"
+source_url: "https://collections.vam.ac.uk/item/O60635/the-theewes-claviorgan-claviorgan-theewes-lodewyk/"
+
+research_scope:
+  basis: "Victoria and Albert Museum online collection record and supplied pasted record text."
+  independent_bibliographic_search: false
+  note: "Claims are derived from the V&A online record text supplied here. The V&A record incorporates or summarizes scholarship by Rose, Charlston, Schott, Baines, Yorke, and others, but those bibliographic references were not independently consulted for this draft. Treat those claims as V&A-reported contextual evidence unless the original references are checked directly."
+
+material: "painted oak, spruce soundboard, poplar(?) internal structure, tempera, leather, paper, gilding, metal, modern softwood"
+dimensions: "width 233 cm; depth 104.8 cm; additional recorded depth 127 cm; note: width 90 cm and height 22 cm without the lid"
+
+makers:
+- name: "Lodewyk Theewes"
+  role: maker
+  epistemic_status: asserted
+  confidence: asserted
+  source: vam_online
+  comment: "The V&A identifies Lodewyk Theewes as maker. The inscription records Ludowicus/Lodowicus Theews/Theewes me fecit/fesit, dated 1579 in the gallery/object-history transcription."
+- name: "UNKNOWN — collaborating craftsmen for case, decoration, leatherwork, metalwork, and organ construction"
+  role: possible_collaborators
+  epistemic_status: unknown
+  confidence: contextual
+  source: vam_online
+  comment: "The V&A/Rose commentary suggests that Theewes may have drawn on other craftsmen in the Dutch community, but no individual collaborating makers are identified. Do not convert this into named maker claims."
+
+dates:
+- range_str: "1579"
+  event_type: creation
+  epistemic_status: asserted
+  confidence: asserted
+  source: "vam_online; inscription_1579"
+  comment: "Signed and dated 1579; described as the earliest surviving keyboard instrument made in Britain."
+- range_str: "before 1839"
+  event_type: damage_or_loss_state
+  epistemic_status: asserted
+  confidence: probable
+  source: vam_online
+  comment: "The V&A states that extensive losses probably occurred before 1839, when a published description already recorded it as a wreck."
+- range_str: "1874"
+  event_type: exhibition_loan_or_repair_context
+  epistemic_status: asserted
+  confidence: possible_repair
+  source: vam_online
+  comment: "The South Kensington Museum borrowed the instrument for the 1874 Exhibition; some repair work may have been carried out at that point."
+- range_str: "1890"
+  event_type: acquisition
+  epistemic_status: asserted
+  confidence: asserted
+  source: vam_online
+  comment: "Given to the museum by Mrs Luard-Selby of Ightham Mote, Kent."
+- range_str: "after 1890"
+  event_type: museum_repair_or_replacement
+  epistemic_status: asserted
+  confidence: probable
+  source: vam_online
+  comment: "After acquisition, various repairs and replacements were carried out before display, apparently including rebuilding of the back and two hinged harpsichord-lid panels."
+- range_str: "1947"
+  event_type: overpaint_removal_or_arms_discovery
+  epistemic_status: asserted
+  confidence: asserted
+  source: vam_online
+  comment: "Roper arms were discovered in 1947 when later overpainted arms were removed."
+- range_str: "1999-2000"
+  event_type: measurement_documentation
+  epistemic_status: asserted
+  confidence: asserted
+  source: vam_online
+  comment: "Dimensions checked/measured in 1999 and confirmed in 2000."
+
+places:
+- place_type: production_place
+  label: "London"
+  broader_place: "England"
+  epistemic_status: asserted
+  confidence: asserted
+  source: vam_online
+  comment: "V&A gives London as place of origin/made."
+- place_type: maker_origin
+  label: "Antwerp"
+  broader_place: "Flanders / present-day Belgium"
+  epistemic_status: asserted
+  confidence: asserted
+  source: vam_online
+  comment: "Theewes is described as a native of Antwerp who settled in London."
+- place_type: previous_location
+  label: "Ightham Mote, Kent"
+  epistemic_status: asserted
+  confidence: asserted
+  source: vam_online
+  comment: "Before entering the V&A collection in 1890, the claviorgan had long stood in the chapel of Ightham Mote."
+- place_type: possible_early_location
+  label: "Farningham Manor, Kent"
+  epistemic_status: asserted
+  confidence: possible
+  source: vam_online
+  comment: "V&A/Rose commentary argues that the Roper evidence makes Farningham Manor a likely early location, but this is not certain."
+- place_type: possible_later_location
+  label: "Bisham Abbey or Queenborough Castle"
+  epistemic_status: asserted
+  confidence: possible
+  source: vam_online
+  comment: "V&A/Rose commentary gives these as possible Hoby-period locations. Treat as possible, not asserted."
+
+provenance:
+- agent: "Anthony Roper"
+  role: possible_commissioner_or_owner
+  date_range: "1579?"
+  epistemic_status: asserted
+  confidence: probable
+  source: vam_online
+  position: 0
+  comment: "V&A/Rose commentary identifies Anthony Roper as the most likely Roper family member to have commissioned the instrument, based on the earliest coat of arms and contextual evidence."
+- agent: "Sir Edward Hoby and Elizabeth Carey"
+  role: possible_later_owners_or_armorial_association
+  date_range: "between 1582 and 1605?"
+  epistemic_status: asserted
+  confidence: possible
+  source: vam_online
+  position: 1
+  comment: "Their arms were painted over the Roper arms. The V&A text states no direct mention of the claviorgan has been found in family papers."
+- agent: "Selby family / Ightham Mote"
+  role: possible_owner_or_historical_holder
+  date_range: "17th century or early 19th century?"
+  epistemic_status: asserted
+  confidence: possible
+  source: vam_online
+  position: 2
+  comment: "The V&A text gives alternative possibilities: Selby ownership in the 17th century or purchase for use in the Ightham chapel in the early 19th century."
+- agent: "Mrs Luard-Selby"
+  role: donor
+  date_range: "1890"
+  epistemic_status: asserted
+  confidence: asserted
+  source: vam_online
+  position: 3
+  comment: "Credit line: Given by Mrs Luard-Selby, Ightham Mote, Kent."
+- agent: "Victoria and Albert Museum"
+  role: holds
+  date_range: "1890-"
+  epistemic_status: asserted
+  confidence: asserted
+  source: vam_online
+  position: 4
+
+hs_codes:
+- label: "Furniture; British Galleries; Musical Instruments; Claviorgan"
+  assigned_by: "Victoria and Albert Museum"
+  epistemic_status: asserted
+  source: vam_online
+  comment: "V&A category/object-type classification, not a formal Hornbostel-Sachs code."
+
+parts:
+- label: "41 recorded parts"
+  part_type: parts_count
+  epistemic_status: asserted
+  source: vam_online
+  comment: "The V&A record states that the object consists of 41 parts."
+- label: "Harpsichord section"
+  part_type: string_keyboard_component
+  epistemic_status: asserted
+  source: vam_online
+  comment: "The claviorgan includes a harpsichord with hinged lid inset on top of the organ case."
+- label: "Organ case and surviving organ fragments"
+  part_type: organ_component
+  epistemic_status: asserted
+  source: vam_online
+  comment: "The organ workings are mostly lost or fragmentary; surviving parts include bellows, pipe fragments, wind chest, toeboards, pallet spring rail, trackers, rods, and springs."
+- label: "Soundboard"
+  part_type: surviving_component
+  epistemic_status: asserted
+  source: vam_online
+  comment: "The V&A states that the soundboard survives, although it suffered losses and water damage."
+- label: "Harpsichord stops"
+  part_type: surviving_component
+  epistemic_status: asserted
+  source: vam_online
+  comment: "The V&A summary states that the harpsichord stops still survive."
+- label: "Strings and organ pipes"
+  part_type: lost_or_fragmentary_component
+  epistemic_status: asserted
+  confidence: mostly_lost
+  source: vam_online
+  comment: "The V&A states that the claviorgan has lost almost all strings and organ pipes."
+
+related_entities:
+- entity_type: person
+  label: "Lodewyk Theewes"
+  relation: maker
+  source: vam_online
+  epistemic_status: asserted
+- entity_type: person
+  label: "Anthony Roper"
+  relation: possible_commissioner_or_owner
+  source: vam_online
+  epistemic_status: asserted
+  confidence: probable
+- entity_type: person
+  label: "Sir Edward Hoby"
+  relation: armorial_association
+  source: vam_online
+  epistemic_status: asserted
+  confidence: possible
+- entity_type: person
+  label: "Elizabeth Carey"
+  relation: armorial_association
+  source: vam_online
+  epistemic_status: asserted
+  confidence: possible
+- entity_type: person
+  label: "Mrs Luard-Selby"
+  relation: donor
+  source: vam_online
+  epistemic_status: asserted
+- entity_type: place
+  label: "Ightham Mote, Kent"
+  relation: previous_location
+  source: vam_online
+  epistemic_status: asserted
+- entity_type: material
+  label: oak
+  relation: consists_of
+  source: vam_online
+  comment: "Painted oak organ case and harpsichord material in acquisition description."
+- entity_type: material
+  label: spruce
+  relation: consists_of
+  source: vam_online
+  comment: "Spruce soundboard."
+- entity_type: material
+  label: poplar
+  relation: possible_internal_structure_material
+  source: vam_online
+  epistemic_status: asserted
+  confidence: possible
+  comment: "Internal structure described as poplar(?)."
+- entity_type: material
+  label: tempera
+  relation: surface_decoration
+  source: vam_online
+  comment: "Tempera painting on soundboard."
+- entity_type: material
+  label: leather
+  relation: consists_of
+  source: vam_online
+  comment: "Tooled and gilded leather covering."
+- entity_type: material
+  label: paper
+  relation: consists_of
+  source: vam_online
+  comment: "Embossed paper lining, originally gilded; paper tubes are also mentioned in acquisition description."
+- entity_type: material
+  label: gilding
+  relation: surface_finish
+  source: vam_online
+- entity_type: material
+  label: paint
+  relation: surface_finish
+  source: vam_online
+- entity_type: material
+  label: metal
+  relation: consists_of
+  source: vam_online
+  comment: "Acquisition description refers to wood and metal organ stops/pipes; organ action includes metal elements."
+- entity_type: material
+  label: softwood
+  relation: modern_replacement_or_repair_material
+  source: vam_online
+  comment: "Internal floor boards are modern softwood boards."
+- entity_type: feature
+  label: "combined organ and harpsichord"
+  relation: has_hybrid_form
+  source: vam_online
+  epistemic_status: asserted
+- entity_type: feature
+  label: "decorated with marbling, strapwork, Orpheus, animals, monkeys, coats of arms"
+  relation: has_decoration
+  source: vam_online
+  epistemic_status: asserted
+- entity_type: feature
+  label: "lost or fragmentary organ workings"
+  relation: has_current_state
+  source: vam_online
+  epistemic_status: asserted
+
+inscriptions:
+- id: inscription_1579
+  location: "inner surface of lockboard / panel originally behind keyboard"
+  text: "Ludowicus Theews me fesit"
+  variant_text: "LODOWICVS.THEEWES.ME.FESIT.1579"
+  inscription_type: maker_date_inscription
+  epistemic_status: asserted
+  source: vam_online
+  comment: "The object-detail inscription is recorded as 'Ludowicus Theews me fesit'; the gallery/object-history transcription gives the fuller signed and dated form. Preserve both transcription variants."
+
+measurements:
+- measurement_type: dimensions
+  measured_part: "whole instrument"
+  value: "width 233 cm; depth 104.8 cm"
+  source: vam_online
+  epistemic_status: asserted
+  comment: "Current V&A dimensions."
+- measurement_type: dimensions
+  measured_part: "component or ambiguous measured part"
+  value: "depth 127 cm; note: width 90 cm, height 22 cm without the lid"
+  source: vam_online
+  epistemic_status: asserted
+  confidence: source_ambiguous
+  comment: "The supplied dimension field contains multiple measurements and an unclear note. Preserve as source-specific measurement evidence rather than normalizing too aggressively."
+
+historical_states:
+- state_type: original_composite_instrument
+  date: "1579"
+  agent: "Lodewyk Theewes"
+  place: "London"
+  description: "Combined organ and harpsichord claviorgan, signed and dated 1579."
+  epistemic_status: asserted
+  source: vam_online
+- state_type: damaged_fragmentary_state
+  date: "before 1839"
+  agent: "UNKNOWN"
+  description: "Extensive losses to keyboard, soundboard, painting, leather, and organ workings, probably already present before an 1839 published description recorded it as a wreck."
+  epistemic_status: asserted
+  confidence: probable
+  source: vam_online
+- state_type: exhibition_or_repair_context
+  date: "1874"
+  agent: "South Kensington Museum"
+  description: "Borrowed for the 1874 Exhibition; some repair work may have been carried out."
+  epistemic_status: asserted
+  confidence: possible
+  source: vam_online
+- state_type: post_acquisition_repairs
+  date: "after 1890"
+  agent: "Victoria and Albert Museum"
+  description: "Repairs and replacements before display, apparently including rebuilding of the back and two hinged blue-painted harpsichord-lid panels."
+  epistemic_status: asserted
+  confidence: probable
+  source: vam_online
+- state_type: armorial_overpaint_removal
+  date: "1947"
+  agent: "UNKNOWN"
+  description: "Later Hoby/Carey arms had overpainted Roper arms; removal in 1947 revealed the earlier Roper arms."
+  epistemic_status: asserted
+  source: vam_online
+- state_type: current_fragmentary_non_playable_state
+  date: "current catalogue state"
+  agent: "Victoria and Albert Museum"
+  description: "No longer playable. Only outer case and fragments of the works survive; organ workings are lost or fragmentary, although the case survives almost complete."
+  epistemic_status: asserted
+  source: vam_online
+
+technical_description:
+  source: vam_online
+  summary: "Composite claviorgan consisting of a harpsichord inset on top of a rectangular panelled organ case. The organ pipes were in the smaller middle/frieze section below the harpsichord and the bellows in the larger lower section. The instrument is richly decorated with painted and gilded oak, marbling, strapwork, coats of arms, leather covering, embossed paper lining, tempera-painted soundboard, and lid paintings including Orpheus and animals. It is now fragmentary and non-playable, with most strings, pipes, and organ workings lost."
+
+contextual_literature:
+- source: vam_online
+  topic: "Rose 2002 / Rose 2004 as summarized by V&A"
+  summary: "V&A-reported Rose commentary discusses construction quality, damage, repairs, armorial evidence, possible Roper and Hoby ownership, Ightham Mote history, and whether the claviorgan was conceived as a whole or combined after the fact."
+  claim_scope: "V&A-reported object-specific scholarship"
+- source: vam_online
+  topic: "Charlston as summarized by V&A"
+  summary: "V&A-reported Charlston context discusses possible use of the claviorgan, the combined organ/harpsichord mechanism, registration possibilities, repertoire, and 16th-century English claviorgans."
+  claim_scope: "V&A-reported functional and historical context"
+- source: vam_online
+  topic: "Schott, Baines and Yorke as summarized by V&A"
+  summary: "V&A-reported analysis suggests the likely organ arrangement with five ranks of pipes controlled by ten stop knobs."
+  claim_scope: "V&A-reported technical reconstruction"
+
+references:
+- id: vam_online
+  type: online_catalogue
+  citation: "Victoria and Albert Museum, The Theewes Claviorgan, accession 125 to CC-1890"
+  url: "https://collections.vam.ac.uk/item/O60635/the-theewes-claviorgan-claviorgan-theewes-lodewyk/"
+  consulted: true
+  note: "Used as current catalogue source for title, maker, date, place, accession number, parts, materials, dimensions, inscription, credit line, object history, physical description, damage/losses, repairs, provenance hypotheses, contextual history, and source caveat."
+- id: vam_bibliography_unconsulted
+  type: bibliography_set
+  reported_by: vam_online
+  citation: "Bibliographic references listed in the V&A record, including Wilk 1996, Charlston 2009, Rose 2002, Rose 2004, Schott/Baines/Yorke 1998, Thornton 1998, and Rose unpublished report 2001."
+  consulted: false
+  note: "The references are recorded because they are listed by the V&A page, but they were not independently consulted for this draft. Use claims from them only as V&A-reported evidence unless the original publications are checked."
+
+notes_for_musicologist:
+- "Rich fragmentary/composite claviorgan record: signed maker, exact date, London production, 41 parts, extensive materials and decoration, provenance hypotheses, and major current-state losses."
+- "Do not classify this simply as a harpsichord or simply as an organ: it is a claviorgan combining both."
+- "Preserve the fragmentary state: most strings, pipes, and organ workings are lost; the object is no longer playable."
+- "Preserve the component/original-conception ambiguity: V&A/Rose commentary says it may never be possible to determine whether the whole instrument was conceived at once or whether the combination was an afterthought."
+- "Preserve the armorial/provenance evidence as probabilistic: Roper, Hoby/Carey, and Selby/Ightham stages are not all equally certain."
+- "Do not treat all repairs as precisely documented: 1874 repair is possible; post-1890 repairs are apparent/probable; exact interventions require further checking."
+- "The V&A record is a working database record and includes a source caveat; the listed bibliography was not independently consulted."

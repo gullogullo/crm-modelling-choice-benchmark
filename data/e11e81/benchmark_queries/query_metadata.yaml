@@ -1,0 +1,80 @@
+profile:
+  id: crm_modelling_choice_query_suite
+  version: "1.0"
+queries:
+  direct_production_maker:
+    family: maker_direct
+    intended_question: Which maker is directly connected through E12 Production and P108 to the current object?
+    file: direct_production_maker.rq
+  crm_lineage_maker:
+    family: maker_lineage
+    intended_question: Which maker produced an object from which the current object is reachable through zero or more CRM E81 transformations?
+    file: crm_lineage_maker.rq
+  e13_assigned_maker:
+    family: maker_e13
+    intended_question: Which maker has been assigned through E13 as the P14 actor of the production from which the current object descends?
+    file: e13_assigned_maker.rq
+  current_classification:
+    family: classification_current
+    intended_question: Which classifications are asserted for the current object?
+    file: current_classification.rq
+  lineage_classification:
+    family: classification_lineage
+    intended_question: Which classifications are asserted on any identity in the current object's E81 lineage?
+    file: lineage_classification.rq
+  current_material_component:
+    family: material_component_current
+    intended_question: Which materials and components are associated with the current object?
+    file: current_material_component.rq
+  lineage_material_component:
+    family: material_component_lineage
+    intended_question: Which materials and components are asserted on any identity in the current object's E81 lineage?
+    file: lineage_material_component.rq
+  modification_history:
+    family: modification_history
+    intended_question: Which restoration, modification, part-addition, and part-removal events belong to the object's represented history?
+    file: modification_history.rq
+  current_segment_modification_history:
+    family: modification_current_segment
+    intended_question: Which modification, restoration, addition, and removal events directly target the current identity segment?
+    file: current_segment_modification_history.rq
+  lineage_modification_history:
+    family: modification_lineage
+    intended_question: Which modification, restoration, addition, and removal events target any identity in the current object's E81 lineage?
+    file: lineage_modification_history.rq
+  part_history:
+    family: part_history
+    intended_question: Which additions and removals of parts are represented in the object's history?
+    file: part_history.rq
+  current_segment_part_history:
+    family: part_current_segment
+    intended_question: Which part additions and removals directly target the current identity segment?
+    file: current_segment_part_history.rq
+  lineage_part_history:
+    family: part_lineage
+    intended_question: Which part additions and removals target any identity in the current object's E81 lineage?
+    file: lineage_part_history.rq
+  condition_history:
+    family: condition_history
+    intended_question: Which condition states are represented over the object's history?
+    file: condition_history.rq
+  current_segment_condition_history:
+    family: condition_current_segment
+    intended_question: Which condition states are asserted directly for the current identity segment?
+    file: current_segment_condition_history.rq
+  lineage_condition_history:
+    family: condition_lineage
+    intended_question: Which condition states are asserted on any identity in the current object's E81 lineage?
+    file: lineage_condition_history.rq
+  attribution_classification_history:
+    family: attribution_classification_history
+    intended_question: Which attribution or classification changes are represented over time?
+    file: attribution_classification_history.rq
+  current_segment_attribution_classification_history:
+    family: attribution_classification_current_segment
+    intended_question: Which attribution or classification change events directly target the current identity segment?
+    file: current_segment_attribution_classification_history.rq
+  lineage_attribution_classification_history:
+    family: attribution_classification_lineage
+    intended_question: Which attribution or classification change events target any identity in the current object's E81 lineage?
+    file: lineage_attribution_classification_history.rq

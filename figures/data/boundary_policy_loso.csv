@@ -1,0 +1,4 @@
+policy_id,policy_label,gap_percent,loo_mean_percent,loo_sd_percent,loo_min_percent,loo_max_percent,gap_record_count,record_count
+all_roots_split,all roots split,35.4,35.4,0.3,35.0,35.7,56,158
+source_semantics,source semantics,7.0,7.0,0.2,6.4,7.0,11,158
+dated_only,dated only,0.6,0.6,0.1,0.0,0.6,1,158

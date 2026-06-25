@@ -1,0 +1,227 @@
+id: R11
+density_band: medium
+challenge_category: D_component_originality_candidate
+label: Bentside spinet
+instrument_type: bentside spinet
+category: keyboard
+held_by: Victoria and Albert Museum
+accession: "466&A-1882"
+source_url: "https://collections.vam.ac.uk/item/O58563/bentside-spinet-player-john/"
+
+research_scope:
+  basis: "Victoria and Albert Museum online collection record."
+  independent_bibliographic_search: false
+  note: "No independent bibliographic search was undertaken for this record. Claims are derived from the V&A online catalogue record only. The V&A states that its records are working database records and may reflect outdated ideas, practice, or analysis."
+
+material: "oak case and stand, soundboard probably stained pine, ebony naturals and ivory sharps"
+dimensions: "length 130.2 cm; width 57.7 cm; whole weight 25 kg"
+
+makers:
+- name: "John Player"
+  role: maker
+  epistemic_status: asserted
+  confidence: asserted
+  source: vam_online
+  comment: "V&A identifies John Player as maker. The inscription reads Johannes Player Fecit."
+
+dates:
+- range_str: "1675-1700"
+  event_type: creation
+  epistemic_status: asserted
+  confidence: broad
+  source: vam_online
+  comment: "V&A top-level made date."
+- range_str: "1680-1685"
+  event_type: creation
+  epistemic_status: asserted
+  confidence: narrower_catalogue_label
+  source: vam_online
+  comment: "Brief description gives English, 1680-85, John Player."
+- range_str: "about 1680"
+  event_type: creation
+  epistemic_status: asserted
+  confidence: approximate_gallery_label
+  source: vam_online
+  comment: "Past gallery label gives English, about 1680. Treat as compatible with the broader catalogue date range."
+
+places:
+- place_type: production_place
+  label: "London"
+  broader_place: "England"
+  epistemic_status: asserted
+  confidence: asserted
+  source: vam_online
+  comment: "V&A gives London as place of origin/made."
+
+provenance:
+- agent: "Victoria and Albert Museum"
+  role: holds
+  date_range: "1882-?"
+  epistemic_status: asserted
+  confidence: inferred_from_accession_number
+  source: vam_online
+  comment: "The object is held by the V&A and has accession number 466&A-1882. The supplied record does not give a detailed acquisition method or earlier ownership history."
+- agent: "UNKNOWN — previous owner or acquisition source not given in consulted catalogue record"
+  role: previous_owner_or_source
+  date_range: "before 1882"
+  epistemic_status: unknown
+  source: vam_online
+  comment: "No explicit pre-museum provenance chain is supplied in the consulted record."
+
+hs_codes:
+- label: "Musical Instruments; Bentside spinet"
+  assigned_by: "Victoria and Albert Museum"
+  epistemic_status: asserted
+  source: vam_online
+  comment: "V&A category/object-type classification, not a Hornbostel-Sachs code."
+
+parts:
+- label: "Spinet"
+  part_type: main_instrument
+  epistemic_status: asserted
+  source: vam_online
+- label: "Stand"
+  part_type: stand
+  epistemic_status: asserted
+  confidence: probably_original
+  source: vam_online
+  comment: "V&A states that what is probably the original stand, with four turned legs, is preserved with the instrument."
+- label: "Jacks"
+  part_type: action_component
+  epistemic_status: asserted
+  source: vam_online
+  comment: "V&A states that the object consists of three parts and includes jacks; one brief description mentions a bag of jacks from the spinet."
+
+related_entities:
+- entity_type: person
+  label: "John Player"
+  relation: maker
+  source: vam_online
+  epistemic_status: asserted
+- entity_type: material
+  label: oak
+  relation: consists_of
+  source: vam_online
+  comment: "Case and stand."
+- entity_type: material
+  label: pine
+  relation: possible_soundboard_material
+  source: vam_online
+  epistemic_status: asserted
+  confidence: probable
+  comment: "Soundboard is described as probably stained pine."
+- entity_type: material
+  label: ebony
+  relation: consists_of
+  source: vam_online
+  comment: "Naturals."
+- entity_type: material
+  label: ivory
+  relation: consists_of
+  source: vam_online
+  comment: "Sharps/accidentals."
+- entity_type: material
+  label: iron
+  relation: consists_of
+  source: vam_online
+  comment: "Main hinges of the lid."
+- entity_type: material
+  label: brass
+  relation: consists_of
+  source: vam_online
+  comment: "Hinges of the keyboard cover."
+- entity_type: material
+  label: gesso
+  relation: possible_surface_composition
+  source: vam_online
+  epistemic_status: asserted
+  confidence: possible
+  comment: "Natural-key fronts were originally coated with some composition, perhaps gesso."
+- entity_type: material
+  label: gilding
+  relation: surface_finish
+  source: vam_online
+  comment: "Natural-key fronts were gilded."
+- entity_type: technique
+  label: joining
+  relation: has_technique
+  source: vam_online
+  epistemic_status: asserted
+- entity_type: technique
+  label: turning
+  relation: has_technique
+  source: vam_online
+  epistemic_status: asserted
+- entity_type: technique
+  label: staining
+  relation: has_technique
+  source: vam_online
+  epistemic_status: asserted
+- entity_type: feature
+  label: split lowest accidentals
+  relation: has_keyboard_feature
+  source: vam_online
+  epistemic_status: asserted
+  comment: "The two lowest accidentals are divided into front and back parts, reflecting short-octave/chromatic transitional keyboard practice."
+- entity_type: feature
+  label: wing-shaped asymmetrical case
+  relation: has_form
+  source: vam_online
+  epistemic_status: asserted
+
+inscriptions:
+- location: "instrument"
+  text: "Johannes Player Fecit"
+  inscription_type: maker_inscription
+  translation: "John Player made this"
+  epistemic_status: asserted
+  source: vam_online
+  comment: "V&A records the inscription as Latin in Roman capitals, in ink."
+
+measurements:
+- measurement_type: dimensions
+  measured_part: "whole instrument"
+  value: "length 130.2 cm; width 57.7 cm"
+  source: vam_online
+  epistemic_status: asserted
+- measurement_type: weight
+  measured_part: "whole instrument"
+  value: "25 kg"
+  source: vam_online
+  epistemic_status: asserted
+  comment: "Weighed by Ray Powell."
+- measurement_type: compass
+  value: "51 notes, GG-c3, with split D sharp and C sharp keys"
+  source: vam_online
+  epistemic_status: asserted
+  comment: "From past gallery label. This should be treated as catalogue evidence for keyboard range and split-key arrangement."
+
+technical_description:
+  source: vam_online
+  summary: "Oak undecorated bentside spinet with probably original four-legged turned stand. Soundboard probably stained pine; ebony naturals, ivory accidentals; iron lid hinges and brass keyboard-cover hinges. The two lowest accidentals are split into front and back parts, preserving transitional short-octave/chromatic keyboard practice."
+
+contextual_history:
+- source: vam_online
+  topic: "English bentside spinet development"
+  summary: "The V&A describes the spinet as a small wing-shaped keyboard instrument developed in Italy in the 1630s and appearing in England in the 1660s. John Player's London instruments are described as among the earliest surviving English examples."
+  claim_scope: "instrument-type and maker context"
+- source: vam_online
+  topic: "John Player and split sharps"
+  summary: "The V&A notes that John Player's only dated instrument was made in 1664 and that he seems to have died around 1705. Split bass sharps are described as characteristic of Player's instruments and are mentioned in a 1712 letter as split or quarter notes."
+  claim_scope: "maker and technical context"
+
+references:
+- id: vam_online
+  type: online_catalogue
+  citation: "Victoria and Albert Museum, Bentside spinet, John Player, accession 466&A-1882"
+  url: "https://collections.vam.ac.uk/item/O58563/bentside-spinet-player-john/"
+  consulted: true
+  note: "Used as current catalogue source for title, maker, date range, place of origin, category, object type, parts, materials, physical description, dimensions, inscription, gallery labels, object history, accession number, and source caveat."
+
+notes_for_musicologist:
+- "Medium record with accepted maker, production place, inscription, material details, dimensions, parts, and keyboard-feature evidence, but minimal provenance."
+- "Do not treat the stand simply as certainly original: the V&A says it is probably original."
+- "Do not treat pine and gesso as fully certain: the soundboard is probably stained pine, and the key-front composition is perhaps gesso."
+- "The broader date 1675-1700 and the narrower labels 1680-85/about 1680 are compatible dating granularities, not a direct contradiction."
+- "Preserve the object as multi-part: spinet, stand, and jacks."
+- "Preserve the V&A working-database caveat when assessing completeness and defensibility."

@@ -1,0 +1,6 @@
+PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
+SELECT DISTINCT ?event WHERE {
+  { ?event a crm:E79_Part_Addition . }
+  UNION
+  { ?event a crm:E80_Part_Removal . }
+}

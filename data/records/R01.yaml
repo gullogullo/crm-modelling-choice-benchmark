@@ -1,0 +1,179 @@
+id: R01
+density_band: thin
+challenge_category: thin_control
+label: Harpsichord
+instrument_type: harpsichord
+category: keyboard
+held_by: Metropolitan Museum of Art
+accession: "89.4.1231"
+source_url: "https://www.metmuseum.org/art/collection/search/501797"
+
+research_scope:
+  basis: "Met online catalogue record and selected references listed there."
+  independent_bibliographic_search: false
+  note: "References included here are those reported by the Met catalogue page. Only the listed references marked consulted: true were checked directly. No systematic search in other catalogues or secondary literature was undertaken for this record."
+
+material: "wood, various materials"
+dimensions: "inner instrument: length 195.2 cm; width 85.9 cm; depth 21.6 cm"
+
+makers:
+  - name: "UNKNOWN — catalogue gives no individual maker"
+    epistemic_status: unknown
+    source: "met_online; cb1904_p88"
+    comment: "Both the current Met record and the 1904 catalogue do not identify an individual maker. Treat as UNKNOWN rather than ABSENT."
+
+dates:
+  - range_str: "mid-17th century"
+    event_type: creation
+    epistemic_status: asserted
+    confidence: probable
+    source: met_online
+    comment: "Current Met catalogue date."
+  - range_str: "17th century"
+    event_type: creation
+    epistemic_status: asserted
+    confidence: broad
+    source: cb1904_p88
+    comment: "Historical catalogue date; compatible with, but less specific than, the current Met dating."
+
+places:
+  - place_type: production_place
+    label: "Italy"
+    epistemic_status: asserted
+    confidence: broad
+    source: cb1904_p88
+    comment: "Historical catalogue gives only country-level attribution."
+  - place_type: production_place
+    label: "Naples"
+    broader_place: "Italy"
+    epistemic_status: asserted
+    confidence: probable
+    source: met_online
+    comment: "Current Met catalogue gives the more specific qualified attribution 'probably Naples'. This refines, rather than contradicts, the older Italy attribution."
+
+provenance:
+  - agent: "Metropolitan Museum of Art"
+    role: holds
+    date_range: "1889-"
+    epistemic_status: asserted
+    source: met_online
+    comment: "Supported by credit line: The Crosby Brown Collection of Musical Instruments, 1889."
+  - agent: "The Crosby Brown Collection of Musical Instruments"
+    role: credit_line
+    date_range: "1889"
+    epistemic_status: asserted
+    source: met_online
+    comment: "Credit-line evidence only; do not expand into a fuller provenance chain unless further documentation is consulted."
+
+hs_codes:
+  - label: "Chordophone-Zither-plucked-harpsichord"
+    assigned_by: "Metropolitan Museum of Art"
+    epistemic_status: asserted
+    source: met_online
+
+related_entities:
+  - entity_type: material
+    label: wood
+    relation: consists_of
+    source: met_online
+  - entity_type: material
+    label: ebony
+    relation: consists_of
+    source: cb1904_p88
+  - entity_type: material
+    label: ivory
+    relation: consists_of
+    source: cb1904_p88
+  - entity_type: material
+    label: quill
+    relation: consists_of
+    source: cb1904_p88
+  - entity_type: material
+    label: paint
+    relation: consists_of
+    source: cb1904_p88
+  - entity_type: material
+    label: gilding
+    relation: consists_of
+    source: cb1904_p88
+  - entity_type: place
+    label: Italy
+    relation: production_place
+    source: cb1904_p88
+    epistemic_status: asserted
+    confidence: broad
+  - entity_type: place
+    label: Naples
+    relation: production_place
+    broader_place: "Italy"
+    source: met_online
+    epistemic_status: asserted
+    confidence: probable
+
+references:
+  - id: met_online
+    type: online_catalogue
+    citation: "Metropolitan Museum of Art, collection record 501797"
+    url: "https://www.metmuseum.org/art/collection/search/501797"
+    consulted: true
+    note: "Used as current catalogue source for accession, credit line, date, probable place, dimensions, classification, and technical measurements."
+  - id: cb1904_p88
+    type: printed_catalogue
+    reported_by: met_online
+    citation: "Catalogue of the Crosby Brown Collection of Musical Instruments: Europe. The Metropolitan Museum of Art. New York, 1904, vol. I, p. 88."
+    url: "https://libmma.contentdm.oclc.org/digital/collection/p15324coll10/id/182058"
+    pages: "p. 88"
+    consulted: true
+    note: "Used as historical catalogue source for compass, broad place/date, older dimensions, material details, and maker non-identification."
+  - id: cb1903_illustrations
+    type: printed_catalogue
+    reported_by: met_online
+    citation: "The Crosby Brown Collection of Musical Instruments of All Nations: Catalogue of Keyboard Instruments. The Metropolitan Museum of Art. New York, 1903, pp. 71, 73, 75, ill."
+    url: "https://libmma.contentdm.oclc.org/digital/collection/p15324coll10/id/183923"
+    pages: "pp. 71, 73, 75"
+    consulted: true
+    note: "Used for illustration/identity evidence only unless captions add specific claims."
+  - id: cb1902_p88
+    type: printed_catalogue
+    reported_by: met_online
+    citation: "Catalogue of the Crosby Brown Collection of Musical Instruments of All Nations: I. Europe, Galleries 25 and 26, Central Cases of Galleries 27 and 28. The Metropolitan Museum of Art. New York, 1902, vol. 13, p. 88."
+    consulted: false
+    note: "Listed in the Met bibliography but not located/consulted. Not used as evidence for any claim."
+
+measurements:
+  - measurement_type: dimensions
+    measured_part: "inner instrument"
+    value: "L. 195.2 cm; W. 85.9 cm; D. 21.6 cm"
+    source: met_online
+    epistemic_status: asserted
+    comment: "Current Met catalogue dimensions; used as canonical Q09 dimensions."
+  - measurement_type: dimensions
+    measured_part: "unspecified whole instrument"
+    value: "Length 6 feet 6 inches; width 2 feet 10 1/4 inches"
+    normalized_value: "length ca. 198.1 cm; width ca. 87.0 cm"
+    source: cb1904_p88
+    epistemic_status: asserted
+    comment: "Historical catalogue dimensions. Not treated as conflicting with current Met dimensions because measured part and convention are not identical."
+  - measurement_type: compass
+    value: "4 octaves and a fourth, A to E"
+    source: cb1904_p88
+    epistemic_status: asserted
+    comment: "Musical compass; not comparable to the Met's 3-octave span measurement."
+  - measurement_type: keyboard_scale
+    value: "3-octave span 51.7 cm"
+    source: met_online
+    epistemic_status: asserted
+    comment: "Keyboard scale measurement, not a musical compass."
+  - measurement_type: sounding_length
+    value: "AA 152.0 / 10.6; c2 26.6 / 6.1; e3 9.5 / 4.0"
+    source: met_online
+    epistemic_status: asserted
+    comment: "Sounding length data from current Met catalogue: longer of pair / far plucking point."
+
+notes_for_musicologist:
+  - "Thin-control record in epistemic/provenance terms: anonymous maker and minimal provenance."
+  - "Descriptive evidence is richer than the original thin draft because the historical catalogue supplies compass, material, and dimensional evidence."
+  - "Research scope is catalogue-led: references are limited to those reported by the Met page, with no independent bibliographic search."
+  - "Do not treat Italy vs probably Naples as a conflict: Naples is a qualified refinement within Italy."
+  - "Do not treat current vs historical dimensions as a conflict unless further evidence shows that both sources measured the same part using the same convention."
+  - "Do not use the unconsulted 1902 catalogue as evidence in gold data."

@@ -1,0 +1,213 @@
+id: R12
+density_band: rich
+challenge_category: hybrid_classification_current_state_candidate
+label: Combined Harpsichord-Piano
+instrument_type: combined harpsichord-piano
+category: keyboard
+held_by: Museo Civico
+accession: null
+source_record_id: "BMO-1909"
+source_url: "https://boalch.org/Instruments/InstrumentProfile/1909"
+
+research_scope:
+  basis: "BMO online record BMO-1909 and contributor note included in that record."
+  independent_bibliographic_search: false
+  note: "Claims are derived from the supplied BMO record text. The references listed in the BMO record were not independently consulted unless explicitly stated. Claudio Di Veroli's 2026 note is treated as an interpretive contributor note within the BMO record."
+
+material: "plain wood case"
+dimensions: "length 2870 mm; width 1016 mm"
+
+makers:
+
+- name: "Johann Andreas Stein"
+  role: maker
+  epistemic_status: asserted
+  confidence: asserted
+  source: bmo_online
+  comment: "BMO identifies Johann Andreas Stein as maker, with origin Germany/Augsburg."
+
+dates:
+- range_str: "1777"
+  event_type: creation
+  epistemic_status: asserted
+  confidence: asserted
+  source: bmo_online
+  comment: "BMO date."
+
+places:
+- place_type: production_place
+  label: "Augsburg"
+  broader_place: "Germany"
+  epistemic_status: asserted
+  confidence: asserted
+  source: bmo_online
+  comment: "BMO gives Germany/Augsburg under maker/marks/origin."
+- place_type: current_location
+  label: "Verona"
+  broader_place: "Italy"
+  epistemic_status: asserted
+  confidence: asserted
+  source: bmo_online
+  comment: "BMO gives present owner/instrument location as Italy/Verona."
+
+provenance:
+- agent: "Museo Civico"
+  role: present_owner
+  date_range: "date not stated"
+  epistemic_status: asserted
+  source: bmo_online
+  position: 0
+  comment: "BMO gives Present Owner: Museo Civico, Italy/Verona."
+- agent: "Museo di Castelvecchio, Verona"
+  role: lender_or_owning_collection
+  date_range: "date not stated"
+  epistemic_status: asserted
+  source: bmo_online
+  position: 1
+  comment: "BMO states that the instrument is held at the Società Filarmonica, Verona, on loan from the Museo di Castelvecchio, Verona. Relationship with 'Museo Civico' should be checked."
+- agent: "Società Filarmonica, Verona"
+  role: current_holder_on_loan
+  date_range: "date not stated"
+  epistemic_status: asserted
+  source: bmo_online
+  position: 2
+  comment: "BMO states that the instrument is held at the Società Filarmonica, Verona, on loan."
+
+hs_codes:
+- label: "Combined Harpsichord-Piano (4M)"
+  assigned_by: "BMO"
+  epistemic_status: asserted
+  source: bmo_online
+  comment: "BMO type/classification. This is a hybrid keyboard-instrument type rather than a simple Hornbostel-Sachs code."
+
+related_entities:
+- entity_type: person
+  label: "Johann Andreas Stein"
+  relation: maker
+  source: bmo_online
+  epistemic_status: asserted
+- entity_type: institution
+  label: "Museo Civico"
+  relation: present_owner
+  source: bmo_online
+  epistemic_status: asserted
+- entity_type: institution
+  label: "Museo di Castelvecchio, Verona"
+  relation: lender_or_owning_collection
+  source: bmo_online
+  epistemic_status: asserted
+- entity_type: institution
+  label: "Società Filarmonica, Verona"
+  relation: current_holder_on_loan
+  source: bmo_online
+  epistemic_status: asserted
+- entity_type: material
+  label: wood
+  relation: consists_of
+  source: bmo_online
+  comment: "BMO describes a plain wood case raised on six turned legs."
+- entity_type: feature
+  label: "combined grand pianoforte and two-manual harpsichord"
+  relation: has_hybrid_form
+  source: bmo_online
+  epistemic_status: asserted
+- entity_type: feature
+  label: "four manuals"
+  relation: has_keyboard_configuration
+  source: bmo_online
+  epistemic_status: asserted
+  comment: "BMO type gives 4M. Description explains keyboards at both ends: two harpsichord manuals plus a third controlling the piano by stickers at one end, and the piano alone at the other."
+- entity_type: feature
+  label: "black naturals and white sharps"
+  relation: has_keyboard_feature
+  source: bmo_online
+  epistemic_status: asserted
+- entity_type: feature
+  label: "harpsichord disposition 1×16', 2×8', 1×4'"
+  relation: has_disposition
+  source: bmo_online
+  epistemic_status: asserted
+- entity_type: feature
+  label: "five hand stops and harp stop"
+  relation: has_stops
+  source: bmo_online
+  epistemic_status: asserted
+- entity_type: feature
+  label: "French-style coupler formerly present"
+  relation: former_mechanism
+  source: bmo_online
+  epistemic_status: asserted
+  confidence: contributor_interpretation
+  comment: "Claudio Di Veroli notes that the instrument once had the upper manual movable for a French-style coupler."
+- entity_type: feature
+  label: "coupling action removed"
+  relation: lost_or_removed_component
+  source: bmo_online
+  epistemic_status: asserted
+  confidence: contributor_interpretation
+  comment: "Claudio Di Veroli states that this coupling action was removed in an old restoration."
+
+measurements:
+- measurement_type: dimensions
+  measured_part: "whole instrument"
+  value: "length 2870 mm; width 1016 mm"
+  source: bmo_online
+  epistemic_status: asserted
+- measurement_type: compass
+  value: "FF-f3"
+  source: bmo_online
+  epistemic_status: asserted
+
+technical_description:
+  source: bmo_online
+  summary: "Rectangular-shaped instrument combining a grand pianoforte with a two-manual harpsichord. The keyboards are at each end of the rectangle. At one end are the two harpsichord manuals plus a third manual controlling the piano by stickers; at the other end is the piano alone. The harpsichord has 1×16', 2×8', and 1×4' choirs, five hand stops, and a harp stop. Plain wood case raised on six turned legs."
+
+historical_states:
+- state_type: original_or_early_configuration
+  date: "1777"
+  agent: "Johann Andreas Stein"
+  description: "Combined grand pianoforte and two-manual harpsichord with four-manual configuration."
+  epistemic_status: asserted
+  source: bmo_online
+- state_type: former_coupling_mechanism
+  date: "date not stated"
+  agent: "UNKNOWN"
+  description: "Instrument once had the upper manual movable for a French-style coupler, allowing a full harpsichord to be played from the middle manual."
+  epistemic_status: asserted
+  confidence: contributor_interpretation
+  source: bmo_online
+- state_type: old_restoration
+  date: "date not stated"
+  agent: "UNKNOWN"
+  description: "The coupling action was removed in the course of an old restoration."
+  epistemic_status: asserted
+  confidence: contributor_interpretation
+  source: bmo_online
+
+contextual_literature:
+- source: bmo_online
+  topic: "Claudio Di Veroli 2026 contributor note"
+  summary: "The note interprets the unusual stop and choir disposition, including the behaviour of the 16', 8', and 4' choirs across different compass regions, and states that a former French-style coupler was removed in an old restoration."
+  claim_scope: "technical interpretation of this object"
+
+references:
+- id: bmo_online
+  type: online_catalogue
+  citation: "BMO-1909, Combined Harpsichord-Piano (4M), Johann Andreas Stein, 1777."
+  consulted: true
+  note: "Used as current source for maker, date, origin, present owner, location, provenance note, compass, keyboard colours, disposition, stops, dimensions, description, remarks, and contributor note."
+- id: bmo_references_unconsulted
+  type: bibliography_set
+  reported_by: bmo_online
+  citation: "References and sources listed in BMO-1909, including Boalch 1995, Latcham 2000, Latcham 2019, Magnabosco 2007, Mercier-Ythier 1990, Russell 1959/Broadwood papers affidavit, and old Boalch numbers."
+  consulted: false
+  note: "Listed in the BMO record but not independently consulted for this draft. Not used as direct evidence except insofar as the BMO record itself reports them."
+
+notes_for_musicologist:
+- "Rich hybrid-instrument record: combined grand pianoforte and two-manual harpsichord with four-manual configuration."
+- "Do not classify this simply as a harpsichord or simply as a piano; preserve the combined harpsichord-piano identity."
+- "Preserve Stein as maker and Augsburg as production place."
+- "Preserve the current holding/ownership complexity: Museo Civico, Museo di Castelvecchio, and Società Filarmonica all appear in the BMO record with different roles."
+- "Preserve the removed coupling action as a historical/current-state issue, but note that the statement comes from a contributor interpretation."
+- "Do not infer key materials from black naturals and white sharps; the supplied record gives colour, not material."
+- "The references listed in BMO were not independently consulted and should not be used as direct evidence in gold data."

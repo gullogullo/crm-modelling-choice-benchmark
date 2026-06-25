@@ -1,0 +1,215 @@
+id: R04
+density_band: medium
+challenge_category: A_attribution_context_candidate
+label: Piano
+alternative_labels: "Lying-harp piano"
+instrument_type: lying-harp piano
+category: keyboard
+held_by: Rijksmuseum
+accession: "BK-NM-8306"
+source_url: "https://www.rijksmuseum.nl/en/collection/object/Piano--81416fdc8306d5dab1e94f1d3955e30c"
+persistent_url: "https://id.rijksmuseum.nl/200410315"
+
+research_scope:
+  basis: "Rijksmuseum online catalogue record and selected documentation listed there."
+  independent_bibliographic_search: false
+  note: "References included here are those reported by the Rijksmuseum catalogue page. One listed reference, Latcham 2002, was checked from the supplied excerpt. The other listed documentation references were not consulted directly. No systematic search in other catalogues or secondary literature was undertaken for this record."
+
+material: "cherry wood, oak, softwood, ebony, ivory, brass, iron, leather"
+dimensions: "height 77 cm x width 117 cm x depth 49 cm"
+
+makers:
+- name: "anonymous"
+  epistemic_status: unknown
+  source: rijks_online
+  comment: "Rijksmuseum identifies the maker as anonymous. Treat as UNKNOWN rather than ABSENT."
+- name: "Johann Matthäus Schmahl"
+  epistemic_status: contested
+  confidence: contextual_not_accepted
+  source: latcham2002_excerpt
+  comment: "Latcham states that many lying-harp pianos are often attributed to Johann Matthäus Schmahl, but that these instruments are rarely signed, never dated, and were more likely produced by several firms in southern Germany and Switzerland. This is preserved as contextual attribution evidence, not as an accepted maker claim for this object."
+
+dates:
+- range_str: "c. 1770 - c. 1775"
+  event_type: creation
+  epistemic_status: asserted
+  confidence: approximate
+  source: rijks_online
+  comment: "Rijksmuseum dating."
+- range_str: "last quarter of the 18th century"
+  event_type: creation_context
+  epistemic_status: asserted
+  confidence: broad
+  source: latcham2002_excerpt
+  comment: "Latcham describes a small anonymous lying-harp piano of the last quarter of the 18th century. Use as contextual evidence only unless object identity with the Rijksmuseum record is verified."
+
+places:
+- place_type: production_place
+  label: "Southern Germany"
+  epistemic_status: asserted
+  confidence: possible
+  source: rijks_online
+  comment: "Rijksmuseum creation field gives anonymous, Southern Germany (possibly)."
+- place_type: production_context
+  label: "Southern Germany and Switzerland"
+  epistemic_status: asserted
+  confidence: contextual
+  source: latcham2002_excerpt
+  comment: "Latcham suggests that several firms in southern Germany and Switzerland likely produced such lying-harp pianos. This is contextual class-level evidence, not a direct production-place claim for this object."
+
+provenance:
+- agent: "Rijksmuseum"
+  role: holds
+  date_range: "1886-"
+  epistemic_status: asserted
+  source: rijks_online
+  comment: "Supported by acquisition field: purchase 1886."
+- agent: "UNKNOWN — seller or prior owner not given in consulted catalogue record"
+  role: previous_owner_or_seller
+  date_range: "before 1886"
+  epistemic_status: unknown
+  source: rijks_online
+  comment: "The catalogue gives purchase 1886 but does not identify the seller or earlier provenance."
+
+hs_codes:
+- label: "keyboard instrument; musical instrument; stringed instrument; pianoforte"
+  assigned_by: "Rijksmuseum"
+  epistemic_status: asserted
+  source: rijks_online
+  comment: "Rijksmuseum object/work-type classification, not a Hornbostel-Sachs code."
+
+related_entities:
+- entity_type: material
+  label: cherry
+  relation: consists_of
+  source: rijks_online
+- entity_type: material
+  label: oak
+  relation: consists_of
+  source: rijks_online
+- entity_type: material
+  label: softwood
+  relation: consists_of
+  source: rijks_online
+- entity_type: material
+  label: ebony
+  relation: consists_of
+  source: rijks_online
+- entity_type: material
+  label: ivory
+  relation: consists_of
+  source: rijks_online
+- entity_type: material
+  label: brass
+  relation: consists_of
+  source: rijks_online
+- entity_type: material
+  label: iron
+  relation: consists_of
+  source: rijks_online
+- entity_type: material
+  label: leather
+  relation: consists_of
+  source: rijks_online
+- entity_type: mechanism
+  label: knee-operated pedals or knee-levers
+  relation: has_mechanism
+  source: rijks_online
+  epistemic_status: asserted
+  comment: "Rijksmuseum description states that the piano has pedals moved by the knees."
+- entity_type: mechanism
+  label: bare wooden hammer heads
+  relation: has_mechanism
+  source: rijks_online
+  epistemic_status: asserted
+  comment: "Rijksmuseum note states that many early small German pianos, including this one, had tiny bare wooden hammer heads."
+- entity_type: place
+  label: Southern Germany
+  relation: possible_production_place
+  source: rijks_online
+  epistemic_status: asserted
+  confidence: possible
+
+measurements:
+- measurement_type: dimensions
+  measured_part: "whole instrument"
+  value: "height 77 cm x width 117 cm x depth 49 cm"
+  source: rijks_online
+  epistemic_status: asserted
+  comment: "Current Rijksmuseum catalogue dimensions."
+
+technical_description:
+  source: rijks_online
+  summary: "Piano with knee-operated pedals or knee-levers. The Rijksmuseum identifies it as a small early piano or lying-harp piano, probably from Southern Germany, with tiny bare wooden hammer heads."
+
+contextual_literature:
+- source: latcham2002_excerpt
+  topic: "lying-harp pianos"
+  summary: "Latcham notes that many lying-harp pianos are often attributed to Johann Matthäus Schmahl, but that these instruments are rarely signed and never dated; it is more likely that several firms produced such instruments in southern Germany and Switzerland. The excerpt also discusses bare wooden hammers, knee-levers, moderators, and related small piano actions."
+  claim_scope: "instrument-type context"
+  comment: "Use as contextual evidence for the class of objects, not as a direct attribution unless the specific illustrated object is confirmed to be this Rijksmuseum record."
+
+references:
+- id: rijks_online
+  type: online_catalogue
+  citation: "Rijksmuseum, Piano, object BK-NM-8306"
+  url: "https://www.rijksmuseum.nl/en/collection/object/Piano--81416fdc8306d5dab1e94f1d3955e30c"
+  persistent_url: "https://id.rijksmuseum.nl/200410315"
+  consulted: true
+  note: "Used as current catalogue source for title, alternative title, object number, date, possible production place, maker status, materials, dimensions, acquisition, description, and object-type classifications."
+- id: piano_p22
+  type: printed_book_or_catalogue
+  reported_by: rijks_online
+  citation: "Piano, p. 22."
+  consulted: false
+  note: "Listed by the Rijksmuseum documentation section but not consulted. Not used as evidence for any claim."
+- id: latcham1993_sound
+  type: article
+  reported_by: rijks_online
+  citation: "Michael Latcham, 'The sound of some late eighteenth century keyboard instruments', Jaarboek: Haags Gemeentemuseum (1993), pp. 30-41: 32-33, fig. 1."
+  consulted: false
+  note: "Listed by the Rijksmuseum documentation section but not consulted. Not used as evidence for any claim."
+- id: distefano2018_storia
+  type: book_chapter
+  reported_by: rijks_online
+  citation: "Giovanni Paolo Di Stefano, 'Storia del pianoforte dalle origini ai nostri giorni', in Il pianoforte, ed. Ala Botti Caselli, Torino: EDT, 2018, pp. 1-74: 23, Tav. 6."
+  consulted: false
+  note: "Listed by the Rijksmuseum documentation section but not consulted. Not used as evidence for any claim."
+- id: latcham2016_schiedmayer
+  type: book_chapter
+  reported_by: rijks_online
+  citation: "Michael Latcham, 'The Hammerflügel of Johann David Schiedmayer', in Pianos for Haydn, Mozart and Beethoven: change and contrast. Selected essays by Michael Latcham, München-Salzburg: Musikverlag Katzbichler, 2016, pp. 315-349: 336-337, fig. 15."
+  consulted: false
+  note: "Listed by the Rijksmuseum documentation section but not consulted. Not used as evidence for any claim."
+- id: latcham2002_excerpt
+  type: article
+  reported_by: rijks_online
+  citation: "Michael Latcham, 'Swirling from One Level of the Affects to Another: The Expressive Clavier in Mozart's Time', Early Music 30, no. 4 (Nov. 2002), pp. 502-520: 509, 518, fig. 6."
+  consulted: true
+  note: "Consulted from supplied excerpt. Used for contextual evidence about lying-harp pianos, Schmahl attribution caution, bare wooden hammers, knee-levers, and southern German/Swiss production context. Not treated as an accepted maker attribution for this object."
+- id: latcham2016_stein
+  type: book_chapter
+  reported_by: rijks_online
+  citation: "Michael Latcham, 'Mozart and the pianos of Johann Andreas Stein', in Pianos for Haydn, Mozart and Beethoven: change and contrast. Selected essays by Michael Latcham, München-Salzburg: Musikverlag Katzbichler, 2016, pp. 57-105: 64, fig. 4."
+  consulted: false
+  note: "Listed by the Rijksmuseum documentation section but not consulted. Not used as evidence for any claim."
+- id: latcham2019_new_history
+  type: book
+  reported_by: rijks_online
+  citation: "Michael Latcham, Towards a new history of the piano, München-Salzburg: Musikverlag Katzbichler, 2019, pp. 83-84 n. 164, 203, fig. 92."
+  consulted: false
+  note: "Listed by the Rijksmuseum documentation section but not consulted. Not used as evidence for any claim."
+- id: steiner2004_instruments
+  type: proceedings_or_book
+  reported_by: rijks_online
+  citation: "Thomas Steiner, Instruments à claviers - expressivité et flexibilité sonore. Actes des Rencontres Internationales harmoniques. Lausanne 2002, Bern: Peter Lang, 2004, pp. 129-130."
+  consulted: false
+  note: "Listed by the Rijksmuseum documentation section but not consulted. Not used as evidence for any claim."
+
+notes_for_musicologist:
+
+- "Medium/substantial record with anonymous maker, possible Southern German origin, detailed materials, dimensions, acquisition, alternative title, and mechanism evidence."
+- "The accepted catalogue maker remains anonymous. The Schmahl attribution belongs to contextual literature about the instrument type and should not be converted into an accepted object-specific maker unless further source checking confirms it."
+- "Treat Southern Germany as the only object-specific possible production place from the consulted catalogue record. Treat Switzerland as contextual class-level evidence from Latcham, not as this object's production place."
+- "The title Piano and alternative title Lying-harp piano should be preserved as an identity/type nuance, not as a classification conflict."
+- "Most Rijksmuseum documentation references were not consulted and should not be used as evidence in gold data."

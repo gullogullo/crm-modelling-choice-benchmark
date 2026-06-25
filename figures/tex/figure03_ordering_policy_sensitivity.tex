@@ -1,0 +1,57 @@
+\documentclass[tikz,border=10pt]{standalone}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\pgfplotsset{compat=1.18}
+
+\begin{document}
+\pagecolor{white}
+
+\definecolor{profilePurple}{RGB}{95,82,165}
+\definecolor{scopeGreen}{RGB}{0,120,95}
+
+% Caption for the paper:
+% Boundary-policy sensitivity of current-local answer-set divergence in the
+% Ligatus run. Bars report the percentage of records whose earlier treatment
+% events fall outside the current-identity-local answer set in the segmented
+% profile. For treatment-history and modification-retrieval tasks, the same
+% records are affected, so one shared affected-record rate is shown.
+
+\begin{tikzpicture}[font=\small]
+
+\begin{axis}[
+  width=11.8cm,
+  height=6.2cm,
+  ybar,
+  ymin=0,
+  ymax=40,
+  ylabel={records with divergence (\%)},
+  symbolic x coords={all roots split,source semantics,dated only},
+  xtick=data,
+  x tick label style={font=\scriptsize,align=center},
+  ytick={0,10,20,30,40},
+  ymajorgrids,
+  grid style={black!12},
+  axis line style={black!55},
+  tick style={black!55},
+  bar width=20pt,
+  enlarge x limits=0.28,
+  nodes near coords={\pgfmathprintnumber[fixed,precision=1]{\pgfplotspointmeta}\%},
+  nodes near coords style={font=\bfseries\scriptsize,anchor=south},
+  point meta=y,
+]
+
+\addplot+[
+  draw=scopeGreen!85!black,
+  fill=scopeGreen!28
+] table[
+  col sep=comma,
+  x=policy_label,
+  y=gap_percent
+] {figures/data/boundary_policy_loso.csv};
+
+\end{axis}
+
+\end{tikzpicture}
+\end{document}

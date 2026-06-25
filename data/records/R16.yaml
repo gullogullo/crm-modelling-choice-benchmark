@@ -1,0 +1,252 @@
+id: R16
+density_band: medium
+challenge_category: contested_attribution_fragmentary_state_candidate
+label: Octave Virginal
+instrument_type: octave virginal
+category: keyboard
+held_by: Grassi Museum; University of Leipzig
+accession: "38"
+source_record_id: "BMO-465"
+source_url: "https://boalch.org/Instruments/InstrumentProfile/465"
+
+research_scope:
+  basis: "BMO online record BMO-465."
+  independent_bibliographic_search: false
+  note: "Claims are derived from the supplied BMO record text. The references listed in the BMO record were not independently consulted. The BMO record itself reports the main inscription, attribution, lost components, and provenance notes."
+
+material: "ivory, ebony, wood"
+dimensions: "length 880 mm; width 445 mm; depth 116 mm"
+
+makers:
+- name: "Luigi Fani"
+  role: attributed_maker
+  epistemic_status: contested
+  confidence: attributed
+  source: bmo_online
+  comment: "BMO gives maker as Fani, Luigi (attr.). The attribution is based on a barely legible inscription on the topmost jack: Luigi/Fani[?]/16/35."
+- name: "UNKNOWN — repairer"
+  role: repairer
+  epistemic_status: unknown
+  confidence: inscription_without_name
+  source: bmo_online
+  comment: "A repairer's note is recorded as Aprile/1769/rest., but no repairer is named."
+
+dates:
+- range_str: "1635"
+  event_type: creation
+  epistemic_status: asserted
+  confidence: attributed_from_inscription
+  source: bmo_online
+  comment: "BMO gives date 1635. The barely legible inscription includes 16/35."
+- range_str: "1769-04"
+  event_type: repair
+  epistemic_status: asserted
+  confidence: asserted_from_note
+  source: bmo_online
+  comment: "Repairer's note reads Aprile/1769/rest."
+- range_str: "1892"
+  event_type: provenance
+  epistemic_status: asserted
+  confidence: asserted
+  source: bmo_online
+  comment: "BMO states that the instrument was originally in the de Wit collection, Leipzig in 1892."
+- range_str: "since 1945"
+  event_type: component_loss
+  epistemic_status: asserted
+  confidence: asserted
+  source: bmo_online
+  comment: "BMO states that the original keys have been lost since 1945."
+
+places:
+- place_type: production_place
+  label: "Italy"
+  epistemic_status: asserted
+  confidence: broad
+  source: bmo_online
+  comment: "BMO gives origin as Italy, without a more specific city."
+- place_type: current_location
+  label: "Leipzig"
+  broader_place: "Saxony, Germany"
+  epistemic_status: asserted
+  confidence: asserted
+  source: bmo_online
+  comment: "BMO gives present owner and instrument location as Grassi Museum / University of Leipzig, Germany/Saxony/Leipzig."
+
+provenance:
+- agent: "de Wit collection, Leipzig"
+  role: previous_collection
+  date_range: "1892"
+  epistemic_status: asserted
+  source: bmo_online
+  position: 0
+  comment: "BMO states that the instrument was originally in the de Wit collection, Leipzig in 1892."
+- agent: "Leopoldo Franciolini"
+  role: probable_dealer_or_intermediary
+  date_range: "date not stated"
+  epistemic_status: asserted
+  confidence: probable
+  source: bmo_online
+  position: 1
+  comment: "BMO states that the instrument most probably passed through the hands of Franciolini."
+- agent: "Grassi Museum; University of Leipzig"
+  role: present_owner
+  date_range: "date not stated"
+  epistemic_status: asserted
+  source: bmo_online
+  position: 2
+  comment: "BMO gives present owner as Grassi Museum; University of Leipzig, catalog number 38."
+
+hs_codes:
+- label: "Octave Virginal"
+  assigned_by: "BMO"
+  epistemic_status: asserted
+  source: bmo_online
+  comment: "BMO type/classification, not a formal Hornbostel-Sachs code."
+
+related_entities:
+- entity_type: person
+  label: "Luigi Fani"
+  relation: attributed_maker
+  source: bmo_online
+  epistemic_status: contested
+  confidence: attributed
+- entity_type: person
+  label: "Leopoldo Franciolini"
+  relation: probable_dealer_or_intermediary
+  source: bmo_online
+  epistemic_status: asserted
+  confidence: probable
+- entity_type: collection
+  label: "de Wit collection, Leipzig"
+  relation: previous_collection
+  source: bmo_online
+  epistemic_status: asserted
+- entity_type: institution
+  label: "Grassi Museum; University of Leipzig"
+  relation: present_owner
+  source: bmo_online
+  epistemic_status: asserted
+- entity_type: material
+  label: wood
+  relation: consists_of
+  source: bmo_online
+  comment: "The object is a polygonal-cased virginal; BMO does not specify the main wood species."
+- entity_type: material
+  label: ivory
+  relation: consists_of
+  source: bmo_online
+  comment: "Case decoration and original naturals/fronts; original keys are now lost."
+- entity_type: material
+  label: ebony
+  relation: consists_of
+  source: bmo_online
+  comment: "Case decoration and original sharps; original keys are now lost."
+- entity_type: component
+  label: "original keys"
+  relation: lost_component
+  source: bmo_online
+  epistemic_status: asserted
+  confidence: lost_since_1945
+- entity_type: component
+  label: "outer case"
+  relation: lost_component
+  source: bmo_online
+  epistemic_status: asserted
+  confidence: asserted
+- entity_type: feature
+  label: "irregular six-sided polygon case"
+  relation: has_form
+  source: bmo_online
+  epistemic_status: asserted
+- entity_type: feature
+  label: "short octave"
+  relation: has_keyboard_feature
+  source: bmo_online
+  epistemic_status: asserted
+
+inscriptions:
+- location: "topmost jack"
+  text: "Luigi/Fani[?]/16/35"
+  inscription_type: maker_date_inscription
+  epistemic_status: asserted
+  confidence: barely_legible
+  source: bmo_online
+  comment: "This inscription supports the attributed maker and date, but the reading is uncertain."
+- location: "same key or associated component"
+  text: "Aprile/1769/rest."
+  inscription_type: repair_note
+  epistemic_status: asserted
+  confidence: asserted
+  source: bmo_online
+  comment: "Repairer's note; the repairer is not named. The BMO wording should be checked if exact location matters, since the maker inscription is described as on the topmost jack."
+
+measurements:
+- measurement_type: dimensions
+  measured_part: "whole instrument"
+  value: "length 880 mm; width 445 mm; depth 116 mm"
+  source: bmo_online
+  epistemic_status: asserted
+- measurement_type: scale
+  value: "157 mm"
+  source: bmo_online
+  epistemic_status: asserted
+- measurement_type: compass
+  value: "C/E-c3, short octave"
+  source: bmo_online
+  epistemic_status: asserted
+
+historical_states:
+- state_type: attributed_original_state
+  date: "1635"
+  agent: "Luigi Fani, attributed"
+  place: "Italy"
+  description: "Octave virginal attributed to Luigi Fani, with irregular six-sided polygon case decorated with ivory and ebony."
+  epistemic_status: contested
+  confidence: attributed_from_barely_legible_inscription
+  source: bmo_online
+- state_type: repair
+  date: "1769-04"
+  agent: "UNKNOWN"
+  description: "Repairer's note Aprile/1769/rest."
+  epistemic_status: asserted
+  confidence: inscription_without_named_agent
+  source: bmo_online
+- state_type: lost_keys
+  date: "since 1945"
+  agent: "UNKNOWN"
+  description: "Original keys lost since 1945; BMO records that the naturals were ivory with ivory fronts and the sharps overlaid with ebony."
+  epistemic_status: asserted
+  source: bmo_online
+- state_type: lost_outer_case
+  date: "date not stated"
+  agent: "UNKNOWN"
+  description: "Outer case has been lost."
+  epistemic_status: asserted
+  source: bmo_online
+
+technical_description:
+  source: bmo_online
+  summary: "Octave virginal with compass C/E-c3, short octave, disposition 1×4', scale 157 mm, and irregular six-sided polygon case decorated with ivory and ebony. The original keys have been lost since 1945, but were recorded as ivory naturals with ivory fronts and ebony-overlaid sharps. The outer case has also been lost."
+
+references:
+- id: bmo_online
+  type: online_catalogue
+  citation: "BMO-465, Octave Virginal, Luigi Fani attributed, 1635."
+  url: "https://boalch.org/Instruments/InstrumentProfile/465"
+  consulted: true
+  note: "Used as current source for attributed maker, date, origin, inscriptions, repair note, present owner, catalog number, location, provenance notes, compass, key description, disposition, scale, dimensions, description, lost keys, and lost outer case."
+- id: bmo_references_unconsulted
+  type: bibliography_set
+  reported_by: bmo_online
+  citation: "References and sources listed in BMO-465, including Boalch 1995, Henkel 1979, and Kinsky 1910."
+  consulted: false
+  note: "Listed in the BMO record but not independently consulted for this draft. Not used as direct evidence beyond the claims reported in the BMO record."
+
+notes_for_musicologist:
+- "Medium record with strong attribution and current-state issues."
+- "Do not treat Luigi Fani as an uncontested maker: the maker is attributed and the inscription is barely legible."
+- "Preserve the repair note Aprile/1769/rest. as repair evidence, but do not invent a repairer."
+- "Separate current state from historical state: original keys have been lost since 1945, and the outer case is lost."
+- "Treat ivory and ebony key materials as historical/lost-key evidence, not necessarily current-state materials."
+- "Treat Franciolini as a probable intermediary, not as certain provenance."
+- "The references listed by BMO were not independently consulted and should not be used as direct evidence beyond claims reported in the BMO record."

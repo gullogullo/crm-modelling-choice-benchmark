@@ -1,0 +1,4 @@
+PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
+SELECT DISTINCT ?event WHERE {
+  ?event crm:P31_has_modified|crm:P110_augmented|crm:P112_diminished ?object .
+}

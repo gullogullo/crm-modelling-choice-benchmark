@@ -1,0 +1,264 @@
+id: R17
+density_band: medium
+challenge_category: authenticated_current_state_alteration_candidate
+label: Rectangular Virginal
+instrument_type: rectangular virginal
+category: keyboard
+held_by: Musical Instrument Museum, Brussels
+accession: "2928"
+source_record_id: "BMO-1535"
+source_url: "https://boalch.org/Instruments/InstrumentProfile/1535"
+
+research_scope:
+  basis: "BMO online record BMO-1535."
+  independent_bibliographic_search: false
+  note: "Claims are derived from the supplied BMO record text. The references listed in the BMO record were not independently consulted. O’Brien’s authentication and number are treated as claims reported by the BMO record."
+
+material: "bone, bog oak, leather, wood, paint, paper"
+dimensions: "length 1138 mm; width 440 mm; depth 190 mm"
+
+makers:
+- name: "Andreas Ruckers"
+  role: maker
+  epistemic_status: asserted
+  confidence: authenticated
+  source: bmo_online
+  comment: "BMO gives maker as Andreas Ruckers. The record states that the instrument was authenticated by O’Brien, number 1613b AR."
+
+dates:
+- range_str: "1613"
+  event_type: creation
+  epistemic_status: asserted
+  confidence: asserted
+  source: bmo_online
+  comment: "BMO gives date 1613; date 1613 is recorded on the soundboard."
+- range_str: "cataloguing/authentication date not stated"
+  event_type: authentication
+  epistemic_status: asserted
+  confidence: asserted
+  source: bmo_online
+  comment: "BMO reports authentication by O’Brien, number 1613b AR, but no date of authentication is supplied."
+
+places:
+- place_type: production_place
+  label: "Antwerp"
+  broader_place: "Belgium"
+  epistemic_status: asserted
+  confidence: asserted
+  source: bmo_online
+  comment: "BMO gives maker/origin as Belgium/Antwerp."
+- place_type: current_location
+  label: "Brussels"
+  broader_place: "Belgium"
+  epistemic_status: asserted
+  confidence: asserted
+  source: bmo_online
+  comment: "BMO gives present owner and instrument location as Musical Instrument Museum, Brussels."
+
+provenance:
+- agent: "M. Haveaux, Rebecq-Rognon"
+  role: previous_owner
+  date_range: "date not stated"
+  epistemic_status: asserted
+  source: bmo_online
+  position: 0
+  comment: "BMO lists M. Haveaux, Rebecq-Rognon in provenance."
+- agent: "C. Snoeck"
+  role: previous_owner
+  date_range: "date not stated"
+  epistemic_status: asserted
+  source: bmo_online
+  position: 1
+  comment: "BMO lists C. Snoeck in provenance."
+- agent: "Musical Instrument Museum, Brussels"
+  role: present_owner
+  date_range: "date not stated"
+  epistemic_status: asserted
+  source: bmo_online
+  position: 2
+  comment: "BMO gives present owner as Musical Instrument Museum, Brussels, catalog number 2928."
+
+hs_codes:
+- label: "Rectangular Virginal"
+  assigned_by: "BMO"
+  epistemic_status: asserted
+  source: bmo_online
+  comment: "BMO type/classification, not a formal Hornbostel-Sachs code."
+
+related_entities:
+- entity_type: person
+  label: "Andreas Ruckers"
+  relation: maker
+  source: bmo_online
+  epistemic_status: asserted
+  confidence: authenticated
+- entity_type: person
+  label: "Grant O’Brien"
+  relation: authenticator
+  source: bmo_online
+  epistemic_status: asserted
+  comment: "BMO states authenticated by O’Brien, number 1613b AR."
+- entity_type: person
+  label: "M. Haveaux"
+  relation: previous_owner
+  source: bmo_online
+  epistemic_status: asserted
+- entity_type: person
+  label: "C. Snoeck"
+  relation: previous_owner
+  source: bmo_online
+  epistemic_status: asserted
+- entity_type: institution
+  label: "Musical Instrument Museum, Brussels"
+  relation: present_owner
+  source: bmo_online
+  epistemic_status: asserted
+- entity_type: material
+  label: bone
+  relation: consists_of
+  source: bmo_online
+  comment: "Naturals are of bone."
+- entity_type: material
+  label: bog oak
+  relation: consists_of
+  source: bmo_online
+  comment: "Sharps are of bog oak."
+- entity_type: material
+  label: leather
+  relation: alteration_material
+  source: bmo_online
+  comment: "Jacks are original but are now leathered."
+- entity_type: material
+  label: wood
+  relation: consists_of
+  source: bmo_online
+  comment: "Generic wood retained for the case/instrument structure; specific case wood is not supplied."
+- entity_type: material
+  label: paint
+  relation: surface_finish
+  source: bmo_online
+  comment: "Case has been repainted; original porphyry marble decoration is visible through cracks."
+- entity_type: material
+  label: paper
+  relation: lost_decoration
+  source: bmo_online
+  epistemic_status: asserted
+  confidence: lost
+  comment: "The instrument has lost its papers."
+- entity_type: feature
+  label: "short octave"
+  relation: has_keyboard_feature
+  source: bmo_online
+  epistemic_status: asserted
+- entity_type: feature
+  label: "R+5 quint pitch"
+  relation: has_pitch
+  source: bmo_online
+  epistemic_status: asserted
+- entity_type: feature
+  label: "4-foot spinett virginal"
+  relation: has_type_detail
+  source: bmo_online
+  epistemic_status: asserted
+- entity_type: component
+  label: "original jacks"
+  relation: surviving_modified_component
+  source: bmo_online
+  epistemic_status: asserted
+  comment: "Jacks are original but now leathered."
+- entity_type: decoration
+  label: "original green or possibly red porphyry marble decoration"
+  relation: hidden_or_partly_visible_original_decoration
+  source: bmo_online
+  epistemic_status: asserted
+  confidence: uncertain_colour
+  comment: "Original decoration visible through cracks in later paint."
+
+inscriptions:
+- location: "soundboard"
+  text: "1613"
+  inscription_type: date_mark
+  epistemic_status: asserted
+  source: bmo_online
+  comment: "Date 1613 on soundboard."
+- location: "instrument"
+  text: "[4]/40"
+  inscription_type: ruckers_number
+  epistemic_status: asserted
+  confidence: partly_reconstructed
+  source: bmo_online
+  comment: "BMO gives Ruckers number as [4]/40."
+
+measurements:
+- measurement_type: dimensions
+  measured_part: "whole instrument"
+  value: "length 1138 mm; width 440 mm; depth 190 mm"
+  source: bmo_online
+  epistemic_status: asserted
+- measurement_type: scale
+  value: "243 mm"
+  source: bmo_online
+  epistemic_status: asserted
+- measurement_type: compass
+  value: "C/E-c3, short octave"
+  source: bmo_online
+  epistemic_status: asserted
+- measurement_type: pitch
+  value: "R+5, quint pitch"
+  source: bmo_online
+  epistemic_status: asserted
+
+historical_states:
+- state_type: original_construction
+  date: "1613"
+  agent: "Andreas Ruckers"
+  place: "Antwerp"
+  description: "Rectangular virginal with original scalings, date 1613 on soundboard, Ruckers number [4]/40."
+  epistemic_status: asserted
+  confidence: authenticated
+  source: bmo_online
+- state_type: lost_decoration
+  date: "date not stated"
+  agent: "UNKNOWN"
+  description: "Instrument has lost its papers and soundboard decoration."
+  epistemic_status: asserted
+  source: bmo_online
+- state_type: repainted_case
+  date: "date not stated"
+  agent: "UNKNOWN"
+  description: "Case repainted; original green or possibly red porphyry marble decoration visible through cracks in the paint."
+  epistemic_status: asserted
+  confidence: uncertain_original_colour
+  source: bmo_online
+- state_type: modified_jacks
+  date: "date not stated"
+  agent: "UNKNOWN"
+  description: "Jacks are original but now leathered."
+  epistemic_status: asserted
+  source: bmo_online
+
+technical_description:
+  source: bmo_online
+  summary: "Rectangular virginal by Andreas Ruckers, dated 1613, authenticated by O’Brien as 1613b AR. Compass C/E-c3 with short octave; disposition 1×8'; pitch R+5, quint pitch; scale 243 mm. Naturals are bone and sharps bog oak. Original scalings survive, but papers and soundboard decoration are lost. The case has been repainted, with original green or possibly red porphyry marble decoration visible through cracks. Rose with seated harping figure."
+
+references:
+- id: bmo_online
+  type: online_catalogue
+  citation: "BMO-1535, Rectangular Virginal, Andreas Ruckers, 1613."
+  url: "https://boalch.org/Instruments/InstrumentProfile/1535"
+  consulted: true
+  note: "Used as current source for maker, date, origin, date mark, Ruckers number, present owner, catalog number, provenance, compass, keyboard materials, disposition, jack state, pitch, scale, dimensions, description, restoration/current-state evidence, and O’Brien authentication."
+- id: bmo_references_unconsulted
+  type: bibliography_set
+  reported_by: bmo_online
+  citation: "References and sources listed in BMO-1535, including Boalch 1995, Kottick 2003, O’Brien 1990, Russell 1959/1965/1973, van der Meer 1971, and Vandervellen 2017."
+  consulted: false
+  note: "Listed in the BMO record but not independently consulted for this draft. Not used as direct evidence beyond the claims reported in the BMO record."
+
+notes_for_musicologist:
+- "Medium/substantial authenticated Ruckers record with accepted maker, date, place, measurements, keyboard materials, provenance names, and current-state evidence."
+- "Do not treat this as an attribution conflict: the BMO record presents Andreas Ruckers as maker and reports authentication by O’Brien."
+- "Preserve the current-state alterations: lost papers, lost soundboard decoration, repainted case, and original jacks now leathered."
+- "Preserve the uncertainty in the original marble decoration colour: green or possibly red."
+- "Treat provenance as incomplete because M. Haveaux and C. Snoeck are listed without dates or transfer details."
+- "The references listed by BMO were not independently consulted and should not be used as direct evidence beyond claims reported in the BMO record."

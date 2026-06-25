@@ -1,0 +1,9 @@
+cff-version: 1.2.0
+message: "If you use this benchmark, please cite this repository and the external datasets identified in DATA_SOURCES.md."
+title: "CIDOC CRM modelling-choice benchmark"
+type: software
+version: 0.1.0
+date-released: 2026-06-22
+authors:
+  - family-names: Gulli
+    given-names: Andrea

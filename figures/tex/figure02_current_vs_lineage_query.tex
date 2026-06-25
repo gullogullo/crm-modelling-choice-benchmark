@@ -1,0 +1,109 @@
+\documentclass[tikz,border=10pt]{standalone}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,calc,positioning}
+
+\begin{document}
+\pagecolor{white}
+
+\definecolor{persistentBlue}{RGB}{64,97,151}
+\definecolor{segmentedPurple}{RGB}{95,82,165}
+\definecolor{currentGreen}{RGB}{0,120,95}
+\definecolor{lineageGold}{RGB}{178,112,34}
+\definecolor{softBlue}{RGB}{232,240,252}
+\definecolor{softPurple}{RGB}{236,234,252}
+\definecolor{softGreen}{RGB}{224,241,236}
+\definecolor{softGold}{RGB}{255,244,224}
+\definecolor{eventFill}{RGB}{255,246,231}
+\definecolor{gridGrey}{RGB}{235,235,235}
+
+\begin{tikzpicture}[
+  font=\small,
+  >=Stealth,
+  object/.style={
+    rounded corners=6pt,
+    minimum width=1.55cm,
+    minimum height=0.72cm,
+    align=center,
+    inner sep=5pt,
+    line width=0.8pt
+  },
+  persistentObj/.style={object, draw=persistentBlue!85!black, fill=softBlue},
+  segmentObj/.style={object, draw=segmentedPurple!85!black, fill=softPurple},
+  currentObj/.style={object, draw=currentGreen!85!black, fill=softGreen},
+  episode/.style={
+    rounded corners=5pt,
+    draw=black!58,
+    fill=eventFill,
+    minimum width=1.35cm,
+    minimum height=0.52cm,
+    align=center,
+    inner sep=3pt,
+    font=\scriptsize
+  },
+  arr/.style={-{Stealth[length=1.8mm,width=1.2mm]}, semithick, black!55},
+  cell/.style={
+    draw=gridGrey,
+    fill=white,
+    minimum width=3.6cm,
+    minimum height=0.78cm,
+    align=center,
+    inner sep=5pt
+  },
+  header/.style={
+    draw=gridGrey,
+    fill=gridGrey!45,
+    minimum width=3.6cm,
+    minimum height=0.62cm,
+    align=center,
+    inner sep=5pt,
+    font=\bfseries\small
+  },
+  rowhead/.style={
+    draw=gridGrey,
+    fill=gridGrey!45,
+    minimum width=2.75cm,
+    minimum height=0.78cm,
+    align=center,
+    inner sep=5pt,
+    font=\bfseries\small
+  }
+]
+
+% Minimal profile sketches
+\node[font=\bfseries\small,text=persistentBlue] at (0,2.45) {Persistent};
+\node[persistentObj] (p) at (0,1.62) {current id.};
+\node[episode] (pe1) at (-0.8,0.78) {ep. 1};
+\node[episode] (pe2) at (0.8,0.78) {ep. 2};
+\draw[arr] (pe1) -- (p);
+\draw[arr] (pe2) -- (p);
+
+\node[font=\bfseries\small,text=segmentedPurple] at (6.1,2.45) {Segmented};
+\node[segmentObj] (s0) at (3.3,1.62) {id. 0};
+\node[segmentObj] (s1) at (6.1,1.62) {id. 1};
+\node[currentObj] (s2) at (8.9,1.62) {current id.};
+\draw[arr] (s0) -- node[above,font=\scriptsize] {E81} (s1);
+\draw[arr] (s1) -- node[above,font=\scriptsize] {E81} (s2);
+\node[episode] (se1) at (6.1,0.78) {ep. 1};
+\node[episode] (se2) at (8.9,0.78) {ep. 2};
+\draw[arr] (se1) -- (s1);
+\draw[arr] (se2) -- (s2);
+
+% Query-answer matrix
+\node[header] at (2.45,-0.38) {Persistent};
+\node[header] at (6.05,-0.38) {Segmented};
+\node[rowhead,fill=softGreen!55,draw=currentGreen!35] at (-1.15,-1.16) {current-local};
+\node[rowhead,fill=softGold!58,draw=lineageGold!35] at (-1.15,-1.94) {lineage-wide};
+
+\node[cell,fill=softGreen!38] at (2.45,-1.16)
+  {ep. 1 + ep. 2};
+\node[cell,fill=softGreen!38] at (6.05,-1.16)
+  {ep. 2};
+\node[cell,fill=softGold!45] at (2.45,-1.94)
+  {ep. 1 + ep. 2};
+\node[cell,fill=softGold!45] at (6.05,-1.94)
+  {ep. 1 + ep. 2};
+
+\end{tikzpicture}
+\end{document}

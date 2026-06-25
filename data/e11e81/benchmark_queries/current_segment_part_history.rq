@@ -1,0 +1,6 @@
+PREFIX ex: <http://example.org/remake/>
+PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
+SELECT DISTINCT ?event WHERE {
+  ?current ex:isCurrent true .
+  ?event crm:P110_augmented|crm:P112_diminished ?current .
+}

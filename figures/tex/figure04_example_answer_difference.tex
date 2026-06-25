@@ -1,0 +1,166 @@
+\documentclass[tikz,border=10pt]{standalone}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,calc,positioning}
+
+\input{figures/data/example_answer_difference_macros.tex}
+
+\begin{document}
+\pagecolor{white}
+
+\newcommand{\AnswerPair}[2]{%
+  \makebox[4.35cm][c]{%
+    \shortstack[c]{#1}%
+    \hspace{0.46cm}\raisebox{0.9ex}{\scriptsize +}\hspace{0.46cm}%
+    \shortstack[c]{#2}%
+  }%
+}
+
+\definecolor{persistentBlue}{RGB}{64,97,151}
+\definecolor{segmentedPurple}{RGB}{95,82,165}
+\definecolor{currentGreen}{RGB}{0,120,95}
+\definecolor{lineageGold}{RGB}{178,112,34}
+\definecolor{lossRed}{RGB}{188,56,44}
+\definecolor{softBlue}{RGB}{232,240,252}
+\definecolor{softPurple}{RGB}{236,234,252}
+\definecolor{softGreen}{RGB}{224,241,236}
+\definecolor{softGold}{RGB}{255,244,224}
+\definecolor{softRed}{RGB}{255,235,232}
+\definecolor{eventFill}{RGB}{255,246,231}
+\definecolor{gridGrey}{RGB}{235,235,235}
+
+\begin{tikzpicture}[
+  font=\small,
+  >=Stealth,
+  object/.style={
+    rounded corners=6pt,
+    minimum width=1.55cm,
+    minimum height=0.72cm,
+    align=center,
+    inner sep=5pt,
+    line width=0.8pt
+  },
+  persistentObj/.style={object, draw=persistentBlue!85!black, fill=softBlue},
+  segmentObj/.style={object, draw=segmentedPurple!85!black, fill=softPurple},
+  currentObj/.style={object, draw=currentGreen!85!black, fill=softGreen},
+  episode/.style={
+    rounded corners=5pt,
+    draw=black!58,
+    fill=eventFill,
+    minimum width=2.3cm,
+    minimum height=0.54cm,
+    align=center,
+    inner sep=3pt,
+    font=\scriptsize
+  },
+  arr/.style={-{Stealth[length=1.8mm,width=1.2mm]}, semithick, black!55},
+  cell/.style={
+    draw=gridGrey,
+    fill=white,
+    minimum width=5.75cm,
+    minimum height=1.42cm,
+    align=center,
+    inner sep=5pt,
+    font=\scriptsize
+  },
+  header/.style={
+    draw=gridGrey,
+    fill=gridGrey!45,
+    minimum width=5.75cm,
+    minimum height=0.64cm,
+    align=center,
+    inner sep=5pt,
+    font=\bfseries\small
+  },
+  graphcell/.style={
+    draw=gridGrey,
+    fill=white,
+    minimum width=5.75cm,
+    minimum height=2.68cm,
+    align=center,
+    inner sep=5pt
+  },
+  cornerhead/.style={
+    draw=gridGrey,
+    fill=gridGrey!45,
+    minimum width=2.95cm,
+    minimum height=0.64cm,
+    align=center,
+    inner sep=5pt,
+    font=\bfseries\small
+  },
+  emptycell/.style={
+    draw=gridGrey,
+    fill=white,
+    minimum width=2.95cm,
+    minimum height=2.68cm,
+    align=center,
+    inner sep=5pt
+  },
+  rowhead/.style={
+    draw=gridGrey,
+    fill=gridGrey!45,
+    minimum width=2.95cm,
+    minimum height=1.42cm,
+    align=center,
+    inner sep=5pt,
+    font=\bfseries\small
+  },
+  widecell/.style={
+    cell,
+    minimum width=6.15cm
+  },
+  wideheader/.style={
+    header,
+    minimum width=6.15cm
+  },
+  widegraphcell/.style={
+    graphcell,
+    minimum width=6.15cm
+  },
+  note/.style={font=\scriptsize, text=black!62, align=center}
+]
+\path[use as bounding box] (-1.65,-3.35) rectangle (13.5,3.1);
+
+% 4x3 answer set layout
+\node[header,text=persistentBlue] at (4.30,2.65) {Persistent profile};
+\node[wideheader,text=segmentedPurple] at (10.25,2.65) {Segmented profile};
+\node[emptycell,font=\bfseries\small] at (-0.05,1.0) {Answer set};
+\node[graphcell] at (4.30,1.0) {};
+\node[widegraphcell] at (10.25,1.0) {};
+
+% Persistent profile
+\node[persistentObj] (p) at (4.30,1.55) {current\\identity};
+\node[episode] (pe1) at (3.00,0.35) {\ExampleEpisodeOne};
+\node[episode] (pe2) at (5.60,0.35) {\ExampleEpisodeTwo};
+\draw[arr] (pe1) -- (p);
+\draw[arr] (pe2) -- (p);
+
+% Segmented profile and lineage
+\node[segmentObj] (s0) at (8.05,1.55) {identity\\0};
+\node[segmentObj] (s1) at (10.25,1.55) {identity\\1};
+\node[currentObj] (s2) at (12.45,1.55) {current\\identity};
+\draw[arr] (s0) -- node[above,font=\scriptsize] {E81} (s1);
+\draw[arr] (s1) -- node[above,font=\scriptsize] {E81} (s2);
+\node[episode] (se1) at (8.85,0.35) {\ExampleEpisodeOne};
+\node[episode] (se2) at (12.10,0.35) {\ExampleEpisodeTwo};
+\draw[arr] (se1) -- (s1);
+\draw[arr] (se2) -- (s2);
+
+\node[rowhead,fill=softGreen!55] at (-0.05,-1.06)
+  {current-\\identity-only};
+\node[rowhead,fill=softGold!58] at (-0.05,-2.48)
+  {lineage-\\traversal};
+
+\node[cell,fill=softGreen!38] at (4.30,-1.06)
+  {\ExamplePersistentCurrent};
+\node[widecell,fill=softRed!70] at (10.25,-1.06)
+  {\ExampleSegmentedCurrent};
+\node[cell,fill=softGold!45] at (4.30,-2.48)
+  {\ExamplePersistentLineage};
+\node[widecell,fill=softGold!45] at (10.25,-2.48)
+  {\ExampleSegmentedLineage};
+
+\end{tikzpicture}
+\end{document}

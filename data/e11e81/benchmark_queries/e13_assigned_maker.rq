@@ -1,0 +1,12 @@
+PREFIX ex: <http://example.org/remake/>
+PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
+SELECT DISTINCT ?maker WHERE {
+  ?assignment a crm:E13_Attribute_Assignment ;
+              crm:P140_assigned_attribute_to ?production ;
+              crm:P141_assigned ?maker ;
+              crm:P177_assigned_property_of_type crm:P14_carried_out_by .
+  ?production a crm:E12_Production ;
+              crm:P108_has_produced ?original .
+  ?original (^crm:P124_transformed/crm:P123_resulted_in)* ?current .
+  ?current ex:isCurrent true .
+}

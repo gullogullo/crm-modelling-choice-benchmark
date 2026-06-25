@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "crm-modelling-choice-benchmark"
+version = "0.1.0"
+description = "Benchmark retrieval consequences of CIDOC CRM identity and attribution modelling choices."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+  "networkx>=3.0",
+  "pyyaml>=6.0",
+  "rdflib>=6.3",
+]
+
+[project.optional-dependencies]
+test = ["pytest>=7.4"]
+
+[project.scripts]
+crm-benchmark-keyboard = "remake_sensitivity.run:main"
+crm-benchmark-ligatus-fetch = "remake_sensitivity.ligatus_fetch:main"
+crm-benchmark-ligatus = "remake_sensitivity.ligatus_benchmark:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

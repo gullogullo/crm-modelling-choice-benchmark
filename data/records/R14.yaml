@@ -1,0 +1,290 @@
+id: R14
+density_band: rich
+challenge_category: contested_attribution_composite_claviorgan_candidate
+label: Claviorgan
+instrument_type: claviorgan
+category: keyboard
+held_by: Musical Instrument Museum, Brussels
+accession: "1132"
+source_record_id: "BMO-146"
+source_url: "https://boalch.org/Instruments/InstrumentProfile/146"
+
+research_scope:
+  basis: "BMO online record BMO-146 and contributor remarks included in that record."
+  independent_bibliographic_search: false
+  note: "Claims are derived from the supplied BMO record text. The references listed in the BMO record were not independently consulted unless explicitly stated. Darryl Martin's 2024 attribution note is treated as a contributor interpretation within the BMO record."
+
+material: "wood, cypress, metal"
+dimensions: "length 2202 mm; width 845 mm; depth 184 mm"
+
+makers:
+- name: "Francesco Bonafinis"
+  role: attributed_maker
+  epistemic_status: contested
+  confidence: attributed
+  source: bmo_online
+  comment: "BMO gives maker as Bonafinis, Francesco (attr.), with variant names Bonafinis/Benismis and Francesco/Doanusa. Darryl Martin recommends attribution to Bonafinis based on the partially suppressed Bertolotti inscription and the lack of other evidence for Bertolotti."
+- name: "Alexander Bertoloti / Bortolotti"
+  role: formerly_attributed_maker
+  epistemic_status: contested
+  confidence: formerly_attributed
+  source: bmo_online
+  comment: "The object was attributed to Alexander Bertoloti in Boalch B3, Russell 1959 plate 8, and other sources. The visible mark reads Alexander Bortolotti MDLXXXV, but the BMO remarks caution against accepting this as the maker attribution."
+- name: "Theodorus Wilhelmus Sigismundus Gut"
+  role: organ_part_maker
+  epistemic_status: asserted
+  confidence: uncertain_inscription_reading
+  source: bmo_online
+  comment: "The organ part is described as built by W. S. Gut, with an inscription on the organ reading Theodorus Wilhelmus Sigismundus and uncertain words/date, interpreted as Gottlob W. S. Gut. The date is uncertain between 1657 and 1677."
+
+dates:
+- range_str: "1585"
+  event_type: harpsichord_or_claviorgan_creation
+  epistemic_status: asserted
+  confidence: asserted
+  source: bmo_online
+  comment: "BMO gives date 1585. The visible Bortolotti inscription includes MDLXXXV."
+- range_str: "1657 or 1677"
+  event_type: organ_part_creation
+  epistemic_status: asserted
+  confidence: uncertain
+  source: bmo_online
+  comment: "The organ inscription includes an uncertain date, read as 1677 or possibly 1657. BMO describes the organ part as built by W. S. Gut."
+- range_str: "old restoration, date not stated"
+  event_type: alteration_or_restoration
+  epistemic_status: asserted
+  confidence: asserted
+  source: bmo_online
+  comment: "The BMO record refers to changes to the instrument and points to Wraight/GSJ for further details. Specific restoration date is not supplied in the consulted record."
+
+places:
+- place_type: production_place
+  label: "Venice"
+  broader_place: "Italy"
+  epistemic_status: asserted
+  confidence: asserted
+  source: bmo_online
+  comment: "BMO gives origin as Italy/Venice."
+- place_type: current_location
+  label: "Brussels"
+  broader_place: "Belgium"
+  epistemic_status: asserted
+  confidence: asserted
+  source: bmo_online
+  comment: "BMO gives present owner and instrument location as Musical Instrument Museum, Brussels."
+
+provenance:
+- agent: "Correr Collection, Venice"
+  role: previous_collection
+  date_range: "date not stated"
+  epistemic_status: asserted
+  source: bmo_online
+  position: 0
+  comment: "BMO states that the instrument was formerly in the Correr Collection, Venice."
+- agent: "Musical Instrument Museum, Brussels"
+  role: present_owner
+  date_range: "date not stated"
+  epistemic_status: asserted
+  source: bmo_online
+  position: 1
+  comment: "BMO gives present owner as Musical Instrument Museum, Brussels, catalog number 1132."
+
+hs_codes:
+- label: "Claviorgan (1M)"
+  assigned_by: "BMO"
+  epistemic_status: asserted
+  source: bmo_online
+  comment: "BMO type/classification. This is a combined harpsichord-organ keyboard instrument, not a simple single-family classification."
+
+related_entities:
+- entity_type: person
+  label: "Francesco Bonafinis"
+  relation: attributed_maker
+  source: bmo_online
+  epistemic_status: contested
+  confidence: attributed
+- entity_type: person
+  label: "Alexander Bertoloti / Bortolotti"
+  relation: formerly_attributed_maker
+  source: bmo_online
+  epistemic_status: contested
+  confidence: formerly_attributed
+- entity_type: person
+  label: "Theodorus Wilhelmus Sigismundus Gut"
+  relation: organ_part_maker
+  source: bmo_online
+  epistemic_status: asserted
+  confidence: uncertain_inscription_reading
+- entity_type: institution
+  label: "Correr Collection, Venice"
+  relation: previous_collection
+  source: bmo_online
+  epistemic_status: asserted
+- entity_type: institution
+  label: "Musical Instrument Museum, Brussels"
+  relation: present_owner
+  source: bmo_online
+  epistemic_status: asserted
+- entity_type: material
+  label: wood
+  relation: consists_of
+  source: bmo_online
+  comment: "The rectangular box case has carved wooden panels; the exterior is described as plain wood; the organ specification includes wooden ranks."
+- entity_type: material
+  label: cypress
+  relation: consists_of
+  source: bmo_online
+  comment: "The harpsichord part has a plain cypress case."
+- entity_type: material
+  label: metal
+  relation: consists_of
+  source: bmo_online
+  comment: "The organ specification includes a 2' metal rank and metal levers."
+- entity_type: feature
+  label: "combined harpsichord and organ"
+  relation: has_hybrid_form
+  source: bmo_online
+  epistemic_status: asserted
+- entity_type: feature
+  label: "one manual"
+  relation: has_keyboard_configuration
+  source: bmo_online
+  epistemic_status: asserted
+- entity_type: feature
+  label: "white naturals and black sharps"
+  relation: has_keyboard_feature
+  source: bmo_online
+  epistemic_status: asserted
+  comment: "Colour evidence only; do not infer ivory, bone, ebony, or other key materials from this statement."
+- entity_type: feature
+  label: "harpsichord disposition 1×8', 1×4'"
+  relation: has_disposition
+  source: bmo_online
+  epistemic_status: asserted
+- entity_type: feature
+  label: "organ specification: 4' wood, quint wood, 2' metal"
+  relation: has_organ_specification
+  source: bmo_online
+  epistemic_status: asserted
+- entity_type: feature
+  label: "short octave"
+  relation: has_keyboard_feature
+  source: bmo_online
+  epistemic_status: asserted
+
+inscriptions:
+- location: "instrument"
+  text: "Alexander Bortolotti MDLXXXV"
+  inscription_type: maker_or_date_inscription
+  epistemic_status: asserted
+  source: bmo_online
+  comment: "Visible inscription supporting the former Bertoloti/Bortolotti attribution, but not accepted uncritically in the current BMO maker field."
+- location: "under the Bortolotti inscription"
+  text: "Praneiseus Bonafinis / Fransiscus Bonafinis"
+  inscription_type: suppressed_or_underlying_inscription
+  epistemic_status: asserted
+  confidence: uncertain_reading
+  source: bmo_online
+  comment: "Rhodes and Thomas reported in 1985 that the inscription may have read Praneiseus Bonafinis; Wraight read it as Fransiscus Bonafinis. This is central to the current Bonafinis attribution."
+- location: "organ"
+  text: "Theodorus Wilhelmus Sigismundus ... 1677 [?1657] ..."
+  inscription_type: organ_inscription
+  epistemic_status: asserted
+  confidence: partly_illegible
+  source: bmo_online
+  comment: "Inscription on the organ contains uncertain words and uncertain date, interpreted as Gottlob W. S. Gut."
+
+measurements:
+- measurement_type: dimensions
+  measured_part: "whole instrument"
+  value: "length 2202 mm; width 845 mm; depth 184 mm"
+  source: bmo_online
+  epistemic_status: asserted
+- measurement_type: scale
+  value: "262 mm"
+  source: bmo_online
+  epistemic_status: asserted
+- measurement_type: compass
+  measured_part: "current or catalogue compass"
+  value: "GG/BB-c3, short octave"
+  source: bmo_online
+  epistemic_status: asserted
+- measurement_type: compass
+  measured_part: "original compass"
+  value: "C/E-f3, short octave"
+  source: bmo_online
+  epistemic_status: asserted
+  confidence: reported_by_Rhodes_and_Thomas
+  comment: "According to Rhodes and Thomas, reported in the BMO remarks."
+
+historical_states:
+- state_type: original_or_early_harpsichord_state
+  date: "1585"
+  agent: "Francesco Bonafinis, attributed"
+  place: "Venice"
+  description: "Harpsichord/claviorgan component associated with the 1585 inscription and current Bonafinis attribution."
+  epistemic_status: contested
+  confidence: attributed
+  source: bmo_online
+- state_type: former_attribution_state
+  date: "cataloguing history"
+  agent: "Alexander Bertoloti / Bortolotti"
+  description: "Formerly attributed to Alexander Bertoloti/Bortolotti in Boalch B3, Russell 1959, and other sources."
+  epistemic_status: contested
+  confidence: formerly_attributed
+  source: bmo_online
+- state_type: organ_part
+  date: "1657 or 1677"
+  agent: "Theodorus Wilhelmus Sigismundus Gut"
+  description: "Organ part built by W. S. Gut, with compass C-c3 and specification 4' wood, quint wood, and 2' metal, operated by metal levers."
+  epistemic_status: asserted
+  confidence: uncertain_date_and_inscription
+  source: bmo_online
+- state_type: changed_instrument
+  date: "date not stated"
+  agent: "UNKNOWN"
+  description: "The record refers to changes to the instrument and directs readers to Wraight/GSJ for further details."
+  epistemic_status: asserted
+  confidence: incompletely_described
+  source: bmo_online
+
+technical_description:
+  source: bmo_online
+  summary: "One-manual claviorgan with rectangular carved box case. Harpsichord part has a plain cypress case and disposition 1×8' and 1×4'. It stands on an organ part built by W. S. Gut, dated uncertainly to 1657 or 1677, with compass C-c3 and specification 4' wood, quint wood, and 2' metal, all operated by metal levers. Keyboard has white naturals and black sharps; catalogue compass is GG/BB-c3 with short octave."
+
+contextual_literature:
+- source: bmo_online
+  topic: "Darryl Martin 2024 attribution note"
+  summary: "Darryl Martin recommends attribution to Bonafinis based on the partially suppressed Bertolotti inscription and lack of other evidence for Bertolotti."
+  claim_scope: "object-specific attribution interpretation"
+- source: bmo_online
+  topic: "Rhodes and Thomas / Wraight inscription readings"
+  summary: "Rhodes and Thomas reported that the underlying inscription may have read Praneiseus Bonafinis, while Wraight read the name as Fransiscus Bonafinis."
+  claim_scope: "object-specific inscription evidence"
+- source: bmo_online
+  topic: "Rhodes and Thomas original compass"
+  summary: "Rhodes and Thomas reported the original compass as C/E-f3, short octave, whereas the catalogue compass is GG/BB-c3."
+  claim_scope: "object-specific historical-state evidence"
+
+references:
+- id: bmo_online
+  type: online_catalogue
+  citation: "BMO-146, Claviorgan (1M), Francesco Bonafinis attributed, formerly attributed to Alexander Bertoloti, 1585."
+  url: "https://boalch.org/Instruments/InstrumentProfile/146"
+  consulted: true
+  note: "Used as current source for maker attribution, former attribution, date, origin, present owner, catalog number, location, provenance, compass, keyboard colours, disposition, scale, dimensions, description, remarks, inscriptions, and contributor note."
+- id: bmo_references_unconsulted
+  type: bibliography_set
+  reported_by: bmo_online
+  citation: "References and sources listed in BMO-146, including Boalch 1995, Barnes 1968, Hubbard 1965, Russell 1959/1965/1973, Thomas & Rhodes 1967, Wraight 1993a, and Wraight 1997."
+  consulted: false
+  note: "Listed in the BMO record but not independently consulted for this draft. Not used as direct evidence except insofar as the BMO record reports their claims."
+
+notes_for_musicologist:
+- "Rich contested-attribution and composite-instrument record."
+- "Do not treat Bonafinis as an uncontested maker: the BMO maker field is explicitly attributed, and the object was formerly attributed to Alexander Bertoloti/Bortolotti."
+- "Preserve the inscription-layering problem: visible Bortolotti inscription, possible underlying Bonafinis inscription, and uncertain readings by different scholars."
+- "Preserve the organ part as a later or distinct component associated with W. S. Gut and an uncertain 1657/1677 date."
+- "Do not classify this simply as a harpsichord: it is a claviorgan combining harpsichord and organ components."
+- "Do not infer key materials from white naturals and black sharps."
+- "The references listed by BMO were not independently consulted and should not be used as direct evidence beyond the claims reported in the BMO record."

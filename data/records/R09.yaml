@@ -1,0 +1,259 @@
+id: R09
+density_band: rich
+challenge_category: rich_historical_state_modification_candidate
+label: Clavecin
+instrument_type: harpsichord
+category: keyboard
+held_by: Château de Versailles
+accession: "VMB 14382"
+other_inventory_numbers:
+  - "Cl 8908"
+  - "V 2308"
+  - "7002"
+  - "1114"
+source_url: "https://collections.chateauversailles.fr/?queryid=dc6f6741-a10f-49f2-873d-69e26c2cd970#/query/f8da6af3-4a7b-4908-bcaa-6de79c85da7f"
+
+research_scope:
+  basis: "Château de Versailles online collection record."
+  independent_bibliographic_search: false
+  note: "No independent bibliographic search was undertaken for this record. The Versailles notice itself warns that its content does not necessarily reflect the latest state of knowledge."
+
+material: "peuplier peint et doré; chêne, épicéa, bois fruitier, hêtre, tilleul, noyer; bois sculpté et doré; laiton"
+dimensions: "height 93 cm; length 233 cm; depth 89 cm"
+
+makers:
+- name: "Ioannes Rückers"
+  role: original_maker
+  epistemic_status: asserted
+  confidence: asserted
+  source: versailles_online
+  comment: "Versailles identifies Ioannes Rückers as harpsichord maker and states that the instrument was built in Antwerp in 1628."
+- name: "Nicolas Blanchet"
+  role: mechanism_modifier
+  epistemic_status: asserted
+  confidence: attributed
+  source: versailles_online
+  comment: "Versailles states that the mechanism is attributed to Nicolas Blanchet and that the instrument was ravalé, or modified, by Nicolas Blanchet in 1706."
+- name: "Claude III Audran"
+  role: painter_redecorator
+  epistemic_status: asserted
+  confidence: asserted
+  source: versailles_online
+  comment: "Versailles identifies Claude III Audran as painter and states that the case was redecorated by him in 1706."
+
+dates:
+- range_str: "1628"
+  event_type: original_construction
+  epistemic_status: asserted
+  confidence: asserted
+  source: versailles_online
+  comment: "Instrument built in Antwerp by Ioannes Rückers."
+- range_str: "1706"
+  event_type: ravalement_modification
+  epistemic_status: asserted
+  confidence: asserted
+  source: versailles_online
+  comment: "Instrument modified by Nicolas Blanchet in 1706."
+- range_str: "1706"
+  event_type: redecoration
+  epistemic_status: asserted
+  confidence: asserted
+  source: versailles_online
+  comment: "Case redecorated by Claude III Audran at the time of the 1706 ravalement."
+- range_str: "19th century"
+  event_type: stand_addition_or_replacement
+  epistemic_status: asserted
+  confidence: asserted
+  source: versailles_online
+  comment: "Versailles states that the stand is nineteenth-century."
+- range_str: "1866"
+  event_type: bequest
+  epistemic_status: asserted
+  confidence: asserted
+  source: versailles_online
+  comment: "Bequest of Joseph-Ferdinand Boissard de Boisdenier to the Musée de Cluny in Paris."
+- range_str: "1946-07-19"
+  event_type: deposit
+  epistemic_status: asserted
+  confidence: asserted
+  source: versailles_online
+  comment: "Deposit of the Musée de Cluny at the Château de Versailles on 19 July 1946."
+
+places:
+- place_type: original_production_place
+  label: "Antwerp"
+  epistemic_status: asserted
+  confidence: asserted
+  source: versailles_online
+  comment: "Versailles states that the instrument was built in Antwerp by Ioannes Rückers in 1628."
+- place_type: modification_context
+  label: "France"
+  epistemic_status: unknown
+  confidence: inferred_context
+  source: versailles_online
+  comment: "Nicolas Blanchet and Claude III Audran are associated with the 1706 ravalement/redecoration, but the supplied notice does not explicitly state the place where the modification occurred."
+- place_type: current_location
+  label: "Corps central, appartement Victoire, grand cabinet, Château de Versailles"
+  epistemic_status: asserted
+  confidence: asserted
+  source: versailles_online
+  comment: "Current location given by the Versailles record."
+
+provenance:
+- agent: "Joseph-Ferdinand Boissard de Boisdenier"
+  role: bequeather_previous_owner
+  date_range: "before 1866-1866"
+  epistemic_status: asserted
+  source: versailles_online
+  position: 0
+  comment: "Versailles states that the instrument was bequeathed by Joseph-Ferdinand Boissard de Boisdenier to the Musée de Cluny in 1866."
+- agent: "Musée de Cluny"
+  role: recipient_depositor
+  date_range: "1866-1946"
+  epistemic_status: asserted
+  source: versailles_online
+  position: 1
+  comment: "Recipient of the 1866 bequest and depositor to Versailles in 1946."
+- agent: "Château de Versailles"
+  role: deposit_holder
+  date_range: "1946-07-19-"
+  epistemic_status: asserted
+  source: versailles_online
+  position: 2
+  comment: "The instrument was deposited by the Musée de Cluny at Versailles on 19 July 1946."
+
+hs_codes:
+- label: "Instruments de musique; clavecin"
+  assigned_by: "Château de Versailles"
+  epistemic_status: asserted
+  source: versailles_online
+  comment: "Versailles domain/designation classification, not a Hornbostel-Sachs code."
+
+related_entities:
+- entity_type: person
+  label: "Ioannes Rückers"
+  relation: original_maker
+  source: versailles_online
+  epistemic_status: asserted
+- entity_type: person
+  label: "Nicolas Blanchet"
+  relation: attributed_mechanism_modifier
+  source: versailles_online
+  epistemic_status: asserted
+  confidence: attributed
+- entity_type: person
+  label: "Claude III Audran"
+  relation: painter_redecorator
+  source: versailles_online
+  epistemic_status: asserted
+- entity_type: person
+  label: "Joseph-Ferdinand Boissard de Boisdenier"
+  relation: bequeather_previous_owner
+  source: versailles_online
+  epistemic_status: asserted
+- entity_type: institution
+  label: "Musée de Cluny"
+  relation: depositor
+  source: versailles_online
+  epistemic_status: asserted
+- entity_type: institution
+  label: "Château de Versailles"
+  relation: deposit_holder
+  source: versailles_online
+  epistemic_status: asserted
+- entity_type: material
+  label: poplar
+  relation: consists_of
+  source: versailles_online
+- entity_type: material
+  label: oak
+  relation: consists_of
+  source: versailles_online
+- entity_type: material
+  label: spruce
+  relation: consists_of
+  source: versailles_online
+- entity_type: material
+  label: fruitwood
+  relation: consists_of
+  source: versailles_online
+- entity_type: material
+  label: beech
+  relation: consists_of
+  source: versailles_online
+- entity_type: material
+  label: lime
+  relation: consists_of
+  source: versailles_online
+- entity_type: material
+  label: walnut
+  relation: consists_of
+  source: versailles_online
+- entity_type: material
+  label: brass
+  relation: consists_of
+  source: versailles_online
+- entity_type: material
+  label: paint
+  relation: surface_finish
+  source: versailles_online
+- entity_type: material
+  label: gilding
+  relation: surface_finish
+  source: versailles_online
+
+measurements:
+- measurement_type: dimensions
+  measured_part: "whole instrument"
+  value: "height 93 cm; length 233 cm; depth 89 cm"
+  source: versailles_online
+  epistemic_status: asserted
+  comment: "Current Versailles catalogue dimensions."
+
+historical_states:
+- state_type: original_construction
+  date: "1628"
+  agent: "Ioannes Rückers"
+  place: "Antwerp"
+  description: "Original harpsichord built in Antwerp by Ioannes Rückers."
+  epistemic_status: asserted
+  source: versailles_online
+- state_type: ravalement
+  date: "1706"
+  agent: "Nicolas Blanchet"
+  description: "Instrument ravalé, or modified, in 1706; mechanism attributed to Nicolas Blanchet."
+  epistemic_status: asserted
+  confidence: attributed
+  source: versailles_online
+- state_type: redecoration
+  date: "1706"
+  agent: "Claude III Audran"
+  description: "Case redecorated by Claude III Audran at the time of the 1706 ravalement."
+  epistemic_status: asserted
+  source: versailles_online
+- state_type: later_stand
+  date: "19th century"
+  agent: "UNKNOWN"
+  description: "Nineteenth-century stand."
+  epistemic_status: asserted
+  source: versailles_online
+
+technical_description:
+  source: versailles_online
+  summary: "Harpsichord originally built by Ioannes Rückers in Antwerp in 1628, modified or ravalé in 1706 by Nicolas Blanchet, with the case redecorated by Claude III Audran; nineteenth-century stand. Materials include painted and gilded poplar, oak, spruce, fruitwood, beech, lime, walnut, sculpted and gilded wood, and brass."
+
+references:
+- id: versailles_online
+  type: online_catalogue
+  citation: "Château de Versailles, collection record VMB 14382, clavecin"
+  url: "https://collections.chateauversailles.fr/?queryid=dc6f6741-a10f-49f2-873d-69e26c2cd970#/query/f8da6af3-4a7b-4908-bcaa-6de79c85da7f"
+  consulted: true
+  note: "Used as current catalogue source for designation, inventory numbers, domain, makers and attributed agents, dates, location, dimensions, materials, historical states, provenance, and deposit information. The notice warns that it may not reflect the latest state of knowledge."
+
+notes_for_musicologist:
+- "Rich historical-state record: original Rückers construction, 1706 ravalement attributed to Blanchet, redecoration by Audran, nineteenth-century stand, and later museum provenance/deposit."
+- "Do not treat 1628-1706 as a single undifferentiated creation date. Split into original construction and later modification/redecoration events."
+- "Do not collapse Ioannes Rückers, Nicolas Blanchet, and Claude III Audran into one maker role."
+- "The Blanchet mechanism claim is attributed, not simply asserted as direct authorship."
+- "Preserve the nineteenth-century stand as a later component/state."
+- "Preserve the Versailles warning that the notice may not reflect the latest state of knowledge."

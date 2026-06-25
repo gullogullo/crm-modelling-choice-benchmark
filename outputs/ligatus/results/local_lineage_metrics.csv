@@ -1,0 +1,11 @@
+profile_id,local_query_id,lineage_query_id,local_answer_count,lineage_answer_count,records_with_local_lineage_gap,local_lineage_gap_rate
+persistent_e11,current_treatment_history,lineage_treatment_history,169,169,0,0.0
+persistent_e11,current_modification_retrieval,lineage_modification_retrieval,977,977,0,0.0
+persistent_e11,current_condition_to_treatment,lineage_condition_to_treatment,894,894,0,0.0
+persistent_e11,current_treatment_material_over_time,lineage_treatment_material_over_time,623,623,0,0.0
+persistent_e11,current_technique_over_time,lineage_technique_over_time,702,702,0,0.0
+segmented_e81,current_treatment_history,lineage_treatment_history,158,169,11,0.06962025316455696
+segmented_e81,current_modification_retrieval,lineage_modification_retrieval,966,977,11,0.06962025316455696
+segmented_e81,current_condition_to_treatment,lineage_condition_to_treatment,894,894,0,0.0
+segmented_e81,current_treatment_material_over_time,lineage_treatment_material_over_time,623,623,0,0.0
+segmented_e81,current_technique_over_time,lineage_technique_over_time,702,702,0,0.0

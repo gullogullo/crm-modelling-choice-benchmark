@@ -1,0 +1,361 @@
+id: R20
+density_band: rich
+challenge_category: rich_historical_state_source_discrepancy_candidate
+label: Rectangular muselar virginal
+instrument_type: muselar virginal
+category: keyboard
+held_by: Musée des Instruments de Musique / Muziekinstrumentenmuseum
+owner: Musées royaux d'art et d'histoire / Koninklijke Musea voor Kunst en Geschiedenis
+accession: "1597"
+source_url: "https://carmentis.kmkg-mrah.be:443/eMP/eMuseumPlus?service=ExternalInterface&module=collection&objectId=106146&viewType=detailView"
+
+research_scope:
+basis: "Carmentis / MIM online catalogue record and supplied excerpts from Mahillon 1900 and Hipkins 1888-1921."
+independent_bibliographic_search: false
+note: "Claims are derived from the supplied Carmentis record and the supplied Mahillon and Hipkins excerpts. Other listed references, including Closson 1935, O'Brien 1974, and Haine 2000, were not independently consulted."
+
+material: "wood, paper, paint, gilding"
+dimensions: "height 26 cm; width 173.8 cm; depth 49.5 cm"
+
+makers:
+- name: "Andreas Ruckers I"
+  role: maker
+  epistemic_status: asserted
+  confidence: asserted
+  source: carmentis_online
+  comment: "Carmentis identifies the maker as Andreas Ruckers I and states that the muselar virginal was built by Andreas Ruckers in 1620."
+- name: "Joannes Ruckers"
+  role: source-specific_reported_maker
+  epistemic_status: contested
+  confidence: source_discrepancy
+  source: hipkins_excerpt
+  comment: "The supplied Hipkins excerpt reports the inscription JOANNES RVCKERS FECIT ANTVERPIAE and date Anno 1622. This conflicts with the current Carmentis attribution to Andreas Ruckers I and date 1620. Preserve as historical source evidence, not as the accepted maker."
+
+dates:
+- range_str: "1620"
+  event_type: creation
+  epistemic_status: asserted
+  confidence: asserted
+  source: "carmentis_online; mahillon1900_excerpt"
+  comment: "Carmentis gives AD 1620. Mahillon states that the soundboard bears the date 1620."
+- range_str: "1622"
+  event_type: source-specific_reported_date
+  epistemic_status: contested
+  confidence: source_discrepancy
+  source: hipkins_excerpt
+  comment: "The supplied Hipkins excerpt says that near the rose is written Anno 1622. This should be treated as a source-specific discrepancy against the current 1620 date."
+- range_str: "end of the 17th century"
+  event_type: refurbishment
+  epistemic_status: asserted
+  confidence: probable
+  source: carmentis_online
+  comment: "Carmentis states that the refurbishment was probably completed by the end of the seventeenth century."
+- range_str: "1847"
+  event_type: restoration
+  epistemic_status: asserted
+  confidence: asserted
+  source: carmentis_online
+  comment: "Restored by Bruno Martens."
+- range_str: "1885"
+  event_type: restoration
+  epistemic_status: asserted
+  confidence: asserted
+  source: carmentis_online
+  comment: "Restored by Frans de Vestibule."
+- range_str: "1936-1937"
+  event_type: restoration
+  epistemic_status: asserted
+  confidence: asserted
+  source: carmentis_online
+  comment: "Restored by Siméon Moisse."
+- range_str: "1982"
+  event_type: restoration
+  epistemic_status: asserted
+  confidence: asserted
+  source: carmentis_online
+  comment: "Restored by Kurt and Susanne Wittmayer."
+
+places:
+- place_type: production_place
+  label: "Antwerp"
+  epistemic_status: asserted
+  confidence: asserted
+  source: carmentis_online
+  comment: "Carmentis gives place of production as Antwerp."
+- place_type: current_depository
+  label: "Musée des Instruments de Musique / Muziekinstrumentenmuseum"
+  broader_place: "Brussels, Belgium"
+  epistemic_status: asserted
+  confidence: asserted
+  source: carmentis_online
+- place_type: current_owner
+  label: "Musées royaux d'art et d'histoire / Koninklijke Musea voor Kunst en Geschiedenis"
+  broader_place: "Brussels, Belgium"
+  epistemic_status: asserted
+  confidence: asserted
+  source: carmentis_online
+
+provenance:
+- agent: "Musée des Instruments de Musique / Muziekinstrumentenmuseum"
+  role: depository
+  date_range: "date not stated"
+  epistemic_status: asserted
+  source: carmentis_online
+  position: 0
+- agent: "Musées royaux d'art et d'histoire / Koninklijke Musea voor Kunst en Geschiedenis"
+  role: owner
+  date_range: "date not stated"
+  epistemic_status: asserted
+  source: carmentis_online
+  position: 1
+- agent: "UNKNOWN — previous owner or acquisition source not given in consulted catalogue record"
+  role: previous_owner_or_source
+  date_range: "before current collection"
+  epistemic_status: unknown
+  source: carmentis_online
+  comment: "The consulted record does not provide acquisition history or earlier provenance."
+
+hs_codes:
+- label: "314.122-6-8 Box zithers, sounded by plectrum, with keyboard"
+  assigned_by: "Carmentis / MIM"
+  epistemic_status: asserted
+  source: carmentis_online
+  comment: "Formal Hornbostel-Sachs-style classification supplied by the catalogue."
+
+related_entities:
+- entity_type: person
+  label: "Andreas Ruckers I"
+  relation: maker
+  source: carmentis_online
+  epistemic_status: asserted
+- entity_type: person
+  label: "Joannes Ruckers"
+  relation: source_specific_reported_maker
+  source: hipkins_excerpt
+  epistemic_status: contested
+  confidence: source_discrepancy
+- entity_type: person
+  label: "Bruno Martens"
+  relation: restorer
+  source: carmentis_online
+  epistemic_status: asserted
+- entity_type: person
+  label: "Frans de Vestibule"
+  relation: restorer
+  source: carmentis_online
+  epistemic_status: asserted
+- entity_type: person
+  label: "Siméon Moisse"
+  relation: restorer
+  source: carmentis_online
+  epistemic_status: asserted
+- entity_type: person
+  label: "Kurt Wittmayer"
+  relation: restorer
+  source: carmentis_online
+  epistemic_status: asserted
+- entity_type: person
+  label: "Susanne Wittmayer"
+  relation: restorer
+  source: carmentis_online
+  epistemic_status: asserted
+- entity_type: material
+  label: wood
+  relation: consists_of
+  source: "carmentis_online; mahillon1900_excerpt; hipkins_excerpt"
+  comment: "Specific wood species are not supplied in the current Carmentis excerpt."
+- entity_type: material
+  label: paper
+  relation: surface_decoration
+  source: "mahillon1900_excerpt; hipkins_excerpt"
+  comment: "Mahillon and Hipkins describe printed paper decoration on the case/lid."
+- entity_type: material
+  label: paint
+  relation: surface_decoration
+  source: "mahillon1900_excerpt; hipkins_excerpt"
+  comment: "Soundboard painted with flowers, foliage, birds, insects or floral devices."
+- entity_type: material
+  label: gilding
+  relation: surface_decoration
+  source: "mahillon1900_excerpt; hipkins_excerpt"
+  comment: "Decoration includes gold/gilded ornament."
+- entity_type: material
+  label: boxwood
+  relation: possible_key_material
+  source: hipkins_excerpt
+  epistemic_status: asserted
+  confidence: contextual_or_source_specific
+  comment: "Hipkins states that the oldest existing natural keys are not ivory but boxwood in the context of this Ruckers virginal discussion. Use cautiously as source-specific evidence."
+- entity_type: material
+  label: ebony
+  relation: possible_key_material
+  source: hipkins_excerpt
+  epistemic_status: asserted
+  confidence: contextual_or_source_specific
+  comment: "Hipkins discusses ebony sharps/flats as part of the key contrast. Use cautiously unless current catalogue confirms key materials."
+- entity_type: feature
+  label: "muselar virginal on six legs"
+  relation: has_form
+  source: carmentis_online
+  epistemic_status: asserted
+- entity_type: feature
+  label: "serial number 6/27"
+  relation: has_serial_or_ruckers_number
+  source: carmentis_online
+  epistemic_status: asserted
+- entity_type: feature
+  label: "chromatic four-octave compass after added bass notes"
+  relation: has_keyboard_feature
+  source: mahillon1900_excerpt
+  epistemic_status: asserted
+  comment: "Mahillon states that the keyboard currently has a chromatic extent of four octaves and that the four first bass notes were added later."
+- entity_type: decoration
+  label: "soundboard flowers, foliage, birds and insects"
+  relation: has_decoration
+  source: mahillon1900_excerpt
+  epistemic_status: asserted
+- entity_type: decoration
+  label: "printed paper decoration on lid and case"
+  relation: has_decoration
+  source: "mahillon1900_excerpt; hipkins_excerpt"
+  epistemic_status: asserted
+- entity_type: inscription
+  label: "Omnis spiritus laudet Dominum"
+  relation: bears_motto
+  source: "mahillon1900_excerpt; hipkins_excerpt"
+  epistemic_status: asserted
+
+inscriptions:
+- location: "soundboard"
+  text: "1620"
+  inscription_type: date_inscription
+  epistemic_status: asserted
+  confidence: asserted
+  source: "carmentis_online; mahillon1900_excerpt"
+  comment: "Mahillon says the soundboard bears the date 1620."
+- location: "inside lid"
+  text: "Omnis spiritus laudet Dominum"
+  inscription_type: motto
+  epistemic_status: asserted
+  confidence: asserted
+  source: "mahillon1900_excerpt; hipkins_excerpt"
+  comment: "Latin motto recorded by Mahillon and discussed by Hipkins."
+- location: "near rose"
+  text: "Anno 1622"
+  inscription_type: source_specific_date_inscription
+  epistemic_status: contested
+  confidence: source_discrepancy
+  source: hipkins_excerpt
+  comment: "Hipkins reports Anno 1622 near the rose. Preserve as a discrepancy against the current catalogue and Mahillon 1620 date."
+- location: "rail above the jacks"
+  text: "JOANNES RVCKERS FECIT ANTVERPIAE"
+  inscription_type: source_specific_maker_inscription
+  epistemic_status: contested
+  confidence: source_discrepancy
+  source: hipkins_excerpt
+  comment: "Hipkins reports this inscription, which conflicts with the current Carmentis maker Andreas Ruckers I. Do not silently convert to the accepted maker."
+
+measurements:
+- measurement_type: dimensions
+  measured_part: "whole instrument"
+  value: "height 26 cm; width 173.8 cm; depth 49.5 cm"
+  source: carmentis_online
+  epistemic_status: asserted
+- measurement_type: dimensions
+  measured_part: "whole instrument on stand"
+  value: "total length ca. 1.72 m; maximum width ca. 0.495 m; height on stand ca. 0.94 m"
+  source: mahillon1900_excerpt
+  epistemic_status: asserted
+  confidence: historical_measurement
+  comment: "Normalized cautiously from the supplied Mahillon excerpt."
+- measurement_type: compass
+  value: "chromatic extent of four octaves; four first bass notes added after the fact"
+  source: mahillon1900_excerpt
+  epistemic_status: asserted
+  comment: "Mahillon evidence. Current Carmentis excerpt does not provide full compass details."
+
+historical_states:
+- state_type: original_construction
+  date: "1620"
+  agent: "Andreas Ruckers I"
+  place: "Antwerp"
+  description: "Rectangular muselar virginal on six legs, serial number 6/27, built by Andreas Ruckers in 1620."
+  epistemic_status: asserted
+  source: carmentis_online
+- state_type: refurbishment
+  date: "by end of the 17th century"
+  agent: "UNKNOWN"
+  description: "Refurbishment probably completed by the end of the seventeenth century."
+  epistemic_status: asserted
+  confidence: probable
+  source: carmentis_online
+- state_type: keyboard_extension
+  date: "date not stated"
+  agent: "UNKNOWN"
+  description: "Mahillon states that the four first bass notes were added after the fact."
+  epistemic_status: asserted
+  source: mahillon1900_excerpt
+- state_type: restoration
+  date: "1847"
+  agent: "Bruno Martens"
+  description: "Restoration by Bruno Martens."
+  epistemic_status: asserted
+  source: carmentis_online
+- state_type: restoration
+  date: "1885"
+  agent: "Frans de Vestibule"
+  description: "Restoration by Frans de Vestibule."
+  epistemic_status: asserted
+  source: carmentis_online
+- state_type: restoration
+  date: "1936-1937"
+  agent: "Siméon Moisse"
+  description: "Restoration by Siméon Moisse."
+  epistemic_status: asserted
+  source: carmentis_online
+- state_type: restoration
+  date: "1982"
+  agent: "Kurt and Susanne Wittmayer"
+  description: "Restoration by Kurt and Susanne Wittmayer."
+  epistemic_status: asserted
+  source: carmentis_online
+
+technical_description:
+  source: carmentis_online
+  summary: "Rectangular muselar virginal on six legs with serial number 6/27, built by Andreas Ruckers in 1620. The record states that refurbishment was probably completed by the end of the seventeenth century and lists restorations in 1847, 1885, 1936-1937, and 1982. Mahillon describes a painted soundboard with flowers, foliage, birds, and insects; printed paper decoration; Latin motto; and later-added bass notes."
+
+references:
+- id: carmentis_online
+  type: online_catalogue
+  citation: "Carmentis / Musées royaux d'art et d'histoire, Rectangular muselar virginal, inventory 1597"
+  url: "https://carmentis.kmkg-mrah.be:443/eMP/eMuseumPlus?service=ExternalInterface&module=collection&objectId=106146&viewType=detailView"
+  consulted: true
+  note: "Used as current catalogue source for title, inventory number, object type, classification, maker, production place, date, dimensions, current display status, depository, owner, serial number, refurbishment, and restoration history."
+- id: mahillon1900_excerpt
+  type: printed_catalogue
+  reported_by: carmentis_online
+  citation: "Victor-Charles Mahillon, Catalogue Descriptif et Analytique du Musée Instrumental de Bruxelles, vol. 3, 1900, pp. 161-163, p. 162."
+  pages: "p. 162"
+  consulted: true
+  note: "Consulted from supplied excerpt. Used for soundboard date 1620, decoration, Latin motto, current chromatic four-octave keyboard, later-added bass notes, and historical measurements."
+- id: hipkins1888_1921_excerpt
+  type: printed_book
+  reported_by: carmentis_online
+  citation: "A. J. Hipkins, Musical Instruments: Historic, Rare, and Unique, 1888-1921, pp. 41-43, no. XVIII."
+  pages: "pp. 41-43"
+  consulted: true
+  note: "Consulted from supplied excerpt. Used for historical description, original external decoration, stand originality claim, Latin motto, key-material discussion, and source-specific inscription/date discrepancy reporting Joannes Ruckers and Anno 1622."
+- id: other_carmentis_references_unconsulted
+  type: bibliography_set
+  reported_by: carmentis_online
+  citation: "Other references listed by Carmentis for inventory 1597, including Closson 1935, O'Brien 1974, and Haine 2000."
+  consulted: false
+  note: "Not located or consulted for this draft. Not used as direct evidence."
+
+notes_for_musicologist:
+- "Rich record with accepted maker/date in the current catalogue, formal classification, display status, dimensions, restoration chain, historical refurbishment, historical measurements, and consulted historical catalogue excerpts."
+- "Do not flatten the record to a single 1620 untouched Ruckers state: refurbishment, added bass notes, and multiple restorations are explicitly recorded."
+- "Preserve the Hipkins discrepancy: the supplied excerpt reports Joannes Ruckers and Anno 1622, whereas current Carmentis and Mahillon support Andreas Ruckers and 1620."
+- "Treat Hipkins's statement that the stand is original as historical-source evidence; current Carmentis excerpt does not independently describe the stand's originality beyond saying the muselar is on six legs."
+- "Specific wood species and key materials are not fully supplied by the current Carmentis excerpt; do not over-normalize material claims from contextual discussion alone."
+- "No acquisition or full provenance chain is supplied beyond current depository and owner."

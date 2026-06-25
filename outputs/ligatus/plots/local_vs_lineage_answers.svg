@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="520">
+<rect width="100%" height="100%" fill="white"/>
+<text x="490.0" y="28" text-anchor="middle" font-family="sans-serif" font-size="19" font-weight="600">Ligatus segmented profile: local versus lineage answers</text>
+<rect x="124.0" y="331.63254861821906" width="42.5" height="53.36745138178097" fill="#d9480f"/>
+<rect x="173.3" y="327.9170931422723" width="42.5" height="57.08290685772774" fill="#1971c2"/>
+<text x="169.9" y="407" text-anchor="middle" font-family="sans-serif" font-size="11" transform="rotate(28 169.9 407)">treatment history</text>
+<rect x="294.0" y="58.71545547594678" width="42.5" height="326.2845445240532" fill="#d9480f"/>
+<rect x="343.3" y="55.0" width="42.5" height="330.0" fill="#1971c2"/>
+<text x="339.9" y="407" text-anchor="middle" font-family="sans-serif" font-size="11" transform="rotate(28 339.9 407)">modifications</text>
+<rect x="464.0" y="83.03480040941656" width="42.5" height="301.96519959058344" fill="#d9480f"/>
+<rect x="513.3" y="83.03480040941656" width="42.5" height="301.96519959058344" fill="#1971c2"/>
+<text x="509.9" y="407" text-anchor="middle" font-family="sans-serif" font-size="11" transform="rotate(28 509.9 407)">condition→treatment</text>
+<rect x="634.0" y="174.57011258955987" width="42.5" height="210.42988741044013" fill="#d9480f"/>
+<rect x="683.3" y="174.57011258955987" width="42.5" height="210.42988741044013" fill="#1971c2"/>
+<text x="679.9" y="407" text-anchor="middle" font-family="sans-serif" font-size="11" transform="rotate(28 679.9 407)">materials over time</text>
+<rect x="804.0" y="147.8863868986694" width="42.5" height="237.1136131013306" fill="#d9480f"/>
+<rect x="853.3" y="147.8863868986694" width="42.5" height="237.1136131013306" fill="#1971c2"/>
+<text x="849.9" y="407" text-anchor="middle" font-family="sans-serif" font-size="11" transform="rotate(28 849.9 407)">techniques over time</text>
+<line x1="90" y1="385" x2="940" y2="385" stroke="#333"/>
+<rect x="770" y="50" width="15" height="15" fill="#d9480f"/><text x="792" y="63" font-family="sans-serif" font-size="12">current-local</text>
+<rect x="870" y="50" width="15" height="15" fill="#1971c2"/><text x="892" y="63" font-family="sans-serif" font-size="12">lineage</text>
+</svg>

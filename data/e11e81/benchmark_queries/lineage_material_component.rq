@@ -1,0 +1,9 @@
+PREFIX ex: <http://example.org/remake/>
+PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
+SELECT DISTINCT ?entity WHERE {
+  ?current ex:isCurrent true .
+  ?lineageObject (crm:P123_resulted_in/^crm:P124_transformed)* ?current .
+  { ?lineageObject crm:P45_consists_of ?entity . }
+  UNION
+  { ?lineageObject crm:P46_is_composed_of ?entity . }
+}

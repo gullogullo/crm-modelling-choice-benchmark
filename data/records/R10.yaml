@@ -1,0 +1,344 @@
+id: R10
+density_band: rich
+challenge_category: rich_historical_state_modification_candidate
+label: Clavecin
+instrument_type: harpsichord
+category: keyboard
+held_by: Musée de la musique, Philharmonie de Paris
+accession: "E.979.2.1"
+source_url: "https://collectionsdumusee.philharmoniedeparis.fr/collectionsdumusee/doc/MUSEE/0162260/clavecin"
+
+research_scope:
+  basis: "Musée de la musique / Philharmonie de Paris online catalogue record and documentation references listed there."
+  independent_bibliographic_search: false
+  note: "The documentation list for this object is extensive. None of the listed references were consulted directly for this draft. Claims are derived from the online catalogue record only."
+
+material: "ébène, bois, ivoire"
+dimensions: "keyboard width 815 mm; length 2250 mm"
+
+makers:
+- name: "Andreas II Ruckers"
+  role: original_maker
+  epistemic_status: asserted
+  confidence: asserted
+  source: philharmonie_online
+  comment: "The catalogue identifies Andreas II Ruckers as maker. Painted mark reads: ANDREAS RUCKERS ME FECIT ANTVERPIAE, and the date 1646 is painted on the soundboard."
+- name: "Pascal Joseph Taskin"
+  role: modifier_ravaleur
+  epistemic_status: asserted
+  confidence: asserted
+  source: philharmonie_online
+  comment: "The catalogue states that the instrument was modified by Pascal Joseph Taskin in Paris in 1780. The iron mark and printed label also identify Taskin and the ravalement."
+- name: "Louis Tomasini"
+  role: restorer
+  epistemic_status: asserted
+  confidence: asserted
+  source: philharmonie_online
+  comment: "The catalogue states that the instrument was restored by Louis Tomasini in Paris in 1881."
+- name: "Hubert Bédard"
+  role: restorer
+  epistemic_status: asserted
+  confidence: asserted
+  source: philharmonie_online
+  comment: "The catalogue states that the instrument was restored by Hubert Bédard in 1972."
+- name: "Atelier von Nagel"
+  role: facsimile_mechanism_maker
+  epistemic_status: asserted
+  confidence: asserted
+  source: philharmonie_online
+  comment: "The catalogue states that the instrument was fitted with a facsimile mechanism, registers and jacks, by the Atelier von Nagel in 1990."
+
+dates:
+- range_str: "1646"
+  event_type: original_construction
+  epistemic_status: asserted
+  confidence: asserted
+  source: philharmonie_online
+  comment: "Original construction by Andreas II Ruckers in Antwerp."
+- range_str: "1780"
+  event_type: ravalement_modification
+  epistemic_status: asserted
+  confidence: asserted
+  source: philharmonie_online
+  comment: "Modification/ravalement by Pascal Joseph Taskin in Paris."
+- range_str: "1881"
+  event_type: restoration
+  epistemic_status: asserted
+  confidence: asserted
+  source: philharmonie_online
+  comment: "Restoration by Louis Tomasini in Paris."
+- range_str: "1972"
+  event_type: restoration
+  epistemic_status: asserted
+  confidence: asserted
+  source: philharmonie_online
+  comment: "Restoration by Hubert Bédard."
+- range_str: "1990"
+  event_type: facsimile_mechanism
+  epistemic_status: asserted
+  confidence: asserted
+  source: philharmonie_online
+  comment: "Facsimile mechanism, registers, and jacks by Atelier von Nagel."
+
+places:
+- place_type: original_production_place
+  label: "Antwerp"
+  epistemic_status: asserted
+  confidence: asserted
+  source: philharmonie_online
+  comment: "The catalogue gives Anvers/Antwerp as the place of original Ruckers construction."
+- place_type: modification_place
+  label: "Paris"
+  epistemic_status: asserted
+  confidence: asserted
+  source: philharmonie_online
+  comment: "The catalogue states that Taskin modified the instrument in Paris in 1780."
+- place_type: restoration_place
+  label: "Paris"
+  epistemic_status: asserted
+  confidence: asserted
+  source: philharmonie_online
+  comment: "The catalogue states that Louis Tomasini restored the instrument in Paris in 1881."
+- place_type: current_location
+  label: "Espace XVIIIe - L'imaginaire des Lumières"
+  epistemic_status: asserted
+  confidence: asserted
+  source: philharmonie_online
+  comment: "Current gallery/location given by the catalogue."
+
+provenance:
+- agent: "Léon Hermann"
+  role: previous_owner_or_collection
+  date_range: "date not stated"
+  epistemic_status: asserted
+  source: philharmonie_online
+  position: 0
+- agent: "Basset"
+  role: dealer_or_previous_owner
+  date_range: "date not stated"
+  epistemic_status: asserted
+  source: philharmonie_online
+  position: 1
+  comment: "Catalogue says the instrument belonged to the dealer Basset."
+- agent: "Jérôme Pichon"
+  role: previous_owner_or_collection
+  date_range: "date not stated"
+  epistemic_status: asserted
+  source: philharmonie_online
+  position: 2
+- agent: "Paul Eudel"
+  role: previous_owner_or_collection
+  date_range: "date not stated"
+  epistemic_status: asserted
+  source: philharmonie_online
+  position: 3
+- agent: "Mme Adrien Allez"
+  role: previous_owner
+  date_range: "date not stated"
+  epistemic_status: asserted
+  source: philharmonie_online
+  position: 4
+- agent: "Geneviève Thibault de Chambure"
+  role: previous_owner_or_collection
+  date_range: "from 1962?"
+  epistemic_status: asserted
+  source: philharmonie_online
+  position: 5
+  comment: "Catalogue states former collection Geneviève Thibault de Chambure, with a 1962 purchase note. Exact transfer details should be checked against the underlying documentation."
+- agent: "Musée de la musique, Philharmonie de Paris"
+  role: holds
+  date_range: "date not stated"
+  epistemic_status: asserted
+  source: philharmonie_online
+  position: 6
+
+hs_codes:
+- label: "clavecin; instrument à clavier à cordes pincées"
+  assigned_by: "Musée de la musique, Philharmonie de Paris"
+  epistemic_status: asserted
+  source: philharmonie_online
+  comment: "Catalogue designation and descriptive classification, not a formal Hornbostel-Sachs code."
+
+related_entities:
+- entity_type: person
+  label: "Andreas II Ruckers"
+  relation: original_maker
+  source: philharmonie_online
+  epistemic_status: asserted
+- entity_type: person
+  label: "Pascal Joseph Taskin"
+  relation: modifier_ravaleur
+  source: philharmonie_online
+  epistemic_status: asserted
+- entity_type: person
+  label: "Louis Tomasini"
+  relation: restorer
+  source: philharmonie_online
+  epistemic_status: asserted
+- entity_type: person
+  label: "Hubert Bédard"
+  relation: restorer
+  source: philharmonie_online
+  epistemic_status: asserted
+- entity_type: workshop
+  label: "Atelier von Nagel"
+  relation: facsimile_mechanism_maker
+  source: philharmonie_online
+  epistemic_status: asserted
+- entity_type: material
+  label: ebony
+  relation: consists_of
+  source: philharmonie_online
+- entity_type: material
+  label: wood
+  relation: consists_of
+  source: philharmonie_online
+- entity_type: material
+  label: ivory
+  relation: consists_of
+  source: philharmonie_online
+- entity_type: material
+  label: buffalo leather
+  relation: consists_of
+  source: philharmonie_online
+  comment: "Taskin modifications include sautereaux de registre de peau de buffle."
+- entity_type: material
+  label: quill
+  relation: consists_of
+  source: philharmonie_online
+  comment: "Several stops are described as plume."
+- entity_type: material
+  label: gilding
+  relation: surface_finish
+  source: philharmonie_online
+  comment: "Decor includes gilded wood."
+- entity_type: feature
+  label: "two keyboards"
+  relation: has_feature
+  source: philharmonie_online
+  epistemic_status: asserted
+- entity_type: feature
+  label: "three ranks of strings: 2 x 8', 1 x 4'"
+  relation: has_feature
+  source: philharmonie_online
+  epistemic_status: asserted
+- entity_type: feature
+  label: "six knee levers"
+  relation: has_feature
+  source: philharmonie_online
+  epistemic_status: asserted
+- entity_type: feature
+  label: "facsimile mechanism, registers, and jacks"
+  relation: has_modern_facsimile_component
+  source: philharmonie_online
+  epistemic_status: asserted
+
+inscriptions:
+- location: "couteau"
+  text: "ANDREAS RUCKERS ME FECIT ANTVERPIAE"
+  inscription_type: painted_mark
+  epistemic_status: asserted
+  source: philharmonie_online
+  comment: "Original maker/place mark."
+- location: "soundboard"
+  text: "1646"
+  inscription_type: painted_date
+  epistemic_status: asserted
+  source: philharmonie_online
+  comment: "Painted date."
+- location: "rose"
+  text: "AR"
+  inscription_type: initials
+  epistemic_status: asserted
+  source: philharmonie_online
+  comment: "Rose with initials AR."
+- location: "sommier"
+  text: "Fait par Pascal Taskin, Paris, 1780"
+  inscription_type: iron_mark
+  epistemic_status: asserted
+  source: philharmonie_online
+  comment: "Taskin modification mark."
+- location: "inside, curved bentside"
+  text: "remis à ravalement par / PASCAL TASKIN, Facteur / de clavecins & Garde des Instruments / de Musique du Roi, élève & Successeur de M. BLANCHET, rue de la / Verrerie, vis-à-vis S. Merry / à Paris"
+  inscription_type: printed_label
+  epistemic_status: asserted
+  source: philharmonie_online
+  comment: "Printed label documenting Taskin's ravalement."
+
+measurements:
+- measurement_type: dimensions
+  measured_part: "keyboard"
+  value: "width 815 mm"
+  source: philharmonie_online
+  epistemic_status: asserted
+- measurement_type: dimensions
+  measured_part: "whole instrument"
+  value: "length 2250 mm"
+  source: philharmonie_online
+  epistemic_status: asserted
+- measurement_type: compass
+  value: "current compass: FF to f''', 61 notes"
+  source: philharmonie_online
+  epistemic_status: asserted
+  comment: "Catalogue gives current extent as fa à fa, FF à f''', 61 notes."
+
+historical_states:
+- state_type: original_construction
+  date: "1646"
+  agent: "Andreas II Ruckers"
+  place: "Antwerp"
+  description: "Original harpsichord by Andreas II Ruckers."
+  epistemic_status: asserted
+  source: philharmonie_online
+- state_type: ravalement
+  date: "1780"
+  agent: "Pascal Joseph Taskin"
+  place: "Paris"
+  description: "Instrument modified by Taskin; catalogue lists buffalo-leather register jacks, added high-treble extensions of nuts and bridges for 4' and 8' registers, knee-lever mechanism, remade case bracing, and thickening of the sides from 14 to 25 mm."
+  epistemic_status: asserted
+  source: philharmonie_online
+- state_type: restoration
+  date: "1881"
+  agent: "Louis Tomasini"
+  place: "Paris"
+  description: "Restoration by Louis Tomasini."
+  epistemic_status: asserted
+  source: philharmonie_online
+- state_type: restoration
+  date: "1972"
+  agent: "Hubert Bédard"
+  description: "Restoration by Hubert Bédard."
+  epistemic_status: asserted
+  source: philharmonie_online
+- state_type: facsimile_mechanism
+  date: "1990"
+  agent: "Atelier von Nagel"
+  description: "Facsimile mechanism, registers, and jacks added/fitted by Atelier von Nagel."
+  epistemic_status: asserted
+  source: philharmonie_online
+
+technical_description:
+  source: philharmonie_online
+  summary: "Two-manual harpsichord with three ranks of strings, 2 x 8' and 1 x 4', manual lute stop, registration and coupling by knee levers, six knee levers, current compass FF to f''', 61 notes. Taskin modifications include buffalo-leather register jacks, changes to high-treble nuts and bridges, knee-lever mechanism, remade bracing, and thickened sides. The instrument has a facsimile mechanism by Atelier von Nagel from 1990."
+
+references:
+- id: philharmonie_online
+  type: online_catalogue
+  citation: "Musée de la musique / Philharmonie de Paris, Clavecin, object E.979.2.1"
+  url: "https://collectionsdumusee.philharmoniedeparis.fr/collectionsdumusee/doc/MUSEE/0162260/clavecin"
+  consulted: true
+  note: "Used as current catalogue source for title, maker, modifier, dates, places, accession number, description, dimensions, compass, materials, inscriptions, decoration, provenance, restorations, facsimile mechanism, current location, and documentation list."
+- id: philharmonie_bibliography_unconsulted
+  type: bibliography_set
+  reported_by: philharmonie_online
+  citation: "Books, articles, plans, and other resources listed in the Philharmonie de Paris documentation section for object E.979.2.1, including works on Ruckers, Taskin, restoration, early keyboard instruments, plans by Hubert Bédard and Magali Traynard, and recent concert/programme resources."
+  consulted: false
+  note: "The listed documentation references were not located or consulted for this draft. They are recorded as catalogue-reported bibliography only and are not used as direct evidence for gold claims."
+
+notes_for_musicologist:
+- "Rich historical-state record closely comparable to R09: original Ruckers construction, Taskin ravalement, later restorations, and modern facsimile mechanism."
+- "Do not treat 1646 and 1780 as a single undifferentiated creation date. Split original construction from later ravalement/modification."
+- "Do not collapse Andreas II Ruckers, Pascal Taskin, Tomasini, Bédard, and Atelier von Nagel into one maker role."
+- "Preserve the 1990 facsimile mechanism as part of the current state of the object."
+- "The provenance chain is rich but mostly undated; the 1962 purchase note needs further checking if it becomes important."
+- "The extensive documentation bibliography was not consulted and should not be used as direct evidence in gold data."

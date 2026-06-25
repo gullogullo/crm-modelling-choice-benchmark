@@ -1,0 +1,123 @@
+id: R05
+density_band: thin
+challenge_category: thin_control_with_material_uncertainty
+label: Unfretted Clavichord
+instrument_type: clavichord
+category: keyboard
+held_by: National Museum of American History, Smithsonian Institution
+accession: "62559"
+catalog_number: "303542"
+id_number: "MI.303542"
+record_id: "nmah_606021"
+guid: "https://n2t.net/ark:/65665/ng49ca746a4-2b3f-704b-e053-15f76fa0b4fa"
+source_url: "https://americanhistory.si.edu/collections/search/object/nmah_606021"
+
+research_scope:
+  basis: "Smithsonian online collection record and supplied Smithsonian metadata text."
+  independent_bibliographic_search: false
+  note: "No independent bibliographic search was undertaken for this record. The supplied Smithsonian metadata text was treated as a second representation/export of the same collection record, not as independent external literature."
+
+material: "pine, pine or spruce, ebony, ivory"
+dimensions: "overall: 10 in x 69 in x 23 in; 25.4 cm x 175.26 cm x 58.42 cm"
+
+makers:
+- name: "UNKNOWN — catalogue gives no individual maker"
+  epistemic_status: unknown
+  source: "smithsonian_online; smithsonian_metadata_txt"
+  comment: "The consulted Smithsonian sources do not identify a maker. Hugo Worch appears as related name/credit-line donor, not as maker. Treat maker as UNKNOWN rather than ABSENT."
+
+dates:
+- range_str: "1812"
+  event_type: creation
+  epistemic_status: asserted
+  confidence: asserted
+  source: "smithsonian_online; smithsonian_metadata_txt"
+  comment: "Smithsonian gives Related Date / Date made as 1812."
+
+places: []
+
+provenance:
+- agent: "Hugo Worch"
+  role: donor
+  date_range: "date not stated"
+  epistemic_status: asserted
+  source: "smithsonian_online; smithsonian_metadata_txt"
+  comment: "Credit line states Gift of Hugo Worch. The relationship field also lists Worch, Hugo as an unspecified related name."
+- agent: "National Museum of American History, Smithsonian Institution"
+  role: holds
+  date_range: "date not stated"
+  epistemic_status: asserted
+  source: "smithsonian_online; smithsonian_metadata_txt"
+  comment: "Holding institution is the National Museum of American History. No acquisition date is given in the consulted record."
+
+hs_codes:
+- label: "Clavichord"
+  assigned_by: "Smithsonian Institution"
+  epistemic_status: asserted
+  source: "smithsonian_online; smithsonian_metadata_txt"
+  comment: "Smithsonian object type/object name, not a Hornbostel-Sachs code."
+
+related_entities:
+- entity_type: material
+  label: pine
+  relation: consists_of
+  source: "smithsonian_online; smithsonian_metadata_txt"
+  comment: "Case material."
+- entity_type: material
+  label: pine
+  relation: possible_soundboard_material
+  source: "smithsonian_online; smithsonian_metadata_txt"
+  epistemic_status: asserted
+  confidence: possible
+  comment: "Soundboard material is given as pine or spruce."
+- entity_type: material
+  label: spruce
+  relation: possible_soundboard_material
+  source: "smithsonian_online; smithsonian_metadata_txt"
+  epistemic_status: asserted
+  confidence: possible
+  comment: "Soundboard material is given as pine or spruce."
+- entity_type: material
+  label: ebony
+  relation: consists_of
+  source: "smithsonian_online; smithsonian_metadata_txt"
+  comment: "Naturals material."
+- entity_type: material
+  label: ivory
+  relation: consists_of
+  source: "smithsonian_online; smithsonian_metadata_txt"
+  comment: "Accidentals material."
+- entity_type: person
+  label: Hugo Worch
+  relation: donor
+  source: "smithsonian_online; smithsonian_metadata_txt"
+  epistemic_status: asserted
+
+measurements:
+- measurement_type: dimensions
+  measured_part: "whole instrument"
+  value: "overall: 10 in x 69 in x 23 in; 25.4 cm x 175.26 cm x 58.42 cm"
+  source: "smithsonian_online; smithsonian_metadata_txt"
+  epistemic_status: asserted
+  comment: "Smithsonian overall measurements."
+
+references:
+- id: smithsonian_online
+  type: online_catalogue
+  citation: "National Museum of American History, Smithsonian Institution, Clavichord / Unfretted Clavichord, record nmah_606021"
+  url: "https://americanhistory.si.edu/collections/search/object/nmah_606021"
+  guid: "https://n2t.net/ark:/65665/ng49ca746a4-2b3f-704b-e053-15f76fa0b4fa"
+  consulted: true
+  note: "Used as current catalogue source for object type/name, ID numbers, date made, donor credit line, materials, and measurements."
+- id: smithsonian_metadata_txt
+  type: metadata_export
+  citation: "Smithsonian Institution metadata text for media:NMAH-MAH-56338 / edanmdm:nmah_606021"
+  consulted: true
+  note: "Supplied metadata text. Used to confirm title, GUID, data source, physical description, measurements, credit line, ID numbers, date made, object name, and current not-on-view status."
+
+notes_for_musicologist:
+- "Thin/partial record: maker is unknown, place is absent from the consulted sources, and provenance is limited to gift/donor evidence."
+- "Do not treat Hugo Worch as maker; he is donor/related name in the consulted Smithsonian data."
+- "The soundboard material is explicitly uncertain: pine or spruce."
+- "Smithsonian object type/name is not a Hornbostel-Sachs code."
+- "The supplied metadata text is treated as a representation of the Smithsonian record, not as an independent bibliographic source."

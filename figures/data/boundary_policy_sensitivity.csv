@@ -1,0 +1,7 @@
+policy_id,policy_label,query_id,query_label,gap_percent,gap_record_count,record_count
+all_roots_split,all roots split,current_treatment_history,treatment history,35.4,56,158
+all_roots_split,all roots split,current_modification_retrieval,modification retrieval,35.4,56,158
+source_semantics,source semantics,current_treatment_history,treatment history,7.0,11,158
+source_semantics,source semantics,current_modification_retrieval,modification retrieval,7.0,11,158
+dated_only,dated only,current_treatment_history,treatment history,0.6,1,158
+dated_only,dated only,current_modification_retrieval,modification retrieval,0.6,1,158

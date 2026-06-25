@@ -1,0 +1,210 @@
+id: R02
+density_band: medium
+challenge_category: D_fragmentary_composite_candidate
+label: Rectangular Octave Virginal
+instrument_type: octave virginal
+category: keyboard
+held_by: Metropolitan Museum of Art
+accession: "11.176.2"
+source_url: "https://www.metmuseum.org/art/collection/search/504474"
+
+research_scope:
+  basis: "Met online catalogue record and the reference listed there."
+  independent_bibliographic_search: false
+  note: "References included here are limited to those reported by the Met catalogue page. The Pollens reference was checked through the available Google Books preview/page view. No systematic search in other catalogues or secondary literature was undertaken for this record."
+
+material: "wood and various materials"
+dimensions: "length parallel to keyboard 65.1 cm; width perpendicular to keyboard 27.1 cm; depth 9.7 cm"
+
+makers:
+- name: "UNKNOWN — catalogue gives no accepted individual maker"
+  epistemic_status: unknown
+  source: "met_online; pollens2022_p35"
+  comment: "The Met record gives no accepted maker. Pollens lists the maker as anonymous. The inscription naming Paspuino Querci is explicitly described by the Met as spurious and should not be treated as an accepted maker attribution."
+
+dates:
+- range_str: "ca. 1600"
+  event_type: creation
+  epistemic_status: asserted
+  confidence: probable
+  source: "met_online; pollens2022_p35"
+  comment: "Current Met catalogue and Pollens reference both give ca. 1600."
+- range_str: "1615"
+  event_type: inscription_date
+  epistemic_status: asserted
+  confidence: spurious
+  source: met_online
+  comment: "Date appears in the spurious inscription on the nameboard and is not treated as the accepted production date."
+
+places:
+- place_type: production_place
+  label: "Germany"
+  epistemic_status: asserted
+  confidence: probable
+  source: met_online
+  comment: "Met gives Geography as Germany? and Culture as probably German."
+- place_type: production_place
+  label: "Augsburg"
+  broader_place: "Germany"
+  epistemic_status: asserted
+  confidence: possible
+  source: pollens2022_p35
+  comment: "Pollens gives Origin as Augsburg?. This is compatible with, but more specific and more tentative than, the Met's Germany? attribution."
+
+provenance:
+- agent: "Bernardus Boekelman"
+  role: donor_previous_owner
+  date_range: "before 1911-1911"
+  epistemic_status: asserted
+  source: met_online
+  comment: "Met credit line states Gift of Bernardus Boekelman, 1911, and provenance lists Bernardus Boekelman."
+- agent: "Metropolitan Museum of Art"
+  role: holds
+  date_range: "1911-"
+  epistemic_status: asserted
+  source: met_online
+  comment: "Supported by accession and credit line."
+
+hs_codes:
+- label: "Chordophone-Zither-plucked-virginal"
+  assigned_by: "Metropolitan Museum of Art"
+  epistemic_status: asserted
+  source: met_online
+
+related_entities:
+- entity_type: material
+  label: wood
+  relation: consists_of
+  source: met_online
+- entity_type: material
+  label: walnut
+  relation: consists_of
+  source: met_online
+  comment: "Case described as walnut or chestnut and lime."
+- entity_type: material
+  label: chestnut
+  relation: consists_of
+  source: met_online
+  comment: "Alternative material in the case description: walnut or chestnut."
+- entity_type: material
+  label: lime
+  relation: consists_of
+  source: met_online
+- entity_type: material
+  label: bone
+  relation: consists_of
+  source: met_online
+- entity_type: material
+  label: fruitwood
+  relation: consists_of
+  source: met_online
+- entity_type: material
+  label: metal
+  relation: consists_of
+  source: met_online
+- entity_type: material
+  label: pear
+  relation: consists_of
+  source: met_online
+- entity_type: material
+  label: quill
+  relation: consists_of
+  source: met_online
+- entity_type: material
+  label: brass
+  relation: consists_of
+  source: met_online
+- entity_type: material
+  label: lead
+  relation: consists_of
+  source: met_online
+- entity_type: material
+  label: leather
+  relation: consists_of
+  source: met_online
+- entity_type: material
+  label: parchment
+  relation: consists_of
+  source: met_online
+- entity_type: object_relation
+  label: "formerly part of a claviorganum"
+  relation: formerly_part_of
+  source: met_online
+  epistemic_status: asserted
+  comment: "Met states that the octave virginal was once part of a claviorganum, a combined organ-spinet."
+- entity_type: inscription
+  label: "spurious inscription naming Paspuino Querci fiorentino and date 1615"
+  relation: bears_spurious_inscription
+  source: met_online
+  epistemic_status: asserted
+  confidence: probable
+  comment: "Met states that the Italian inscription over the keyboard is spurious and probably added by Franciolini."
+
+inscriptions:
+- location: "nameboard"
+  text: "Paspuino Querci fiorentino fece 1615/La sua presenza e la sua abilità/BONA EXTORTIO CVM IEIVNIO ET ELEMOSINA"
+  status: spurious
+  epistemic_status: asserted
+  confidence: probable
+  source: met_online
+  comment: "Probably added by Franciolini according to the Met record. Do not use as accepted maker/date evidence."
+
+historical_states:
+- state_type: former_component
+  description: "Once part of a claviorganum, a combined organ-spinet."
+  epistemic_status: asserted
+  source: met_online
+  comment: "This creates an identity/part-whole modelling issue: the current object is catalogued as an octave virginal, but historically belonged to a composite instrument."
+
+references:
+- id: met_online
+  type: online_catalogue
+  citation: "Metropolitan Museum of Art, collection record 504474"
+  url: "https://www.metmuseum.org/art/collection/search/504474"
+  consulted: true
+  note: "Used as current catalogue source for title, accession, date, probable place/culture, materials, dimensions, classification, provenance, technical description, former claviorganum relation, and spurious inscription."
+- id: pollens2022_p35
+  type: printed_book
+  reported_by: met_online
+  citation: "Stewart S. Pollens. A History of Stringed Keyboard Instruments. Cambridge University Press. Cambridge, 2022, p. 35."
+  url: "https://books.google.it/books?id=60pgEAAAQBAJ&printsec=frontcover&hl=it#v=onepage&q&f=false"
+  pages: "p. 35"
+  consulted: true
+  note: "Checked through Google Books preview/page view. Used for Anon. maker, ca. 1600 date, Augsburg? origin, octave virginal identification, and the reported three-octave-span value."
+
+measurements:
+- measurement_type: dimensions
+  measured_part: "whole instrument"
+  value: "L. parallel to keyboard 65.1 cm; W. perpendicular to keyboard 27.1 cm; D. 9.7 cm"
+  source: met_online
+  epistemic_status: asserted
+  comment: "Current Met catalogue dimensions; used as canonical Q09 dimensions."
+- measurement_type: keyboard_scale
+  value: "3-octave span 47.9 cm"
+  source: met_online
+  epistemic_status: asserted
+  comment: "Current Met catalogue additional dimension."
+- measurement_type: keyboard_scale
+  value: "Three-octave span 407"
+  source: pollens2022_p35
+  epistemic_status: asserted
+  confidence: uncertain_units
+  comment: "Value read from the Pollens reference/page view. Units or table context should be checked before normalizing. Do not overwrite the Met's 47.9 cm value."
+- measurement_type: sounding_length
+  value: "c/e 57.5 / 5.3; c2 14.2 / 4.1; a3 8.7 / 4.1"
+  source: met_online
+  epistemic_status: asserted
+  comment: "Sounding lengths / plucking points from current Met catalogue."
+
+technical_description:
+  source: met_online
+  author: "Douglas Maple"
+  date: "1983"
+  summary: "Case of walnut or chestnut and lime; left rear corner angled; compass c/e-a3; bone naturals with wooden key fronts; dark-stained fruitwood accidentals; pear jacks with quill plectra, brass leaf springs, lead weights, leather guides, and pierced wood and parchment rose."
+
+notes_for_musicologist:
+- "This should not be a thin record: although maker and provenance are sparse, the record has substantial technical description and interpretive issues."
+- "Treat Germany? and Augsburg? as compatible but differently granular place claims, not as a conflict."
+- "Treat the Paspuino Querci / 1615 inscription as spurious inscription evidence, not as accepted maker or date evidence."
+- "The former claviorganum relation makes this a D fragmentary/composite candidate."
+- "Check whether Pollens's three-octave-span value '407' has units or table context before using it as a normalized measurement."

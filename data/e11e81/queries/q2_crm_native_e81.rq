@@ -1,0 +1,10 @@
+PREFIX ex: <http://example.org/remake/>
+PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
+
+SELECT DISTINCT ?current WHERE {
+  ?prod a crm:E12_Production ;
+        crm:P14_carried_out_by ?maker ;
+        crm:P108_has_produced ?original .
+  ?original (^crm:P124_transformed/crm:P123_resulted_in)* ?current .
+  ?current ex:isCurrent true .
+}

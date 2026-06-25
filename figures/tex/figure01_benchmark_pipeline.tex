@@ -1,0 +1,151 @@
+\documentclass[tikz,border=10pt]{standalone}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,calc,fit,positioning}
+
+\begin{document}
+\pagecolor{white}
+
+\definecolor{sourceBlue}{RGB}{64,97,151}
+\definecolor{benchGreen}{RGB}{0,120,95}
+\definecolor{profilePurple}{RGB}{95,82,165}
+\definecolor{measureGold}{RGB}{178,112,34}
+\definecolor{softBlue}{RGB}{232,240,252}
+\definecolor{softGreen}{RGB}{224,241,236}
+\definecolor{softPurple}{RGB}{236,234,252}
+\definecolor{softGold}{RGB}{255,244,224}
+\definecolor{softGrey}{RGB}{247,247,247}
+
+\begin{tikzpicture}[
+  >=Stealth,
+  font=\small,
+  box/.style={
+    rounded corners=6pt,
+    minimum width=2.55cm,
+    minimum height=0.82cm,
+    align=center,
+    inner sep=5pt,
+    line width=0.82pt
+  },
+  source/.style={box, draw=sourceBlue!85!black, fill=softBlue},
+  process/.style={box, draw=benchGreen!85!black, fill=softGreen},
+  choice/.style={
+    rounded corners=5pt,
+    draw=benchGreen!85!black,
+    fill=white,
+    minimum width=2.05cm,
+    minimum height=0.62cm,
+    align=center,
+    inner sep=4pt,
+    font=\scriptsize,
+    line width=0.7pt
+  },
+  profile/.style={box, draw=profilePurple!85!black, fill=softPurple},
+  query/.style={
+    rounded corners=5pt,
+    draw=measureGold!85!black,
+    fill=softGold,
+    minimum width=2.05cm,
+    minimum height=0.62cm,
+    align=center,
+    inner sep=4pt,
+    font=\scriptsize,
+    line width=0.7pt
+  },
+  result/.style={
+    rounded corners=6pt,
+    draw=black!62,
+    fill=softGrey,
+    minimum width=3.2cm,
+    minimum height=0.82cm,
+    align=center,
+    inner sep=5pt,
+    line width=0.82pt
+  },
+  arr/.style={-{Stealth[length=2.1mm,width=1.45mm]}, thick, black!62},
+  light/.style={-{Stealth[length=1.8mm,width=1.25mm]}, semithick, black!46},
+  label/.style={font=\scriptsize, text=black!60, align=center}
+]
+
+\node[source] (rdf) at (0,0)
+  {\textbf{Ligatus RDF}\\CRM source};
+
+\node[process] (table) at (3.35,0)
+  {\textbf{Event table}\\E11 + P9 + dates};
+
+\node[choice] (all) at (6.95,1.25) {\texttt{all\_roots\_split}};
+\node[choice] (sem) at (6.95,0) {\texttt{source\_semantics}};
+\node[choice] (date) at (6.95,-1.25) {\texttt{dated\_only}};
+\node[font=\bfseries\small,text=benchGreen!80!black] at (6.95,2.05)
+  {Episode policy};
+\coordinate (policyIn) at (5.55,0);
+\coordinate (policyOut) at (8.35,0);
+
+\node[profile] (persistent) at (10.75,1.25)
+  {\textbf{Persistent}\\one identity};
+\node[profile] (segmented) at (10.75,-1.25)
+  {\textbf{Segmented}\\E81 identities};
+
+\node[query] (pc) at (13.85,2.15) {current-local};
+\node[query] (pl) at (13.85,0.75) {lineage-wide};
+\node[query] (sc) at (13.85,-0.75) {current-local};
+\node[query] (sl) at (13.85,-2.15) {lineage-wide};
+
+\node[result] (profilecmp) at (17.15,1.05)
+  {\textbf{Profile comparison}\\persistent vs segmented};
+\node[result] (scopecmp) at (17.15,-1.05)
+  {\textbf{Scope comparison}\\current vs lineage};
+\node[result] (metrics) at (20.95,0)
+  {\textbf{Measurements}\\gaps, overlap, LOSO};
+
+\draw[arr] (rdf) -- (table);
+\draw[arr] (table) -- (policyIn);
+\draw[light] (policyIn) |- (all.west);
+\draw[light] (policyIn) -- (sem.west);
+\draw[light] (policyIn) |- (date.west);
+
+\draw[light] (all.east) -| (policyOut);
+\draw[light] (sem.east) -- (policyOut);
+\draw[light] (date.east) -| (policyOut);
+\draw[arr] (policyOut) -- ++(0.55,0) |- (persistent.west);
+\draw[arr] (policyOut) -- ++(0.55,0) |- (segmented.west);
+
+\coordinate (pQueryJunction) at (12.25,1.25);
+\coordinate (sQueryJunction) at (12.25,-1.25);
+\draw[light] (persistent.east) -- (pQueryJunction) |- (pc.west);
+\draw[light] (persistent.east) -- (pQueryJunction) |- (pl.west);
+\draw[light] (segmented.east) -- (sQueryJunction) |- (sc.west);
+\draw[light] (segmented.east) -- (sQueryJunction) |- (sl.west);
+
+\coordinate (profileJunction) at (15.55,1.05);
+\coordinate (scopeJunction) at (15.55,-1.05);
+\draw[light] (pc.east) -- ++(0.35,0) |- (profileJunction) -- (profilecmp.west);
+\draw[light] (sc.east) -- ++(0.35,0) |- (profileJunction);
+\draw[light] (pl.east) -- ++(0.55,0) |- (profileJunction);
+\draw[light] (sl.east) -- ++(0.55,0) |- (profileJunction);
+
+\draw[light] (pc.east) -- ++(0.15,0) |- (scopeJunction) -- (scopecmp.west);
+\draw[light] (pl.east) -- ++(0.15,0) |- (scopeJunction);
+\draw[light] (sc.east) -- ++(0.75,0) |- (scopeJunction);
+\draw[light] (sl.east) -- ++(0.75,0) |- (scopeJunction);
+
+\coordinate (metricsJunction) at (19.15,0);
+\draw[arr] (profilecmp.east) -- ++(0.35,0) |- (metricsJunction) -- (metrics.west);
+\draw[arr] (scopecmp.east) -- ++(0.35,0) |- (metricsJunction);
+
+\node[label] at (3.35,-1.0) {structural adaptation};
+\node[label] at (6.95,-2.15) {boundary policies};
+\node[label] at (10.75,-2.55) {profile bifurcation};
+\node[label] at (13.85,-3.0) {query outputs};
+\node[label] at (17.15,-2.05) {two comparison axes};
+
+\node[
+  draw=benchGreen!35,
+  rounded corners=7pt,
+  fit=(all)(sem)(date),
+  inner sep=6pt
+] {};
+
+\end{tikzpicture}
+\end{document}

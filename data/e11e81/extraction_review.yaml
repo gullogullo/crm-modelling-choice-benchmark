@@ -1,0 +1,37 @@
+review_id: five_record_manual_label_review
+version: "1.0"
+review_scope:
+  record_ids: [R07, R10, R15, R17, R20]
+  label_universe: configured_pilot_vocabulary
+  note: >
+    Manual review of physical affected-label assignments from event descriptions.
+    This is a small diagnostic sample, not an independent gold standard.
+events:
+  R07_evt_001: [keyboard]
+  R07_evt_002: [keyboard]
+  R07_evt_003: [action, leather]
+  R07_evt_004: [action]
+  R07_evt_005: [unspecified_fabric]
+  R07_evt_006: [unspecified_fabric]
+  R10_evt_001: [whole_object]
+  R10_evt_002: [action, case, jacks, leather, strings]
+  R10_evt_003: [unspecified_fabric]
+  R10_evt_004: [unspecified_fabric]
+  R10_evt_005: [action, jacks, strings]
+  R15_evt_001: [organ_workings, whole_object]
+  R15_evt_002: [decoration, keyboard, leather, organ_workings, structure]
+  R15_evt_003: [unspecified_fabric]
+  R15_evt_004: [case, decoration, structure]
+  R15_evt_005: [decoration]
+  R15_evt_006: [case, organ_workings, structure]
+  R17_evt_001: [decoration, whole_object]
+  R17_evt_002: [decoration]
+  R17_evt_003: [case, decoration]
+  R17_evt_004: [jacks, leather]
+  R20_evt_001: [stand, whole_object]
+  R20_evt_002: [unspecified_fabric]
+  R20_evt_003: [keyboard]
+  R20_evt_004: [unspecified_fabric]
+  R20_evt_005: [unspecified_fabric]
+  R20_evt_006: [unspecified_fabric]
+  R20_evt_007: [unspecified_fabric]

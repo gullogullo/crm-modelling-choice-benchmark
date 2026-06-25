@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+ xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+ xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+ xmlns:crm="http://www.cidoc-crm.org/cidoc-crm/">
+  <crm:E22_Man-Made_Object rdf:about="http://example.org/book">
+    <rdfs:label>Example book</rdfs:label>
+    <crm:P108i_was_produced_by rdf:resource="http://example.org/production"/>
+    <crm:P46_is_composed_of>
+      <crm:E22_Man-Made_Object rdf:about="http://example.org/board">
+        <rdfs:label>Board</rdfs:label>
+        <crm:P44_has_condition>
+          <crm:E3_Condition_State rdf:about="http://example.org/detached">
+            <rdfs:label>Detached</rdfs:label>
+          </crm:E3_Condition_State>
+        </crm:P44_has_condition>
+        <crm:P31i_was_modified_by rdf:resource="http://example.org/child"/>
+        <crm:P31i_was_modified_by rdf:resource="http://example.org/previous"/>
+      </crm:E22_Man-Made_Object>
+    </crm:P46_is_composed_of>
+  </crm:E22_Man-Made_Object>
+  <crm:E12_Production rdf:about="http://example.org/production"/>
+  <crm:E11_Modification rdf:about="http://example.org/previous">
+    <rdfs:label>Previous repair</rdfs:label>
+    <crm:P4_has_time-span>
+      <crm:E52_Time-Span>
+        <crm:P82a_begin_of_the_begin rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">1950-01-01T00:00:00</crm:P82a_begin_of_the_begin>
+      </crm:E52_Time-Span>
+    </crm:P4_has_time-span>
+    <crm:P32_used_general_technique>
+      <crm:E55_Type rdf:about="http://example.org/sewing"><rdfs:label>Sewing</rdfs:label></crm:E55_Type>
+    </crm:P32_used_general_technique>
+  </crm:E11_Modification>
+  <crm:E11_Modification rdf:about="http://example.org/main">
+    <rdfs:label>Main conservation event</rdfs:label>
+    <crm:P2_has_type rdf:resource="http://example.org/conservation"/>
+    <crm:P4_has_time-span>
+      <crm:E52_Time-Span>
+        <crm:P82b_end_of_the_end rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-12-31T23:59:59</crm:P82b_end_of_the_end>
+      </crm:E52_Time-Span>
+    </crm:P4_has_time-span>
+  </crm:E11_Modification>
+  <crm:E11_Modification rdf:about="http://example.org/child">
+    <rdfs:label>Board reattachment</rdfs:label>
+    <crm:P9i_forms_part_of rdf:resource="http://example.org/main"/>
+    <crm:P32_used_general_technique>
+      <crm:E55_Type rdf:about="http://example.org/pasting"><rdfs:label>Pasting</rdfs:label></crm:E55_Type>
+    </crm:P32_used_general_technique>
+    <crm:P126_employed>
+      <crm:E57_Material rdf:about="http://example.org/paper"><rdfs:label>Japanese paper</rdfs:label></crm:E57_Material>
+    </crm:P126_employed>
+  </crm:E11_Modification>
+</rdf:RDF>
