@@ -541,6 +541,124 @@ def _root_property_values(
     raise ValueError(f"unknown property family: {family}")
 
 
+def _record_elsewhere_statement_count(record: LigatusRecord, family: str) -> int:
+    graph = record.graph
+    event_nodes = {URIRef(event.event_id) for event in record.events}
+    if family == "condition":
+        modified_targets = {
+            target
+            for event_node in event_nodes
+            for target in graph.subjects(CRM.P31i_was_modified_by, event_node)
+        }
+        return sum(
+            1
+            for subject, _, _ in graph.triples((None, CRM.P44_has_condition, None))
+            if subject not in modified_targets
+        )
+    if family == "treatment_material":
+        return sum(
+            1
+            for subject, _, _ in graph.triples((None, CRM.P126_employed, None))
+            if subject not in event_nodes
+        )
+    if family == "technique":
+        return sum(
+            1
+            for subject, _, _ in graph.triples(
+                (None, CRM.P32_used_general_technique, None)
+            )
+            if subject not in event_nodes
+        )
+    raise ValueError(f"unknown property family: {family}")
+
+
+def _classify_split_property_case(
+    predecessor_values: set[str],
+    current_values: set[str],
+    elsewhere_statement_count: int,
+) -> str:
+    if not predecessor_values and current_values:
+        return "predecessor_empty_current_nonempty"
+    if not predecessor_values and not current_values:
+        if elsewhere_statement_count:
+            return "unreachable_elsewhere"
+        return "both_empty"
+    if predecessor_values == current_values:
+        return "equal_nonempty"
+    if predecessor_values <= current_values:
+        return "predecessor_values_duplicate_current"
+    return "predecessor_values_add_new_answers"
+
+
+def _source_semantics_split_property_case_trace(
+    records: list[LigatusRecord],
+) -> list[dict[str, Any]]:
+    rows = []
+    for record in records:
+        if record.ordering_action != "split" or len(record.episode_ids) < 2:
+            continue
+        root_labels = _root_label_map(record)
+        predecessor_roots = record.episode_ids[:-1]
+        current_root = record.episode_ids[-1]
+        for family, _, _ in PROPERTY_QUERY_PAIRS:
+            predecessor_values: set[str] = set()
+            predecessor_targets: set[str] = set()
+            for root_id in predecessor_roots:
+                values, targets = _root_property_values(record, root_id, family)
+                predecessor_values.update(values)
+                predecessor_targets.update(targets)
+            current_values, current_targets = _root_property_values(
+                record, current_root, family
+            )
+            elsewhere_count = _record_elsewhere_statement_count(record, family)
+            rows.append(
+                {
+                    "record_id": record.record_id,
+                    "split_cue": record.ordering_rule_id,
+                    "property_family": family,
+                    "predecessor_root_labels": " || ".join(
+                        root_labels.get(root_id, root_id)
+                        for root_id in predecessor_roots
+                    ),
+                    "current_root_label": root_labels.get(current_root, current_root),
+                    "predecessor_answer_count": len(predecessor_values),
+                    "current_answer_count": len(current_values),
+                    "shared_answer_count": len(
+                        predecessor_values & current_values
+                    ),
+                    "union_answer_count": len(
+                        predecessor_values | current_values
+                    ),
+                    "root_answer_sets_equal": predecessor_values == current_values,
+                    "predecessor_values_duplicate_current": bool(
+                        predecessor_values
+                        and predecessor_values <= current_values
+                    ),
+                    "both_empty": not predecessor_values and not current_values,
+                    "elsewhere_statement_count": elsewhere_count,
+                    "case": _classify_split_property_case(
+                        predecessor_values, current_values, elsewhere_count
+                    ),
+                    "predecessor_answers": " || ".join(
+                        sorted(predecessor_values)
+                    ),
+                    "current_answers": " || ".join(sorted(current_values)),
+                    "predecessor_target_count": (
+                        len(predecessor_targets) if family == "condition" else ""
+                    ),
+                    "current_target_count": (
+                        len(current_targets) if family == "condition" else ""
+                    ),
+                    "shared_target_count": (
+                        len(predecessor_targets & current_targets)
+                        if family == "condition"
+                        else ""
+                    ),
+                }
+            )
+    return rows
+
+
 def _unordered_root_property_distribution(
     records: list[LigatusRecord],
 ) -> list[dict[str, Any]]:
@@ -970,6 +1088,13 @@ def run(config_path: Path, data_dir: Path, output_root: Path) -> dict[str, Any]:
         results_dir / "source_semantics_split_property_trace.csv",
         source_split_property_rows,
     )
+    source_split_property_case_rows = _source_semantics_split_property_case_trace(
+        records
+    )
+    _write_csv(
+        results_dir / "source_semantics_split_property_case_trace.csv",
+        source_split_property_case_rows,
+    )
     max_split_property_rows = _max_split_property_gap_trace(
         records_by_policy["all_roots_split"]
     )
@@ -1096,6 +1221,7 @@ def run(config_path: Path, data_dir: Path, output_root: Path) -> dict[str, Any]:
             "query_results.csv",
             "record_level_evidence.csv",
             "source_semantics_split_property_trace.csv",
+            "source_semantics_split_property_case_trace.csv",
             "all_roots_split_property_gap_trace.csv",
             "all_roots_split_property_gap_summary.csv",
             "unordered_root_hypothetical_order_record_results.csv",
@@ -1269,6 +1395,9 @@ def write_report(path: Path, results_dir: Path) -> None:
     source_split_property_trace = _read_csv_required(
         results_dir / "source_semantics_split_property_trace.csv"
     )
+    source_split_property_case_trace = _read_csv_required(
+        results_dir / "source_semantics_split_property_case_trace.csv"
+    )
     max_split_property_trace = _read_csv_required(
         results_dir / "all_roots_split_property_gap_trace.csv"
     )
@@ -1384,6 +1513,9 @@ def write_report(path: Path, results_dir: Path) -> None:
         for row in unordered_property_distribution
         if row["both_empty"] == "True"
     )
+    cued_property_cases = Counter(
+        row["case"] for row in source_split_property_case_trace
+    )
     unordered_equal = Counter(
         row["property_family"]
         for row in unordered_property_distribution
@@ -1437,7 +1569,7 @@ The property result is path-limited and diagnostic. A zero property gap under `s
 
 The {source_rule_counts["no_supported_order"]} no-supported-order records were audited separately rather than assigned an arbitrary current episode. They are consistently two-root records with `Treatment Steps` and `Component Reattachment` as the two source-root labels. The hypothetical order sensitivity diagnostic enumerated both possible two-root sequences for these {hypothetical_record_count} records, giving {hypothetical_record_order_count} record-order evaluations. Across the two hypothetical orders, treatment-history gaps ranged from {hypothetical_ranges_by_family["treatment_history"]["min_gap_record_count"]}/{hypothetical_record_count} to {hypothetical_ranges_by_family["treatment_history"]["max_gap_record_count"]}/{hypothetical_record_count} records, and E11 gaps ranged from {hypothetical_ranges_by_family["E11"]["min_gap_record_count"]}/{hypothetical_record_count} to {hypothetical_ranges_by_family["E11"]["max_gap_record_count"]}/{hypothetical_record_count}. Property gaps ranged from {hypothetical_ranges_by_family["condition"]["min_gap_record_count"]}/{hypothetical_record_count} to {hypothetical_ranges_by_family["condition"]["max_gap_record_count"]}/{hypothetical_record_count} for condition, {hypothetical_ranges_by_family["treatment_material"]["min_gap_record_count"]}/{hypothetical_record_count} to {hypothetical_ranges_by_family["treatment_material"]["max_gap_record_count"]}/{hypothetical_record_count} for material, and {hypothetical_ranges_by_family["technique"]["min_gap_record_count"]}/{hypothetical_record_count} to {hypothetical_ranges_by_family["technique"]["max_gap_record_count"]}/{hypothetical_record_count} for technique. These ranges are reported as hypothetical order sensitivity, not as historical segmentation evidence. The file `unordered_root_property_distribution.csv` explains the property stability: root-level value sets were equal in {unordered_equal["condition"]}/{hypothetical_record_count} condition rows, {unordered_equal["treatment_material"]}/{hypothetical_record_count} material rows, and {unordered_equal["technique"]}/{hypothetical_record_count} technique rows; both root value sets were empty in {unordered_both_empty["condition"]}/{hypothetical_record_count}, {unordered_both_empty["treatment_material"]}/{hypothetical_record_count}, and {unordered_both_empty["technique"]}/{hypothetical_record_count} rows, respectively. For the P44 path, `Treatment Steps` had zero modified targets in {condition_treatment_zero_targets}/{hypothetical_record_count} rows, `Component Reattachment` had one modified target in {condition_reattachment_one_target}/{hypothetical_record_count} rows, and the two roots shared zero modified targets in {condition_zero_shared_targets}/{hypothetical_record_count} rows.
 
-The evidence ledger for `source_semantics` contains {len(evidence)} divergent records. {evidence_rules["previous_repair_before_main_event"]} were split by the previous repair/main conservation event label rule, and one, `{date_split_record}`, was split by dates. The file `source_semantics_split_property_trace.csv` reports the predecessor/current E11 labels and implemented-path P44, P126, and P32 counts for these {len(source_split_property_trace)} split records. The file `all_roots_split_property_gap_summary.csv` reports the {len(max_split_property_summary)} record-family gaps in the max-split diagnostic; `all_roots_split_property_gap_trace.csv` expands these to {len(max_split_property_trace)} missing property answers and resolves each answer to the source root that carried it.
+The evidence ledger for `source_semantics` contains {len(evidence)} divergent records. {evidence_rules["previous_repair_before_main_event"]} were split by the previous repair/main conservation event label rule, and one, `{date_split_record}`, was split by dates. The file `source_semantics_split_property_trace.csv` reports the predecessor/current E11 labels and implemented-path P44, P126, and P32 counts for these {len(source_split_property_trace)} split records. The file `source_semantics_split_property_case_trace.csv` classifies the {len(source_split_property_case_trace)} split-record property-family cases: {cued_property_cases["predecessor_empty_current_nonempty"]} predecessor-empty/current-nonempty, {cued_property_cases["both_empty"]} both-empty, {cued_property_cases["equal_nonempty"]} equal-nonempty, {cued_property_cases["predecessor_values_duplicate_current"]} predecessor-duplicate-current, and {cued_property_cases["unreachable_elsewhere"]} unreachable-elsewhere. The file `all_roots_split_property_gap_summary.csv` reports the {len(max_split_property_summary)} record-family gaps in the max-split diagnostic; `all_roots_split_property_gap_trace.csv` expands these to {len(max_split_property_trace)} missing property answers and resolves each answer to the source root that carried it.
 """,
         encoding="utf-8",
     )

@@ -16,6 +16,7 @@
     "query_results.csv",
     "record_level_evidence.csv",
     "source_semantics_split_property_trace.csv",
+    "source_semantics_split_property_case_trace.csv",
     "all_roots_split_property_gap_trace.csv",
     "all_roots_split_property_gap_summary.csv",
     "unordered_root_hypothetical_order_record_results.csv",
