@@ -7,12 +7,17 @@
     "episode_order_audit.csv",
     "leave_one_record_out.csv",
     "local_lineage_metrics.csv",
+    "source_root_label_inventory.csv",
+    "two_root_label_patterns.csv",
     "ordering_policy_metrics.csv",
     "ordering_policy_record_results.csv",
     "predicate_path_coverage.csv",
     "profile_comparison.csv",
     "query_results.csv",
-    "record_level_evidence.csv"
+    "record_level_evidence.csv",
+    "source_semantics_split_property_trace.csv",
+    "all_roots_split_property_gap_trace.csv",
+    "all_roots_split_property_gap_summary.csv"
   ],
   "ordering_policies": {
     "all_roots_split": {

@@ -214,11 +214,25 @@ LOCAL_LINEAGE_PAIRS = (
     ("current_technique_over_time", "lineage_technique_over_time"),
 )
 
+PROPERTY_QUERY_PAIRS = (
+    (
+        "condition",
+        "current_condition_to_treatment",
+        "lineage_condition_to_treatment",
+    ),
+    (
+        "treatment_material",
+        "current_treatment_material_over_time",
+        "lineage_treatment_material_over_time",
+    ),
+    ("technique", "current_technique_over_time", "lineage_technique_over_time"),
+)
+
 
 def _write_csv(path: Path, rows: list[dict[str, Any]]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("w", newline="", encoding="utf-8") as handle:
-        writer = csv.DictWriter(handle, fieldnames=list(rows[0]))
+        writer = csv.DictWriter(handle, fieldnames=list(rows[0]), lineterminator="\n")
         writer.writeheader()
         writer.writerows(rows)
 
@@ -230,6 +244,236 @@ def _answer_map(rows: list[dict[str, Any]]) -> dict[tuple[str, str, str], set[st
         )
         for row in rows
     }
+
+
+def _normal_root_label(label: str) -> str:
+    return label.split("(", 1)[0].strip().lower()
+
+
+def _join_audit_values(values) -> str:
+    return " || ".join(str(value) if str(value) else "<none>" for value in values)
+
+
+def _ordering_basis(rule_id: str) -> str:
+    if rule_id == "parsed_dates":
+        return "date"
+    if rule_id == "previous_repair_before_main_event":
+        return "label"
+    if rule_id == "all_roots_split":
+        return "URI"
+    if rule_id == "no_supported_order":
+        return "collapsed"
+    return rule_id
+
+
+def _event_uri_from_answer(answer: str) -> str:
+    parts = answer.split("|")
+    if len(parts) >= 3:
+        return parts[1]
+    return parts[0]
+
+
+def _event_lookup(record: LigatusRecord) -> dict[str, Any]:
+    return {event.event_id: event for event in record.events}
+
+
+def _root_label_map(record: LigatusRecord) -> dict[str, str]:
+    return dict(zip(record.source_root_ids, record.source_root_labels))
+
+
+def _implemented_path_counts(record: LigatusRecord, root_ids: set[str]) -> dict[str, int]:
+    graph = record.graph
+    counts = Counter()
+    for event in record.events:
+        if event.root_event_id not in root_ids:
+            continue
+        event_node = URIRef(event.event_id)
+        counts["P126"] += sum(1 for _ in graph.objects(event_node, CRM.P126_employed))
+        counts["P32"] += sum(
+            1 for _ in graph.objects(event_node, CRM.P32_used_general_technique)
+        )
+        for target in graph.subjects(CRM.P31i_was_modified_by, event_node):
+            counts["P44"] += sum(1 for _ in graph.objects(target, CRM.P44_has_condition))
+    return dict(counts)
+
+
+def _root_label_inventory(records: list[LigatusRecord]) -> tuple[
+    list[dict[str, Any]], list[dict[str, Any]]
+]:
+    label_counts = Counter()
+    label_one_root_counts = Counter()
+    label_two_root_counts = Counter()
+    pattern_counts = Counter()
+    pattern_examples: dict[tuple[str, ...], list[str]] = {}
+    pattern_actions: dict[tuple[str, ...], Counter] = {}
+
+    for record in records:
+        labels = tuple(_normal_root_label(label) for label in record.source_root_labels)
+        for label in labels:
+            label_counts[label] += 1
+            if record.source_root_count == 1:
+                label_one_root_counts[label] += 1
+            elif record.source_root_count == 2:
+                label_two_root_counts[label] += 1
+        if record.source_root_count == 2:
+            pattern_counts[labels] += 1
+            pattern_examples.setdefault(labels, []).append(record.record_id)
+            pattern_actions.setdefault(labels, Counter())[record.ordering_rule_id] += 1
+
+    label_rows = [
+        {
+            "root_label_normalized": label,
+            "root_count": label_counts[label],
+            "one_root_count": label_one_root_counts[label],
+            "two_root_count": label_two_root_counts[label],
+        }
+        for label in sorted(label_counts)
+    ]
+    pattern_rows = []
+    for labels, count in sorted(
+        pattern_counts.items(), key=lambda item: (-item[1], item[0])
+    ):
+        actions = pattern_actions[labels]
+        pattern_rows.append(
+            {
+                "root_label_pattern": " || ".join(labels),
+                "record_count": count,
+                "source_semantics_rules": " || ".join(
+                    f"{rule}:{rule_count}"
+                    for rule, rule_count in sorted(actions.items())
+                ),
+                "example_records": " || ".join(pattern_examples[labels][:8]),
+            }
+        )
+    return label_rows, pattern_rows
+
+
+def _source_semantics_split_property_trace(
+    records: list[LigatusRecord],
+    built_lookup: dict[tuple[str, str], BuiltLigatusRecord],
+) -> list[dict[str, Any]]:
+    rows = []
+    for record in records:
+        if record.ordering_action != "split" or len(record.episode_ids) < 2:
+            continue
+        built = built_lookup[("segmented_e81", record.record_id)]
+        root_labels = _root_label_map(record)
+        predecessor_roots = set(record.episode_ids[:-1])
+        current_roots = {record.episode_ids[-1]}
+        predecessor_counts = _implemented_path_counts(record, predecessor_roots)
+        current_counts = _implemented_path_counts(record, current_roots)
+        current_e11, _ = evaluate_query(built, "current_modification_retrieval")
+        lineage_e11, _ = evaluate_query(built, "lineage_modification_retrieval")
+        missing_by_family: dict[str, set[str]] = {
+            "E11": lineage_e11 - current_e11,
+        }
+        for family, local_query, lineage_query in PROPERTY_QUERY_PAIRS:
+            local, _ = evaluate_query(built, local_query)
+            lineage, _ = evaluate_query(built, lineage_query)
+            missing_by_family[family] = lineage - local
+        rows.append(
+            {
+                "record_id": record.record_id,
+                "split_cue": record.ordering_rule_id,
+                "predecessor_e11_label": " || ".join(
+                    root_labels.get(root, root) for root in record.episode_ids[:-1]
+                ),
+                "current_e11_label": root_labels.get(
+                    record.episode_ids[-1], record.episode_ids[-1]
+                ),
+                "missed_e11": bool(missing_by_family["E11"]),
+                "missed_p44": bool(missing_by_family["condition"]),
+                "missed_p126": bool(missing_by_family["treatment_material"]),
+                "missed_p32": bool(missing_by_family["technique"]),
+                "predecessor_path_p44_count": predecessor_counts.get("P44", 0),
+                "predecessor_path_p126_count": predecessor_counts.get("P126", 0),
+                "predecessor_path_p32_count": predecessor_counts.get("P32", 0),
+                "current_path_p44_count": current_counts.get("P44", 0),
+                "current_path_p126_count": current_counts.get("P126", 0),
+                "current_path_p32_count": current_counts.get("P32", 0),
+                "missed_e11_answers": " || ".join(
+                    sorted(missing_by_family["E11"])
+                ),
+                "missed_p44_answers": " || ".join(
+                    sorted(missing_by_family["condition"])
+                ),
+                "missed_p126_answers": " || ".join(
+                    sorted(missing_by_family["treatment_material"])
+                ),
+                "missed_p32_answers": " || ".join(
+                    sorted(missing_by_family["technique"])
+                ),
+            }
+        )
+    return rows
+
+
+def _max_split_property_gap_trace(
+    records: list[LigatusRecord],
+) -> list[dict[str, Any]]:
+    rows = []
+    for record in records:
+        built = build_profile(record, "segmented_e81")
+        events = _event_lookup(record)
+        root_labels = _root_label_map(record)
+        for family, local_query, lineage_query in PROPERTY_QUERY_PAIRS:
+            local, _ = evaluate_query(built, local_query)
+            lineage, _ = evaluate_query(built, lineage_query)
+            missing = lineage - local
+            for answer in sorted(missing):
+                event_uri = _event_uri_from_answer(answer)
+                event = events.get(event_uri)
+                root_id = event.root_event_id if event else ""
+                rows.append(
+                    {
+                        "record_id": record.record_id,
+                        "ordering_cue": record.ordering_rule_id,
+                        "missing_property_family": family,
+                        "missing_answer": answer,
+                        "missing_answer_attached_to_root": root_id,
+                        "missing_answer_root_label": root_labels.get(root_id, ""),
+                        "root_ordered_by": _ordering_basis(record.ordering_rule_id),
+                    }
+                )
+    return rows
+
+
+def _max_split_property_gap_summary(
+    trace_rows: list[dict[str, Any]]
+) -> list[dict[str, Any]]:
+    grouped: dict[tuple[str, str, str, str], Counter] = {}
+    ordering: dict[tuple[str, str, str, str], dict[str, str]] = {}
+    for row in trace_rows:
+        key = (
+            row["record_id"],
+            row["ordering_cue"],
+            row["missing_property_family"],
+            row["root_ordered_by"],
+        )
+        grouped.setdefault(key, Counter())[row["missing_answer_root_label"]] += 1
+        ordering.setdefault(
+            key,
+            {
+                "record_id": row["record_id"],
+                "ordering_cue": row["ordering_cue"],
+                "missing_property_family": row["missing_property_family"],
+                "root_ordered_by": row["root_ordered_by"],
+            },
+        )
+    rows = []
+    for key in sorted(grouped):
+        root_counts = grouped[key]
+        rows.append(
+            {
+                **ordering[key],
+                "missing_answer_count": sum(root_counts.values()),
+                "missing_answer_attached_to_which_root": " || ".join(
+                    f"{root_label}:{count}"
+                    for root_label, count in sorted(root_counts.items())
+                ),
+            }
+        )
+    return rows
 
 
 def _ordering_audit_rows(records: list[LigatusRecord]) -> list[dict[str, Any]]:
@@ -245,7 +489,7 @@ def _ordering_audit_rows(records: list[LigatusRecord]) -> list[dict[str, Any]]:
             "resulting_episode_count": len(record.episode_ids),
             "root_ids": " || ".join(record.source_root_ids),
             "root_labels": " || ".join(record.source_root_labels),
-            "root_dates": " || ".join(record.source_root_dates),
+            "root_dates": _join_audit_values(record.source_root_dates),
         }
         for record in records
     ]
@@ -390,6 +634,9 @@ def run(config_path: Path, data_dir: Path, output_root: Path) -> dict[str, Any]:
     _write_csv(results_dir / "local_lineage_metrics.csv", local_lineage_rows)
     ordering_audit_rows = _ordering_audit_rows(records)
     _write_csv(results_dir / "episode_order_audit.csv", ordering_audit_rows)
+    root_label_rows, two_root_pattern_rows = _root_label_inventory(records)
+    _write_csv(results_dir / "source_root_label_inventory.csv", root_label_rows)
+    _write_csv(results_dir / "two_root_label_patterns.csv", two_root_pattern_rows)
     path_coverage_rows = _predicate_path_coverage(records, source_config)
     _write_csv(
         results_dir / "predicate_path_coverage.csv", path_coverage_rows
@@ -494,6 +741,27 @@ def run(config_path: Path, data_dir: Path, output_root: Path) -> dict[str, Any]:
     _write_csv(
         results_dir / "ordering_policy_metrics.csv", policy_metric_rows
     )
+    source_split_property_rows = _source_semantics_split_property_trace(
+        records, built_lookup
+    )
+    _write_csv(
+        results_dir / "source_semantics_split_property_trace.csv",
+        source_split_property_rows,
+    )
+    max_split_property_rows = _max_split_property_gap_trace(
+        records_by_policy["all_roots_split"]
+    )
+    max_split_property_summary_rows = _max_split_property_gap_summary(
+        max_split_property_rows
+    )
+    _write_csv(
+        results_dir / "all_roots_split_property_gap_trace.csv",
+        max_split_property_rows,
+    )
+    _write_csv(
+        results_dir / "all_roots_split_property_gap_summary.csv",
+        max_split_property_summary_rows,
+    )
 
     evidence_rows = []
     for record in records:
@@ -524,7 +792,7 @@ def run(config_path: Path, data_dir: Path, output_root: Path) -> dict[str, Any]:
                 "ordering_rule_id": record.ordering_rule_id,
                 "ordering_rule": record.ordering_rule_label,
                 "ordering_action": record.ordering_action,
-                "root_dates": " || ".join(record.source_root_dates),
+                "root_dates": _join_audit_values(record.source_root_dates),
                 "local_treatment_answers": " || ".join(sorted(local_episodes)),
                 "lineage_treatment_answers": " || ".join(
                     sorted(lineage_episodes)
@@ -573,12 +841,17 @@ def run(config_path: Path, data_dir: Path, output_root: Path) -> dict[str, Any]:
             "episode_order_audit.csv",
             "leave_one_record_out.csv",
             "local_lineage_metrics.csv",
+            "source_root_label_inventory.csv",
+            "two_root_label_patterns.csv",
             "ordering_policy_metrics.csv",
             "ordering_policy_record_results.csv",
             "predicate_path_coverage.csv",
             "profile_comparison.csv",
             "query_results.csv",
             "record_level_evidence.csv",
+            "source_semantics_split_property_trace.csv",
+            "all_roots_split_property_gap_trace.csv",
+            "all_roots_split_property_gap_summary.csv",
         ],
     }
     (results_dir / "manifest.json").write_text(
@@ -597,6 +870,11 @@ def run(config_path: Path, data_dir: Path, output_root: Path) -> dict[str, Any]:
         "ordering_policy_metric_rows": policy_metric_rows,
         "ordering_policy_record_rows": policy_detail_rows,
         "path_coverage_rows": path_coverage_rows,
+        "root_label_rows": root_label_rows,
+        "two_root_pattern_rows": two_root_pattern_rows,
+        "source_split_property_rows": source_split_property_rows,
+        "max_split_property_rows": max_split_property_rows,
+        "max_split_property_summary_rows": max_split_property_summary_rows,
         "evidence_rows": evidence_rows,
     }
 
@@ -734,6 +1012,15 @@ def write_report(path: Path, results_dir: Path) -> None:
     )
     path_coverage = _read_csv_required(results_dir / "predicate_path_coverage.csv")
     evidence = _read_csv_required(results_dir / "record_level_evidence.csv")
+    source_split_property_trace = _read_csv_required(
+        results_dir / "source_semantics_split_property_trace.csv"
+    )
+    max_split_property_trace = _read_csv_required(
+        results_dir / "all_roots_split_property_gap_trace.csv"
+    )
+    max_split_property_summary = _read_csv_required(
+        results_dir / "all_roots_split_property_gap_summary.csv"
+    )
 
     record_count = int(manifest["source_record_count"])
     source_rows = [
@@ -831,7 +1118,7 @@ The external Ligatus evaluation used {record_count} RDF records from the Linked 
 
 Under `source_semantics`, current-identity-local treatment history and E11 retrieval differed between the persistent and segmented profiles in the same {current_gap_count} of {record_count} records, or {float(current_treatment["divergent_record_rate"]):.1%}. In those records, the segmented current-identity-local treatment query lacked one earlier episode identifier, and the E11 query lacked one earlier E11 URI. The lineage-wide treatment-history and E11 answer sets were identical across the two profiles, with Jaccard similarity {float(lineage_treatment["jaccard_overlap"]):.3f}. In the persistent profile, current-identity-local and lineage-wide answers did not diverge.
 
-For treatment history and E11 retrieval, the same records diverged under each boundary policy. Table 1 therefore reports these two query families in a single gap column. The three property-retrieval tasks are also grouped, since condition, treatment material, and technique retrieval had the same divergent-record count within each policy.
+For treatment history and E11 retrieval, the same records diverged under each boundary policy. Table 1 therefore reports these two query families in a single gap column. The three property-retrieval tasks are grouped because condition, treatment material, and technique retrieval had the same divergent-record count within each policy.
 
 | Boundary policy | Episodes | History/E11 gap | Property gap | LOSO |
 |---|---:|---:|---:|---:|
@@ -839,9 +1126,9 @@ For treatment history and E11 retrieval, the same records diverged under each bo
 
 The leave-one-record-out diagnostic was computed from record level gap indicators. The profiles and ordering decisions were not rebuilt for each omission. Under `source_semantics`, omitting one of the {len(evidence)} divergent records gave {omit_divergent["gap_record_count"]}/{omit_divergent["record_count"]} divergent records, or {float(omit_divergent["gap_rate"]):.1%}. Omitting any non-divergent record gave {omit_non_divergent["gap_record_count"]}/{omit_non_divergent["record_count"]} divergent records, or {float(omit_non_divergent["gap_rate"]):.1%}.
 
-The predicate-path inventory counted the source statements used by the three property-retrieval tasks. The condition task used {coverage["P44"]["attached_to_target"]} P44 statements attached to modified targets, while {coverage["P44"]["attached_elsewhere"]} P44 statements occurred elsewhere. The material task used {coverage["P126"]["attached_to_event"]} P126 statements attached directly to E11 events, while {coverage["P126"]["attached_elsewhere"]} P126 statements occurred elsewhere. The technique task used {coverage["P32"]["attached_to_event"]} P32 statements attached directly to E11 events, while {coverage["P32"]["attached_elsewhere"]} P32 statements occurred elsewhere.
+The property result is path-limited and diagnostic. A zero property gap under `source_semantics` means that no additional answers were found on predecessor identities along the implemented P44, P126, and P32 paths; it does not show that condition, material, or technique information is generally unaffected by segmentation. The predicate-path inventory counted the source statements used by the three property-retrieval tasks. The condition task used {coverage["P44"]["attached_to_target"]} P44 statements attached to modified targets, while {coverage["P44"]["attached_elsewhere"]} P44 statements occurred elsewhere. The material task used {coverage["P126"]["attached_to_event"]} P126 statements attached directly to E11 events, while {coverage["P126"]["attached_elsewhere"]} P126 statements occurred elsewhere. The technique task used {coverage["P32"]["attached_to_event"]} P32 statements attached directly to E11 events, while {coverage["P32"]["attached_elsewhere"]} P32 statements occurred elsewhere.
 
-The evidence ledger for `source_semantics` contains {len(evidence)} divergent records. {evidence_rules["previous_repair_before_main_event"]} were split by the previous repair/main conservation event label rule, and one, `{date_split_record}`, was split by dates.
+The evidence ledger for `source_semantics` contains {len(evidence)} divergent records. {evidence_rules["previous_repair_before_main_event"]} were split by the previous repair/main conservation event label rule, and one, `{date_split_record}`, was split by dates. The file `source_semantics_split_property_trace.csv` reports the predecessor/current E11 labels and implemented-path P44, P126, and P32 counts for these {len(source_split_property_trace)} split records. The file `all_roots_split_property_gap_summary.csv` reports the {len(max_split_property_summary)} record-family gaps in the max-split diagnostic; `all_roots_split_property_gap_trace.csv` expands these to {len(max_split_property_trace)} missing property answers and resolves each answer to the source root that carried it.
 """,
         encoding="utf-8",
     )
