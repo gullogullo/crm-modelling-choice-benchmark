@@ -881,6 +881,238 @@ def _predicate_path_coverage(
     return rows
 
 
+def _target_kind(record: LigatusRecord, target: URIRef) -> str:
+    if str(target) == record.object_id:
+        return "whole_object"
+    return "component"
+
+
+def _event_indexes(record: LigatusRecord) -> tuple[
+    dict[str, Any], dict[str, list[Any]], set[URIRef], set[URIRef]
+]:
+    events_by_id = _event_lookup(record)
+    events_by_target: dict[str, list[Any]] = {}
+    for event in record.events:
+        for target_id in event.target_ids:
+            events_by_target.setdefault(target_id, []).append(event)
+    root_event_nodes = {
+        URIRef(event.event_id)
+        for event in record.events
+        if event.hierarchy_depth == 0
+    }
+    nested_event_nodes = {
+        URIRef(event.event_id)
+        for event in record.events
+        if event.hierarchy_depth > 0
+    }
+    return events_by_id, events_by_target, root_event_nodes, nested_event_nodes
+
+
+def _ligatus_record_structure_inventory(
+    records: list[LigatusRecord],
+) -> list[dict[str, Any]]:
+    rows = []
+    for record in records:
+        graph = record.graph
+        events_by_id, events_by_target, root_events, nested_events = _event_indexes(
+            record
+        )
+        event_nodes = set(root_events) | set(nested_events)
+        p126_root = p126_nested = p126_elsewhere = 0
+        p32_root = p32_nested = p32_elsewhere = 0
+        p44_root = p44_nested = p44_elsewhere = 0
+        whole_object_targets: set[str] = set()
+        component_targets: set[str] = set()
+
+        for event in record.events:
+            for target_id in event.target_ids:
+                if target_id == record.object_id:
+                    whole_object_targets.add(target_id)
+                else:
+                    component_targets.add(target_id)
+
+        for subject, _, _ in graph.triples((None, CRM.P126_employed, None)):
+            if subject in root_events:
+                p126_root += 1
+            elif subject in nested_events:
+                p126_nested += 1
+            elif subject not in event_nodes:
+                p126_elsewhere += 1
+
+        for subject, _, _ in graph.triples(
+            (None, CRM.P32_used_general_technique, None)
+        ):
+            if subject in root_events:
+                p32_root += 1
+            elif subject in nested_events:
+                p32_nested += 1
+            elif subject not in event_nodes:
+                p32_elsewhere += 1
+
+        for target, _, _ in graph.triples((None, CRM.P44_has_condition, None)):
+            attached_events = events_by_target.get(str(target), [])
+            if any(event.hierarchy_depth == 0 for event in attached_events):
+                p44_root += 1
+            if any(event.hierarchy_depth > 0 for event in attached_events):
+                p44_nested += 1
+            if not attached_events:
+                p44_elsewhere += 1
+
+        crm_predicate_counts = Counter()
+        for _, predicate, _ in graph:
+            predicate_text = str(predicate)
+            if predicate_text.startswith(str(CRM)):
+                crm_predicate_counts[predicate_text.rsplit("/", 1)[-1]] += 1
+
+        rows.append(
+            {
+                "record_id": record.record_id,
+                "e11_count": len(record.events),
+                "root_count": record.source_root_count,
+                "nested_e11_count": sum(
+                    event.hierarchy_depth > 0 for event in record.events
+                ),
+                "max_depth": max(
+                    (event.hierarchy_depth for event in record.events), default=0
+                ),
+                "p9_link_count": sum(
+                    bool(event.parent_event_id) for event in record.events
+                ),
+                "p126_root_count": p126_root,
+                "p126_nested_count": p126_nested,
+                "p126_elsewhere_count": p126_elsewhere,
+                "p32_root_count": p32_root,
+                "p32_nested_count": p32_nested,
+                "p32_elsewhere_count": p32_elsewhere,
+                "p44_root_target_count": p44_root,
+                "p44_nested_target_count": p44_nested,
+                "p44_elsewhere_count": p44_elsewhere,
+                "whole_object_target_count": len(whole_object_targets),
+                "component_target_count": len(component_targets),
+                "multi_root_label_pattern": (
+                    " || ".join(
+                        _normal_root_label(label)
+                        for label in record.source_root_labels
+                    )
+                    if record.source_root_count > 1
+                    else ""
+                ),
+                "crm_predicate_counts": json.dumps(
+                    dict(sorted(crm_predicate_counts.items())),
+                    sort_keys=True,
+                ),
+            }
+        )
+    return rows
+
+
+def _activity_trace_fields(record: LigatusRecord, event: Any | None) -> dict[str, Any]:
+    if event is None:
+        return {
+            "source_activity": "",
+            "activity_depth": "",
+            "root_activity": "",
+        }
+    return {
+        "source_activity": event.event_id,
+        "activity_depth": event.hierarchy_depth,
+        "root_activity": event.root_event_id,
+    }
+
+
+def _ligatus_property_value_trace(records: list[LigatusRecord]) -> list[dict[str, Any]]:
+    rows = []
+    for record in records:
+        graph = record.graph
+        built = build_profile(record, "segmented_e81")
+        current_events = {
+            str(event) for event in _events_for_identities(built, {built.current})
+        }
+        events_by_id, events_by_target, root_events, nested_events = _event_indexes(
+            record
+        )
+        event_nodes = set(root_events) | set(nested_events)
+
+        for target, _, condition in graph.triples((None, CRM.P44_has_condition, None)):
+            attached_events = events_by_target.get(str(target), [])
+            if attached_events:
+                for event in attached_events:
+                    is_root = event.hierarchy_depth == 0
+                    rows.append(
+                        {
+                            "record_id": record.record_id,
+                            "query_family": "condition",
+                            "value": _label(graph, condition),
+                            "source_node": str(target),
+                            "source_node_type": _target_kind(record, target),
+                            **_activity_trace_fields(record, event),
+                            "path_class": (
+                                "root_modified_target"
+                                if is_root
+                                else "nested_modified_target"
+                            ),
+                            "reachable_by_root_only": is_root,
+                            "reachable_by_hierarchy_aware": True,
+                            "reachable_by_current_path": (
+                                event.event_id in current_events
+                            ),
+                        }
+                    )
+            else:
+                rows.append(
+                    {
+                        "record_id": record.record_id,
+                        "query_family": "condition",
+                        "value": _label(graph, condition),
+                        "source_node": str(target),
+                        "source_node_type": "elsewhere",
+                        **_activity_trace_fields(record, None),
+                        "path_class": "elsewhere",
+                        "reachable_by_root_only": False,
+                        "reachable_by_hierarchy_aware": False,
+                        "reachable_by_current_path": False,
+                    }
+                )
+
+        property_specs = (
+            ("treatment_material", CRM.P126_employed),
+            ("technique", CRM.P32_used_general_technique),
+        )
+        for family, predicate in property_specs:
+            for subject, _, value in graph.triples((None, predicate, None)):
+                event = events_by_id.get(str(subject))
+                if event is not None:
+                    is_root = event.hierarchy_depth == 0
+                    path_class = (
+                        "root_activity_direct"
+                        if is_root
+                        else "nested_activity_direct"
+                    )
+                    node_type = "root_e11" if is_root else "nested_e11"
+                else:
+                    path_class = "elsewhere"
+                    node_type = "elsewhere"
+                rows.append(
+                    {
+                        "record_id": record.record_id,
+                        "query_family": family,
+                        "value": _label(graph, value),
+                        "source_node": str(subject),
+                        "source_node_type": node_type,
+                        **_activity_trace_fields(record, event),
+                        "path_class": path_class,
+                        "reachable_by_root_only": bool(
+                            event is not None and event.hierarchy_depth == 0
+                        ),
+                        "reachable_by_hierarchy_aware": event is not None,
+                        "reachable_by_current_path": bool(
+                            event is not None and event.event_id in current_events
+                        ),
+                    }
+                )
+    return rows
+
+
 def run(config_path: Path, data_dir: Path, output_root: Path) -> dict[str, Any]:
     source_config = yaml.safe_load(config_path.read_text(encoding="utf-8"))
     ordering_manifest = load_ordering_manifest(config_path)
@@ -978,6 +1210,14 @@ def run(config_path: Path, data_dir: Path, output_root: Path) -> dict[str, Any]:
     path_coverage_rows = _predicate_path_coverage(records, source_config)
     _write_csv(
         results_dir / "predicate_path_coverage.csv", path_coverage_rows
+    )
+    _write_csv(
+        results_dir / "ligatus_record_structure_inventory.csv",
+        _ligatus_record_structure_inventory(records),
+    )
+    _write_csv(
+        results_dir / "ligatus_property_value_trace.csv",
+        _ligatus_property_value_trace(records),
     )
 
     loo_rows = []
@@ -1217,6 +1457,8 @@ def run(config_path: Path, data_dir: Path, output_root: Path) -> dict[str, Any]:
             "ordering_policy_metrics.csv",
             "ordering_policy_record_results.csv",
             "predicate_path_coverage.csv",
+            "ligatus_record_structure_inventory.csv",
+            "ligatus_property_value_trace.csv",
             "profile_comparison.csv",
             "query_results.csv",
             "record_level_evidence.csv",

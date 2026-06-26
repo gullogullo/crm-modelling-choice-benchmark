@@ -12,6 +12,8 @@
     "ordering_policy_metrics.csv",
     "ordering_policy_record_results.csv",
     "predicate_path_coverage.csv",
+    "ligatus_record_structure_inventory.csv",
+    "ligatus_property_value_trace.csv",
     "profile_comparison.csv",
     "query_results.csv",
     "record_level_evidence.csv",
