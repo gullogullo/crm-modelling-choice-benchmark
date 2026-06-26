@@ -26,6 +26,8 @@ negative diagnostic. The 45 no-supported-order records are separately evaluated
 with both hypothetical orders of their `Treatment Steps` and
 `Component Reattachment` roots; those ranges are in
 `outputs/ligatus/results/unordered_root_hypothetical_order_ranges.csv`.
+The root-level property distribution behind the zero property gap is in
+`outputs/ligatus/results/unordered_root_property_distribution.csv`.
 
 ## Layout
 

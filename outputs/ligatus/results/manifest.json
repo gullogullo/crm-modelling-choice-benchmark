@@ -20,7 +20,8 @@
     "all_roots_split_property_gap_summary.csv",
     "unordered_root_hypothetical_order_record_results.csv",
     "unordered_root_hypothetical_order_summary.csv",
-    "unordered_root_hypothetical_order_ranges.csv"
+    "unordered_root_hypothetical_order_ranges.csv",
+    "unordered_root_property_distribution.csv"
   ],
   "ordering_policies": {
     "all_roots_split": {

@@ -494,6 +494,95 @@ def _is_unordered_treatment_reattachment_pair(record: LigatusRecord) -> bool:
     )
 
 
+def _root_id_by_label(record: LigatusRecord) -> dict[str, str]:
+    return {
+        _normal_root_label(label): root_id
+        for root_id, label in zip(record.source_root_ids, record.source_root_labels)
+    }
+
+
+def _root_property_values(
+    record: LigatusRecord, root_id: str, family: str
+) -> tuple[set[str], set[str]]:
+    graph = record.graph
+    events = [
+        event for event in record.events if event.root_event_id == root_id
+    ]
+    if family == "condition":
+        targets = {
+            str(target)
+            for event in events
+            for target in graph.subjects(
+                CRM.P31i_was_modified_by, URIRef(event.event_id)
+            )
+        }
+        values = {
+            _label(graph, condition)
+            for target_id in targets
+            for condition in graph.objects(URIRef(target_id), CRM.P44_has_condition)
+        }
+        return values, targets
+    if family == "treatment_material":
+        values = {
+            _label(graph, value)
+            for event in events
+            for value in graph.objects(URIRef(event.event_id), CRM.P126_employed)
+        }
+        return values, set()
+    if family == "technique":
+        values = {
+            _label(graph, value)
+            for event in events
+            for value in graph.objects(
+                URIRef(event.event_id), CRM.P32_used_general_technique
+            )
+        }
+        return values, set()
+    raise ValueError(f"unknown property family: {family}")
+
+
+def _unordered_root_property_distribution(
+    records: list[LigatusRecord],
+) -> list[dict[str, Any]]:
+    rows = []
+    for record in records:
+        if not _is_unordered_treatment_reattachment_pair(record):
+            continue
+        roots = _root_id_by_label(record)
+        treatment_root = roots["treatment steps"]
+        reattachment_root = roots["component reattachment"]
+        for family in ("condition", "treatment_material", "technique"):
+            treatment_values, treatment_targets = _root_property_values(
+                record, treatment_root, family
+            )
+            reattachment_values, reattachment_targets = _root_property_values(
+                record, reattachment_root, family
+            )
+            union_values = treatment_values | reattachment_values
+            shared_targets = treatment_targets & reattachment_targets
+            rows.append(
+                {
+                    "record_id": record.record_id,
+                    "property_family": family,
+                    "treatment_steps_answer_count": len(treatment_values),
+                    "component_reattachment_answer_count": len(reattachment_values),
+                    "union_answer_count": len(union_values),
+                    "root_answer_sets_equal": treatment_values == reattachment_values,
+                    "both_empty": not union_values,
+                    "treatment_steps_target_count": (
+                        len(treatment_targets) if family == "condition" else ""
+                    ),
+                    "component_reattachment_target_count": (
+                        len(reattachment_targets) if family == "condition" else ""
+                    ),
+                    "shared_target_count": (
+                        len(shared_targets) if family == "condition" else ""
+                    ),
+                }
+            )
+    return rows
+
+
 def _hypothetical_order_sensitivity(
     source_records: list[LigatusRecord],
     records_by_policy: dict[str, list[LigatusRecord]],
@@ -912,6 +1001,13 @@ def run(config_path: Path, data_dir: Path, output_root: Path) -> dict[str, Any]:
         results_dir / "unordered_root_hypothetical_order_ranges.csv",
         hypothetical_order_range_rows,
     )
+    unordered_property_distribution_rows = _unordered_root_property_distribution(
+        records
+    )
+    _write_csv(
+        results_dir / "unordered_root_property_distribution.csv",
+        unordered_property_distribution_rows,
+    )
 
     evidence_rows = []
     for record in records:
@@ -1005,6 +1101,7 @@ def run(config_path: Path, data_dir: Path, output_root: Path) -> dict[str, Any]:
             "unordered_root_hypothetical_order_record_results.csv",
             "unordered_root_hypothetical_order_summary.csv",
             "unordered_root_hypothetical_order_ranges.csv",
+            "unordered_root_property_distribution.csv",
         ],
     }
     (results_dir / "manifest.json").write_text(
@@ -1031,6 +1128,7 @@ def run(config_path: Path, data_dir: Path, output_root: Path) -> dict[str, Any]:
         "hypothetical_order_detail_rows": hypothetical_order_detail_rows,
         "hypothetical_order_summary_rows": hypothetical_order_summary_rows,
         "hypothetical_order_range_rows": hypothetical_order_range_rows,
+        "unordered_property_distribution_rows": unordered_property_distribution_rows,
         "evidence_rows": evidence_rows,
     }
 
@@ -1183,6 +1281,9 @@ def write_report(path: Path, results_dir: Path) -> None:
     hypothetical_order_summary = _read_csv_required(
         results_dir / "unordered_root_hypothetical_order_summary.csv"
     )
+    unordered_property_distribution = _read_csv_required(
+        results_dir / "unordered_root_property_distribution.csv"
+    )
 
     record_count = int(manifest["source_record_count"])
     source_rows = [
@@ -1278,6 +1379,33 @@ def write_report(path: Path, results_dir: Path) -> None:
         }
     )
     hypothetical_record_order_count = hypothetical_record_count * hypothetical_order_count
+    unordered_both_empty = Counter(
+        row["property_family"]
+        for row in unordered_property_distribution
+        if row["both_empty"] == "True"
+    )
+    unordered_equal = Counter(
+        row["property_family"]
+        for row in unordered_property_distribution
+        if row["root_answer_sets_equal"] == "True"
+    )
+    unordered_condition_rows = [
+        row
+        for row in unordered_property_distribution
+        if row["property_family"] == "condition"
+    ]
+    condition_treatment_zero_targets = sum(
+        row["treatment_steps_target_count"] == "0"
+        for row in unordered_condition_rows
+    )
+    condition_reattachment_one_target = sum(
+        row["component_reattachment_target_count"] == "1"
+        for row in unordered_condition_rows
+    )
+    condition_zero_shared_targets = sum(
+        row["shared_target_count"] == "0"
+        for row in unordered_condition_rows
+    )
     current_gap_count = int(current_treatment["divergent_record_count"])
     if current_gap_count != int(current_e11["divergent_record_count"]):
         raise ValueError("current treatment and E11 divergence counts differ")
@@ -1307,7 +1435,7 @@ The leave-one-record-out diagnostic was computed from record level gap indicator
 
 The property result is path-limited and diagnostic. A zero property gap under `source_semantics` means that no additional answers were found on predecessor identities along the implemented P44, P126, and P32 paths; it does not show that condition, material, or technique information is generally unaffected by segmentation. The predicate-path inventory counted the source statements used by the three property-retrieval tasks. The condition task used {coverage["P44"]["attached_to_target"]} P44 statements attached to modified targets, while {coverage["P44"]["attached_elsewhere"]} P44 statements occurred elsewhere. The material task used {coverage["P126"]["attached_to_event"]} P126 statements attached directly to E11 events, while {coverage["P126"]["attached_elsewhere"]} P126 statements occurred elsewhere. The technique task used {coverage["P32"]["attached_to_event"]} P32 statements attached directly to E11 events, while {coverage["P32"]["attached_elsewhere"]} P32 statements occurred elsewhere.
 
-The {source_rule_counts["no_supported_order"]} no-supported-order records were audited separately rather than assigned an arbitrary current episode. They are consistently two-root records with `Treatment Steps` and `Component Reattachment` as the two source-root labels. The hypothetical order sensitivity diagnostic enumerated both possible two-root sequences for these {hypothetical_record_count} records, giving {hypothetical_record_order_count} record-order evaluations. Across the two hypothetical orders, treatment-history gaps ranged from {hypothetical_ranges_by_family["treatment_history"]["min_gap_record_count"]}/{hypothetical_record_count} to {hypothetical_ranges_by_family["treatment_history"]["max_gap_record_count"]}/{hypothetical_record_count} records, and E11 gaps ranged from {hypothetical_ranges_by_family["E11"]["min_gap_record_count"]}/{hypothetical_record_count} to {hypothetical_ranges_by_family["E11"]["max_gap_record_count"]}/{hypothetical_record_count}. Property gaps ranged from {hypothetical_ranges_by_family["condition"]["min_gap_record_count"]}/{hypothetical_record_count} to {hypothetical_ranges_by_family["condition"]["max_gap_record_count"]}/{hypothetical_record_count} for condition, {hypothetical_ranges_by_family["treatment_material"]["min_gap_record_count"]}/{hypothetical_record_count} to {hypothetical_ranges_by_family["treatment_material"]["max_gap_record_count"]}/{hypothetical_record_count} for material, and {hypothetical_ranges_by_family["technique"]["min_gap_record_count"]}/{hypothetical_record_count} to {hypothetical_ranges_by_family["technique"]["max_gap_record_count"]}/{hypothetical_record_count} for technique. These ranges are reported as hypothetical order sensitivity, not as historical segmentation evidence.
+The {source_rule_counts["no_supported_order"]} no-supported-order records were audited separately rather than assigned an arbitrary current episode. They are consistently two-root records with `Treatment Steps` and `Component Reattachment` as the two source-root labels. The hypothetical order sensitivity diagnostic enumerated both possible two-root sequences for these {hypothetical_record_count} records, giving {hypothetical_record_order_count} record-order evaluations. Across the two hypothetical orders, treatment-history gaps ranged from {hypothetical_ranges_by_family["treatment_history"]["min_gap_record_count"]}/{hypothetical_record_count} to {hypothetical_ranges_by_family["treatment_history"]["max_gap_record_count"]}/{hypothetical_record_count} records, and E11 gaps ranged from {hypothetical_ranges_by_family["E11"]["min_gap_record_count"]}/{hypothetical_record_count} to {hypothetical_ranges_by_family["E11"]["max_gap_record_count"]}/{hypothetical_record_count}. Property gaps ranged from {hypothetical_ranges_by_family["condition"]["min_gap_record_count"]}/{hypothetical_record_count} to {hypothetical_ranges_by_family["condition"]["max_gap_record_count"]}/{hypothetical_record_count} for condition, {hypothetical_ranges_by_family["treatment_material"]["min_gap_record_count"]}/{hypothetical_record_count} to {hypothetical_ranges_by_family["treatment_material"]["max_gap_record_count"]}/{hypothetical_record_count} for material, and {hypothetical_ranges_by_family["technique"]["min_gap_record_count"]}/{hypothetical_record_count} to {hypothetical_ranges_by_family["technique"]["max_gap_record_count"]}/{hypothetical_record_count} for technique. These ranges are reported as hypothetical order sensitivity, not as historical segmentation evidence. The file `unordered_root_property_distribution.csv` explains the property stability: root-level value sets were equal in {unordered_equal["condition"]}/{hypothetical_record_count} condition rows, {unordered_equal["treatment_material"]}/{hypothetical_record_count} material rows, and {unordered_equal["technique"]}/{hypothetical_record_count} technique rows; both root value sets were empty in {unordered_both_empty["condition"]}/{hypothetical_record_count}, {unordered_both_empty["treatment_material"]}/{hypothetical_record_count}, and {unordered_both_empty["technique"]}/{hypothetical_record_count} rows, respectively. For the P44 path, `Treatment Steps` had zero modified targets in {condition_treatment_zero_targets}/{hypothetical_record_count} rows, `Component Reattachment` had one modified target in {condition_reattachment_one_target}/{hypothetical_record_count} rows, and the two roots shared zero modified targets in {condition_zero_shared_targets}/{hypothetical_record_count} rows.
 
 The evidence ledger for `source_semantics` contains {len(evidence)} divergent records. {evidence_rules["previous_repair_before_main_event"]} were split by the previous repair/main conservation event label rule, and one, `{date_split_record}`, was split by dates. The file `source_semantics_split_property_trace.csv` reports the predecessor/current E11 labels and implemented-path P44, P126, and P32 counts for these {len(source_split_property_trace)} split records. The file `all_roots_split_property_gap_summary.csv` reports the {len(max_split_property_summary)} record-family gaps in the max-split diagnostic; `all_roots_split_property_gap_trace.csv` expands these to {len(max_split_property_trace)} missing property answers and resolves each answer to the source root that carried it.
 """,
