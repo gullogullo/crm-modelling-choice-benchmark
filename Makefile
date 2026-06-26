@@ -4,20 +4,20 @@ install:
 	python -m pip install -e ".[test]"
 
 test:
-	pytest -q
+	PYTHONPATH=src pytest -q
 
 keyboard:
-	python -m remake_sensitivity.run \
+	PYTHONPATH=src python -m remake_sensitivity.run \
 		--config data/e11e81/config.yaml \
 		--allow-frozen-rerun
 
 fetch-ligatus:
-	python -m remake_sensitivity.ligatus_fetch \
+	PYTHONPATH=src python -m remake_sensitivity.ligatus_fetch \
 		--config data/ligatus/board_pilot.yaml \
 		--destination data/external/ligatus
 
 ligatus:
-	python -m remake_sensitivity.ligatus_benchmark \
+	PYTHONPATH=src python -m remake_sensitivity.ligatus_benchmark \
 		--config data/ligatus/board_pilot.yaml \
 		--data-dir data/external/ligatus/board-pilot-data-762213835c6c6cdd20fcadb4ded90119ae3ee147 \
 		--output-root outputs

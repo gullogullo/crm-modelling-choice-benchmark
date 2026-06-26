@@ -476,6 +476,137 @@ def _max_split_property_gap_summary(
     return rows
 
 
+HYPOTHETICAL_ORDER_POLICIES = (
+    "hypothetical_treatment_steps_before_component_reattachment",
+    "hypothetical_component_reattachment_before_treatment_steps",
+)
+
+
+def _is_unordered_treatment_reattachment_pair(record: LigatusRecord) -> bool:
+    return (
+        record.ordering_rule_id == "no_supported_order"
+        and record.source_root_count == 2
+        and {
+            _normal_root_label(label)
+            for label in record.source_root_labels
+        }
+        == {"treatment steps", "component reattachment"}
+    )
+
+
+def _hypothetical_order_sensitivity(
+    source_records: list[LigatusRecord],
+    records_by_policy: dict[str, list[LigatusRecord]],
+) -> tuple[list[dict[str, Any]], list[dict[str, Any]], list[dict[str, Any]]]:
+    unordered_record_ids = {
+        record.record_id
+        for record in source_records
+        if _is_unordered_treatment_reattachment_pair(record)
+    }
+    source_by_id = {record.record_id: record for record in source_records}
+    detail_rows: list[dict[str, Any]] = []
+    summary_counter: dict[tuple[str, str, str], Counter] = {}
+
+    for policy_id in HYPOTHETICAL_ORDER_POLICIES:
+        for record in records_by_policy.get(policy_id, []):
+            if record.record_id not in unordered_record_ids:
+                continue
+            if len(record.episode_ids) != 2 or record.ordering_action != "split":
+                continue
+            built = build_profile(record, "segmented_e81")
+            source_record = source_by_id[record.record_id]
+            root_label_pattern = " || ".join(
+                _normal_root_label(label) for label in source_record.source_root_labels
+            )
+            predecessor_label, current_label = record.episode_labels
+            for family, local_query, lineage_query in (
+                ("treatment_history", "current_treatment_history", "lineage_treatment_history"),
+                ("E11", "current_modification_retrieval", "lineage_modification_retrieval"),
+                *PROPERTY_QUERY_PAIRS,
+            ):
+                local, _ = evaluate_query(built, local_query)
+                lineage, _ = evaluate_query(built, lineage_query)
+                missing = lineage - local
+                key = (policy_id, family, local_query)
+                summary = summary_counter.setdefault(key, Counter())
+                summary["record_count"] += 1
+                summary["local_answer_count"] += len(local)
+                summary["lineage_answer_count"] += len(lineage)
+                summary["missing_answer_count"] += len(missing)
+                summary["gap_record_count"] += bool(missing)
+                detail_rows.append(
+                    {
+                        "record_id": record.record_id,
+                        "source_root_label_pattern": root_label_pattern,
+                        "hypothetical_order_policy_id": policy_id,
+                        "hypothetical_order_label": record.ordering_rule_label,
+                        "predecessor_root_label": predecessor_label,
+                        "current_root_label": current_label,
+                        "query_family": family,
+                        "local_query_id": local_query,
+                        "lineage_query_id": lineage_query,
+                        "local_answer_count": len(local),
+                        "lineage_answer_count": len(lineage),
+                        "missing_answer_count": len(missing),
+                        "has_gap": bool(missing),
+                        "missing_answers": " || ".join(sorted(missing)),
+                    }
+                )
+
+    summary_rows = []
+    for (policy_id, family, local_query), counts in sorted(summary_counter.items()):
+        record_count = counts["record_count"]
+        summary_rows.append(
+            {
+                "hypothetical_order_policy_id": policy_id,
+                "query_family": family,
+                "local_query_id": local_query,
+                "record_count": record_count,
+                "gap_record_count": counts["gap_record_count"],
+                "gap_record_rate": (
+                    counts["gap_record_count"] / record_count if record_count else 0
+                ),
+                "local_answer_count": counts["local_answer_count"],
+                "lineage_answer_count": counts["lineage_answer_count"],
+                "missing_answer_count": counts["missing_answer_count"],
+            }
+        )
+
+    by_query: dict[str, list[dict[str, Any]]] = {}
+    for row in summary_rows:
+        by_query.setdefault(row["local_query_id"], []).append(row)
+    range_rows = []
+    for local_query, rows in sorted(by_query.items()):
+        if len(rows) != len(HYPOTHETICAL_ORDER_POLICIES):
+            continue
+        min_row = min(rows, key=lambda row: int(row["gap_record_count"]))
+        max_row = max(rows, key=lambda row: int(row["gap_record_count"]))
+        min_missing = min(rows, key=lambda row: int(row["missing_answer_count"]))
+        max_missing = max(rows, key=lambda row: int(row["missing_answer_count"]))
+        range_rows.append(
+            {
+                "local_query_id": local_query,
+                "query_family": min_row["query_family"],
+                "record_count": min_row["record_count"],
+                "min_gap_record_count": min_row["gap_record_count"],
+                "max_gap_record_count": max_row["gap_record_count"],
+                "min_gap_record_rate": min_row["gap_record_rate"],
+                "max_gap_record_rate": max_row["gap_record_rate"],
+                "order_at_min_gap": min_row["hypothetical_order_policy_id"],
+                "order_at_max_gap": max_row["hypothetical_order_policy_id"],
+                "min_missing_answer_count": min_missing["missing_answer_count"],
+                "max_missing_answer_count": max_missing["missing_answer_count"],
+                "order_at_min_missing_answers": min_missing[
+                    "hypothetical_order_policy_id"
+                ],
+                "order_at_max_missing_answers": max_missing[
+                    "hypothetical_order_policy_id"
+                ],
+            }
+        )
+    return detail_rows, summary_rows, range_rows
+
+
 def _ordering_audit_rows(records: list[LigatusRecord]) -> list[dict[str, Any]]:
     return [
         {
@@ -694,6 +825,8 @@ def run(config_path: Path, data_dir: Path, output_root: Path) -> dict[str, Any]:
             config_path, data_dir, order_policy=policy_id
         )
         records_by_policy[policy_id] = policy_records
+        if policy.get("hypothetical_order_sensitivity"):
+            continue
         for local_query, lineage_query in LOCAL_LINEAGE_PAIRS:
             gap_count = 0
             local_count = 0
@@ -761,6 +894,23 @@ def run(config_path: Path, data_dir: Path, output_root: Path) -> dict[str, Any]:
     _write_csv(
         results_dir / "all_roots_split_property_gap_summary.csv",
         max_split_property_summary_rows,
+    )
+    (
+        hypothetical_order_detail_rows,
+        hypothetical_order_summary_rows,
+        hypothetical_order_range_rows,
+    ) = _hypothetical_order_sensitivity(records, records_by_policy)
+    _write_csv(
+        results_dir / "unordered_root_hypothetical_order_record_results.csv",
+        hypothetical_order_detail_rows,
+    )
+    _write_csv(
+        results_dir / "unordered_root_hypothetical_order_summary.csv",
+        hypothetical_order_summary_rows,
+    )
+    _write_csv(
+        results_dir / "unordered_root_hypothetical_order_ranges.csv",
+        hypothetical_order_range_rows,
     )
 
     evidence_rows = []
@@ -852,6 +1002,9 @@ def run(config_path: Path, data_dir: Path, output_root: Path) -> dict[str, Any]:
             "source_semantics_split_property_trace.csv",
             "all_roots_split_property_gap_trace.csv",
             "all_roots_split_property_gap_summary.csv",
+            "unordered_root_hypothetical_order_record_results.csv",
+            "unordered_root_hypothetical_order_summary.csv",
+            "unordered_root_hypothetical_order_ranges.csv",
         ],
     }
     (results_dir / "manifest.json").write_text(
@@ -875,6 +1028,9 @@ def run(config_path: Path, data_dir: Path, output_root: Path) -> dict[str, Any]:
         "source_split_property_rows": source_split_property_rows,
         "max_split_property_rows": max_split_property_rows,
         "max_split_property_summary_rows": max_split_property_summary_rows,
+        "hypothetical_order_detail_rows": hypothetical_order_detail_rows,
+        "hypothetical_order_summary_rows": hypothetical_order_summary_rows,
+        "hypothetical_order_range_rows": hypothetical_order_range_rows,
         "evidence_rows": evidence_rows,
     }
 
@@ -1021,6 +1177,12 @@ def write_report(path: Path, results_dir: Path) -> None:
     max_split_property_summary = _read_csv_required(
         results_dir / "all_roots_split_property_gap_summary.csv"
     )
+    hypothetical_order_ranges = _read_csv_required(
+        results_dir / "unordered_root_hypothetical_order_ranges.csv"
+    )
+    hypothetical_order_summary = _read_csv_required(
+        results_dir / "unordered_root_hypothetical_order_summary.csv"
+    )
 
     record_count = int(manifest["source_record_count"])
     source_rows = [
@@ -1051,12 +1213,13 @@ def write_report(path: Path, results_dir: Path) -> None:
     policy_metric = {
         (row["policy_id"], row["local_query_id"]): row for row in policy_metrics
     }
+    main_policy_ids = ("dated_only", "source_semantics")
     records_by_policy = {
         policy_id: [row for row in policy_records if row["policy_id"] == policy_id]
-        for policy_id in ("all_roots_split", "source_semantics", "dated_only")
+        for policy_id in main_policy_ids
     }
     table_rows = []
-    for policy_id in ("all_roots_split", "source_semantics", "dated_only"):
+    for policy_id in main_policy_ids:
         records = [
             row
             for row in records_by_policy[policy_id]
@@ -1070,7 +1233,10 @@ def write_report(path: Path, results_dir: Path) -> None:
             raise ValueError(f"history and E11 gaps differ for {policy_id}")
         table_rows.append(
             "| {policy} | {episodes} | {history_gap} | {property_gap} | {loso} |".format(
-                policy=f"`{policy_id}`",
+                policy=(
+                    f"`{policy_id}` "
+                    f"(`{manifest['ordering_policies'][policy_id]['label']}`)"
+                ),
                 episodes=f"{one_count} / {split_count} / {collapsed_count}",
                 history_gap=_count_rate(
                     int(history["gap_record_count"]),
@@ -1099,6 +1265,19 @@ def write_report(path: Path, results_dir: Path) -> None:
     date_split_record = next(
         row["record_id"] for row in evidence if row["ordering_rule_id"] == "parsed_dates"
     )
+    hypothetical_ranges_by_family = {
+        row["query_family"]: row for row in hypothetical_order_ranges
+    }
+    hypothetical_record_count = int(
+        next(iter(hypothetical_order_ranges))["record_count"]
+    )
+    hypothetical_order_count = len(
+        {
+            row["hypothetical_order_policy_id"]
+            for row in hypothetical_order_summary
+        }
+    )
+    hypothetical_record_order_count = hypothetical_record_count * hypothetical_order_count
     current_gap_count = int(current_treatment["divergent_record_count"])
     if current_gap_count != int(current_e11["divergent_record_count"]):
         raise ValueError("current treatment and E11 divergence counts differ")
@@ -1118,15 +1297,17 @@ The external Ligatus evaluation used {record_count} RDF records from the Linked 
 
 Under `source_semantics`, current-identity-local treatment history and E11 retrieval differed between the persistent and segmented profiles in the same {current_gap_count} of {record_count} records, or {float(current_treatment["divergent_record_rate"]):.1%}. In those records, the segmented current-identity-local treatment query lacked one earlier episode identifier, and the E11 query lacked one earlier E11 URI. The lineage-wide treatment-history and E11 answer sets were identical across the two profiles, with Jaccard similarity {float(lineage_treatment["jaccard_overlap"]):.3f}. In the persistent profile, current-identity-local and lineage-wide answers did not diverge.
 
-For treatment history and E11 retrieval, the same records diverged under each boundary policy. Table 1 therefore reports these two query families in a single gap column. The three property-retrieval tasks are grouped because condition, treatment material, and technique retrieval had the same divergent-record count within each policy.
+For treatment history and E11 retrieval, the same records diverged under each evidence policy. Table 1 therefore reports these two query families in a single gap column. The three property-retrieval tasks are grouped because condition, treatment material, and technique retrieval had the same divergent-record count within each policy.
 
-| Boundary policy | Episodes | History/E11 gap | Property gap | LOSO |
+| Episode-segmentation policy | Episodes | History/E11 gap | Property gap | LOSO |
 |---|---:|---:|---:|---:|
 {chr(10).join(table_rows)}
 
 The leave-one-record-out diagnostic was computed from record level gap indicators. The profiles and ordering decisions were not rebuilt for each omission. Under `source_semantics`, omitting one of the {len(evidence)} divergent records gave {omit_divergent["gap_record_count"]}/{omit_divergent["record_count"]} divergent records, or {float(omit_divergent["gap_rate"]):.1%}. Omitting any non-divergent record gave {omit_non_divergent["gap_record_count"]}/{omit_non_divergent["record_count"]} divergent records, or {float(omit_non_divergent["gap_rate"]):.1%}.
 
 The property result is path-limited and diagnostic. A zero property gap under `source_semantics` means that no additional answers were found on predecessor identities along the implemented P44, P126, and P32 paths; it does not show that condition, material, or technique information is generally unaffected by segmentation. The predicate-path inventory counted the source statements used by the three property-retrieval tasks. The condition task used {coverage["P44"]["attached_to_target"]} P44 statements attached to modified targets, while {coverage["P44"]["attached_elsewhere"]} P44 statements occurred elsewhere. The material task used {coverage["P126"]["attached_to_event"]} P126 statements attached directly to E11 events, while {coverage["P126"]["attached_elsewhere"]} P126 statements occurred elsewhere. The technique task used {coverage["P32"]["attached_to_event"]} P32 statements attached directly to E11 events, while {coverage["P32"]["attached_elsewhere"]} P32 statements occurred elsewhere.
+
+The {source_rule_counts["no_supported_order"]} no-supported-order records were audited separately rather than assigned an arbitrary current episode. They are consistently two-root records with `Treatment Steps` and `Component Reattachment` as the two source-root labels. The hypothetical order sensitivity diagnostic enumerated both possible two-root sequences for these {hypothetical_record_count} records, giving {hypothetical_record_order_count} record-order evaluations. Across the two hypothetical orders, treatment-history gaps ranged from {hypothetical_ranges_by_family["treatment_history"]["min_gap_record_count"]}/{hypothetical_record_count} to {hypothetical_ranges_by_family["treatment_history"]["max_gap_record_count"]}/{hypothetical_record_count} records, and E11 gaps ranged from {hypothetical_ranges_by_family["E11"]["min_gap_record_count"]}/{hypothetical_record_count} to {hypothetical_ranges_by_family["E11"]["max_gap_record_count"]}/{hypothetical_record_count}. Property gaps ranged from {hypothetical_ranges_by_family["condition"]["min_gap_record_count"]}/{hypothetical_record_count} to {hypothetical_ranges_by_family["condition"]["max_gap_record_count"]}/{hypothetical_record_count} for condition, {hypothetical_ranges_by_family["treatment_material"]["min_gap_record_count"]}/{hypothetical_record_count} to {hypothetical_ranges_by_family["treatment_material"]["max_gap_record_count"]}/{hypothetical_record_count} for material, and {hypothetical_ranges_by_family["technique"]["min_gap_record_count"]}/{hypothetical_record_count} to {hypothetical_ranges_by_family["technique"]["max_gap_record_count"]}/{hypothetical_record_count} for technique. These ranges are reported as hypothetical order sensitivity, not as historical segmentation evidence.
 
 The evidence ledger for `source_semantics` contains {len(evidence)} divergent records. {evidence_rules["previous_repair_before_main_event"]} were split by the previous repair/main conservation event label rule, and one, `{date_split_record}`, was split by dates. The file `source_semantics_split_property_trace.csv` reports the predecessor/current E11 labels and implemented-path P44, P126, and P32 counts for these {len(source_split_property_trace)} split records. The file `all_roots_split_property_gap_summary.csv` reports the {len(max_split_property_summary)} record-family gaps in the max-split diagnostic; `all_roots_split_property_gap_trace.csv` expands these to {len(max_split_property_trace)} missing property answers and resolves each answer to the source root that carried it.
 """,

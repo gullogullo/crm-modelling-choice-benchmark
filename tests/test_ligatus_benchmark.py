@@ -190,6 +190,34 @@ def test_all_roots_split_policy_splits_undated_roots(tmp_path):
     assert record.ordering_action == "split"
 
 
+def test_hypothetical_unordered_root_policy_uses_declared_order(tmp_path):
+    data_dir = _write_mini_record(
+        tmp_path,
+        (
+            ("http://example.org/mini/reattachment", "Component Reattachment", ""),
+            ("http://example.org/mini/treatment", "Treatment Steps", ""),
+        ),
+    )
+    treatment_first = load_records(
+        CONFIG,
+        data_dir,
+        order_policy="hypothetical_treatment_steps_before_component_reattachment",
+    )[0]
+    reattachment_first = load_records(
+        CONFIG,
+        data_dir,
+        order_policy="hypothetical_component_reattachment_before_treatment_steps",
+    )[0]
+    assert treatment_first.episode_labels == (
+        "Treatment Steps",
+        "Component Reattachment",
+    )
+    assert reattachment_first.episode_labels == (
+        "Component Reattachment",
+        "Treatment Steps",
+    )
+
+
 def test_previous_main_pair_splits_only_under_source_semantics(tmp_path):
     data_dir = _write_mini_record(
         tmp_path,

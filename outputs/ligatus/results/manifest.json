@@ -17,34 +17,63 @@
     "record_level_evidence.csv",
     "source_semantics_split_property_trace.csv",
     "all_roots_split_property_gap_trace.csv",
-    "all_roots_split_property_gap_summary.csv"
+    "all_roots_split_property_gap_summary.csv",
+    "unordered_root_hypothetical_order_record_results.csv",
+    "unordered_root_hypothetical_order_summary.csv",
+    "unordered_root_hypothetical_order_ranges.csv"
   ],
   "ordering_policies": {
     "all_roots_split": {
       "dated_roots_action": "split",
       "label": "all roots split",
-      "meaning": "Old aggressive policy; every source-level E11 root becomes an episode.",
+      "main_result": false,
+      "meaning": "Obsolete negative stress test; every source-level E11 root becomes an episode by URI order when no supported cue exists.",
       "semantic_rules": [],
       "unsupported_undated_action": "split"
     },
     "collapse_all_undated": {
       "dated_roots_action": "split",
       "label": "collapse all undated",
+      "main_result": false,
       "meaning": "Split fully dated roots; collapse every root set containing an undated root.",
       "semantic_rules": [],
       "unsupported_undated_action": "collapse"
     },
     "dated_only": {
       "dated_roots_action": "split",
-      "label": "dated only",
-      "meaning": "Split roots only when every root has a supplied date boundary.",
+      "label": "dated split",
+      "main_result": true,
+      "meaning": "Conservative lower bound; split roots only when every root has a supplied date boundary.",
       "semantic_rules": [],
+      "unsupported_undated_action": "collapse"
+    },
+    "hypothetical_component_reattachment_before_treatment_steps": {
+      "dated_roots_action": "collapse",
+      "hypothetical_order_sensitivity": true,
+      "label": "hypothetical Component Reattachment before Treatment Steps",
+      "main_result": false,
+      "meaning": "Hypothetical order sensitivity only; force unordered Component Reattachment / Treatment Steps roots into this sequence.",
+      "semantic_rules": [
+        "component_reattachment_before_treatment_steps"
+      ],
+      "unsupported_undated_action": "collapse"
+    },
+    "hypothetical_treatment_steps_before_component_reattachment": {
+      "dated_roots_action": "collapse",
+      "hypothetical_order_sensitivity": true,
+      "label": "hypothetical Treatment Steps before Component Reattachment",
+      "main_result": false,
+      "meaning": "Hypothetical order sensitivity only; force unordered Treatment Steps / Component Reattachment roots into this sequence.",
+      "semantic_rules": [
+        "treatment_steps_before_component_reattachment"
+      ],
       "unsupported_undated_action": "collapse"
     },
     "source_semantics": {
       "dated_roots_action": "split",
-      "label": "source semantics",
-      "meaning": "Split fully dated roots and configured source-semantic sequences; collapse unsupported undated roots.",
+      "label": "cued split",
+      "main_result": true,
+      "meaning": "Primary evidence-cued policy; split fully dated roots and configured source-semantic sequences, and collapse unsupported undated roots.",
       "semantic_rules": [
         "previous_repair_before_main_event"
       ],

@@ -11,30 +11,68 @@ semantic_rules:
         - "previous repair"
         - "main conservation event"
     action: split
+  treatment_steps_before_component_reattachment:
+    label: hypothetical treatment-steps/component-reattachment order
+    applies_when:
+      exact_root_count: 2
+      ordered_label_cues:
+        - "treatment steps"
+        - "component reattachment"
+    action: split
+  component_reattachment_before_treatment_steps:
+    label: hypothetical component-reattachment/treatment-steps order
+    applies_when:
+      exact_root_count: 2
+      ordered_label_cues:
+        - "component reattachment"
+        - "treatment steps"
+    action: split
 
 policies:
   all_roots_split:
     label: all roots split
-    meaning: Old aggressive policy; every source-level E11 root becomes an episode.
+    meaning: Obsolete negative stress test; every source-level E11 root becomes an episode by URI order when no supported cue exists.
     dated_roots_action: split
     semantic_rules: []
     unsupported_undated_action: split
+    main_result: false
   source_semantics:
-    label: source semantics
-    meaning: Split fully dated roots and configured source-semantic sequences; collapse unsupported undated roots.
+    label: cued split
+    meaning: Primary evidence-cued policy; split fully dated roots and configured source-semantic sequences, and collapse unsupported undated roots.
     dated_roots_action: split
     semantic_rules:
       - previous_repair_before_main_event
     unsupported_undated_action: collapse
+    main_result: true
   dated_only:
-    label: dated only
-    meaning: Split roots only when every root has a supplied date boundary.
+    label: dated split
+    meaning: Conservative lower bound; split roots only when every root has a supplied date boundary.
     dated_roots_action: split
     semantic_rules: []
     unsupported_undated_action: collapse
+    main_result: true
   collapse_all_undated:
     label: collapse all undated
     meaning: Split fully dated roots; collapse every root set containing an undated root.
     dated_roots_action: split
     semantic_rules: []
     unsupported_undated_action: collapse
+    main_result: false
+  hypothetical_treatment_steps_before_component_reattachment:
+    label: hypothetical Treatment Steps before Component Reattachment
+    meaning: Hypothetical order sensitivity only; force unordered Treatment Steps / Component Reattachment roots into this sequence.
+    dated_roots_action: collapse
+    semantic_rules:
+      - treatment_steps_before_component_reattachment
+    unsupported_undated_action: collapse
+    main_result: false
+    hypothetical_order_sensitivity: true
+  hypothetical_component_reattachment_before_treatment_steps:
+    label: hypothetical Component Reattachment before Treatment Steps
+    meaning: Hypothetical order sensitivity only; force unordered Component Reattachment / Treatment Steps roots into this sequence.
+    dated_roots_action: collapse
+    semantic_rules:
+      - component_reattachment_before_treatment_steps
+    unsupported_undated_action: collapse
+    main_result: false
+    hypothetical_order_sensitivity: true

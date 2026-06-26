@@ -4,7 +4,7 @@ This repository contains two CIDOC CRM modelling-choice benchmark paths:
 
 - the keyboard-instruments dataset and pipeline under `data/e11e81/`,
   `data/records/`, and the general benchmark modules in `src/remake_sensitivity/`;
-- the Ligatus boundary-policy sensitivity run whose current results are
+- the Ligatus episode-segmentation sensitivity run whose current results are
   reported under `outputs/ligatus/`.
 
 The public repo excludes Getty-specific data/code and generated paper drafts.
@@ -14,13 +14,18 @@ The public repo excludes Getty-specific data/code and generated paper drafts.
 The concise results text is in `outputs/ligatus/results.md`. The underlying
 machine-readable files are in `outputs/ligatus/results/`.
 
-Core result:
+Core evidence-policy result:
 
-| Boundary policy | Episodes | History/E11 gap | Property gap | LOSO |
+| Episode-segmentation policy | Episodes | History/E11 gap | Property gap | LOSO |
 |---|---:|---:|---:|---:|
-| `all_roots_split` | 102 / 56 / 0 | 56/158 (35.4%) | 6/158 each | 35.0%-35.7% |
-| `source_semantics` | 147 / 11 / 45 | 11/158 (7.0%) | 0/158 each | 6.4%-7.0% |
-| `dated_only` | 157 / 1 / 55 | 1/158 (0.6%) | 0/158 each | 0.0%-0.6% |
+| `dated_only` (`dated split`) | 157 / 1 / 55 | 1/158 (0.6%) | 0/158 each | 0.0%-0.6% |
+| `source_semantics` (`cued split`) | 147 / 11 / 45 | 11/158 (7.0%) | 0/158 each | 6.4%-7.0% |
+
+The previous `all_roots_split` URI-order stress test is retained only as a
+negative diagnostic. The 45 no-supported-order records are separately evaluated
+with both hypothetical orders of their `Treatment Steps` and
+`Component Reattachment` roots; those ranges are in
+`outputs/ligatus/results/unordered_root_hypothetical_order_ranges.csv`.
 
 ## Layout
 
@@ -43,7 +48,7 @@ pinned in `data/ligatus/board_pilot.yaml`.
 python -m venv .venv
 source .venv/bin/activate
 python -m pip install -e ".[test]"
-pytest -q
+make test
 ```
 
 Runtime dependencies are `rdflib`, `PyYAML`, and `networkx`. Figure generation
@@ -62,7 +67,7 @@ make keyboard
 Equivalent command:
 
 ```bash
-python -m remake_sensitivity.run \
+PYTHONPATH=src python -m remake_sensitivity.run \
   --config data/e11e81/config.yaml \
   --allow-frozen-rerun
 ```
@@ -77,11 +82,11 @@ make ligatus
 Equivalent commands:
 
 ```bash
-python -m remake_sensitivity.ligatus_fetch \
+PYTHONPATH=src python -m remake_sensitivity.ligatus_fetch \
   --config data/ligatus/board_pilot.yaml \
   --destination data/external/ligatus
 
-python -m remake_sensitivity.ligatus_benchmark \
+PYTHONPATH=src python -m remake_sensitivity.ligatus_benchmark \
   --config data/ligatus/board_pilot.yaml \
   --data-dir data/external/ligatus/board-pilot-data-762213835c6c6cdd20fcadb4ded90119ae3ee147 \
   --output-root outputs
