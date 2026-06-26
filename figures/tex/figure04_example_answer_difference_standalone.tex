@@ -7,171 +7,138 @@
 \begin{document}
 \pagecolor{white}
 
-\newcommand{\AnswerPair}[2]{%
-  \makebox[4.35cm][c]{%
-    \shortstack[c]{#1}%
-    \hspace{0.46cm}\raisebox{0.9ex}{\scriptsize +}\hspace{0.46cm}%
-    \shortstack[c]{#2}%
-  }%
-}
-
-% Embedded example values from figures/data/example_answer_difference_macros.tex.
-\newcommand{\ExampleRecordId}{bod:AA106Art}
-\newcommand{\ExamplePolicy}{source\_semantics}
-\newcommand{\ExampleRule}{previous-repair/main-event semantics}
-\newcommand{\ExampleQuery}{treatment history}
-\newcommand{\ExampleEpisodeOne}{Previous\\repair}
-\newcommand{\ExampleEpisodeTwo}{Main\\conservation\\event}
-\newcommand{\ExampleLostEpisode}{Previous\\repair}
-\newcommand{\ExamplePersistentCurrent}{\AnswerPair{Main\\conservation\\event}{Previous\\repair}}
-\newcommand{\ExamplePersistentLineage}{\AnswerPair{Main\\conservation\\event}{Previous\\repair}}
-\newcommand{\ExampleSegmentedCurrent}{Main\\conservation\\event}
-\newcommand{\ExampleSegmentedLineage}{\AnswerPair{Main\\conservation\\event}{Previous\\repair}}
-
-\definecolor{persistentBlue}{RGB}{64,97,151}
-\definecolor{segmentedPurple}{RGB}{95,82,165}
+\definecolor{sourceBlue}{RGB}{55,92,150}
+\definecolor{diagnosticRed}{RGB}{176,72,55}
 \definecolor{currentGreen}{RGB}{0,120,95}
-\definecolor{lineageGold}{RGB}{178,112,34}
-\definecolor{lossRed}{RGB}{188,56,44}
 \definecolor{softBlue}{RGB}{232,240,252}
-\definecolor{softPurple}{RGB}{236,234,252}
+\definecolor{softRed}{RGB}{255,236,232}
 \definecolor{softGreen}{RGB}{224,241,236}
-\definecolor{softGold}{RGB}{255,244,224}
-\definecolor{softRed}{RGB}{255,235,232}
-\definecolor{eventFill}{RGB}{255,246,231}
-\definecolor{gridGrey}{RGB}{235,235,235}
+\definecolor{eventFill}{RGB}{255,248,235}
+\definecolor{gridGrey}{RGB}{229,229,229}
+\definecolor{textGrey}{RGB}{55,55,55}
 
 \begin{tikzpicture}[
   font=\small,
   >=Stealth,
-  object/.style={
-    rounded corners=6pt,
-    minimum width=1.55cm,
-    minimum height=0.72cm,
-    align=center,
-    inner sep=5pt,
-    line width=0.8pt
+  panel/.style={
+    draw=gridGrey,
+    fill=white,
+    rounded corners=2pt,
+    minimum width=7.25cm,
+    minimum height=5.45cm,
+    inner sep=0pt
   },
-  persistentObj/.style={object, draw=persistentBlue!85!black, fill=softBlue},
-  segmentObj/.style={object, draw=segmentedPurple!85!black, fill=softPurple},
-  currentObj/.style={object, draw=currentGreen!85!black, fill=softGreen},
+  head/.style={
+    draw=none,
+    align=center,
+    font=\bfseries\small,
+    text=textGrey
+  },
   episode/.style={
-    rounded corners=5pt,
+    rounded corners=4pt,
     draw=black!58,
     fill=eventFill,
-    minimum width=2.3cm,
-    minimum height=0.54cm,
+    minimum width=2.38cm,
+    minimum height=0.68cm,
     align=center,
-    inner sep=3pt,
+    inner sep=4pt,
     font=\scriptsize
   },
-  arr/.style={-{Stealth[length=1.8mm,width=1.2mm]}, semithick, black!55},
-  cell/.style={
-    draw=gridGrey,
+  identity/.style={
+    rounded corners=6pt,
+    draw=black!52,
     fill=white,
-    minimum width=5.75cm,
-    minimum height=1.42cm,
+    minimum width=1.92cm,
+    minimum height=0.70cm,
     align=center,
-    inner sep=5pt,
+    inner sep=4pt,
     font=\scriptsize
   },
-  header/.style={
-    draw=gridGrey,
-    fill=gridGrey!45,
-    minimum width=5.75cm,
-    minimum height=0.64cm,
-    align=center,
-    inner sep=5pt,
-    font=\bfseries\small
+  current/.style={
+    identity,
+    draw=currentGreen!85!black,
+    fill=softGreen,
+    line width=0.8pt
   },
-  graphcell/.style={
-    draw=gridGrey,
+  cue/.style={
+    font=\scriptsize,
+    text=textGrey,
+    align=center,
     fill=white,
-    minimum width=5.75cm,
-    minimum height=2.68cm,
-    align=center,
-    inner sep=5pt
+    inner sep=1.5pt
   },
-  cornerhead/.style={
-    draw=gridGrey,
-    fill=gridGrey!45,
-    minimum width=2.95cm,
-    minimum height=0.64cm,
-    align=center,
-    inner sep=5pt,
-    font=\bfseries\small
-  },
-  emptycell/.style={
-    draw=gridGrey,
+  arr/.style={-{Stealth[length=1.9mm,width=1.25mm]}, semithick, black!58},
+  missbox/.style={
+    rounded corners=3pt,
+    draw=black!42,
     fill=white,
-    minimum width=2.95cm,
-    minimum height=2.68cm,
-    align=center,
-    inner sep=5pt
-  },
-  rowhead/.style={
-    draw=gridGrey,
-    fill=gridGrey!45,
-    minimum width=2.95cm,
+    minimum width=5.88cm,
     minimum height=1.42cm,
+    align=left,
+    inner xsep=8pt,
+    inner ysep=5pt,
+    font=\scriptsize
+  },
+  count/.style={font=\bfseries\scriptsize},
+  tag/.style={
+    rounded corners=2pt,
     align=center,
-    inner sep=5pt,
-    font=\bfseries\small
-  },
-  widecell/.style={
-    cell,
-    minimum width=6.15cm
-  },
-  wideheader/.style={
-    header,
-    minimum width=6.15cm
-  },
-  widegraphcell/.style={
-    graphcell,
-    minimum width=6.15cm
-  },
-  note/.style={font=\scriptsize, text=black!62, align=center}
+    inner xsep=4pt,
+    inner ysep=2pt,
+    font=\scriptsize
+  }
 ]
-\path[use as bounding box] (-1.65,-3.35) rectangle (13.5,3.1);
+\path[use as bounding box] (-0.35,-3.05) rectangle (15.15,2.95);
 
-% 4x3 answer set layout
-\node[header,text=persistentBlue] at (4.30,2.65) {Persistent profile};
-\node[wideheader,text=segmentedPurple] at (10.25,2.65) {Segmented profile};
-\node[emptycell,font=\bfseries\small] at (-0.05,1.0) {Answer set};
-\node[graphcell] at (4.30,1.0) {};
-\node[widegraphcell] at (10.25,1.0) {};
+\node[panel] (leftPanel) at (3.55,0) {};
+\node[panel] (rightPanel) at (11.25,0) {};
 
-% Persistent profile
-\node[persistentObj] (p) at (4.30,1.55) {current\\identity};
-\node[episode] (pe1) at (3.00,0.35) {\ExampleEpisodeOne};
-\node[episode] (pe2) at (5.60,0.35) {\ExampleEpisodeTwo};
-\draw[arr] (pe1) -- (p);
-\draw[arr] (pe2) -- (p);
+\node[head,text=sourceBlue] at (3.55,2.42)
+  {\texttt{source\_semantics}\\evidence-cued segmentation};
+\node[head,text=diagnosticRed] at (11.25,2.42)
+  {\texttt{all\_roots\_split}\\maximal sensitivity diagnostic};
 
-% Segmented profile and lineage
-\node[segmentObj] (s0) at (8.05,1.55) {identity\\0};
-\node[segmentObj] (s1) at (10.25,1.55) {identity\\1};
-\node[currentObj] (s2) at (12.45,1.55) {current\\identity};
-\draw[arr] (s0) -- node[above,font=\scriptsize] {E81} (s1);
-\draw[arr] (s1) -- node[above,font=\scriptsize] {E81} (s2);
-\node[episode] (se1) at (8.85,0.35) {\ExampleEpisodeOne};
-\node[episode] (se2) at (12.10,0.35) {\ExampleEpisodeTwo};
-\draw[arr] (se1) -- (s1);
-\draw[arr] (se2) -- (s2);
+% Evidence-cued panel
+\node[episode] (lPrev) at (1.70,1.48) {Previous\\repair};
+\node[episode] (lMain) at (5.40,1.48) {Main\\conservation\\event};
+\draw[arr,sourceBlue] (lPrev) -- node[cue,above=2pt] {label cue} (lMain);
 
-\node[rowhead,fill=softGreen!55] at (-0.05,-1.06)
-  {current-\\identity-only};
-\node[rowhead,fill=softGold!58] at (-0.05,-2.48)
-  {lineage-\\traversal};
+\node[identity] (lId0) at (1.70,0.37) {identity\\1};
+\node[current] (lId1) at (5.40,0.37) {current\\identity};
+\draw[arr] (lId0) -- node[cue,above=2pt] {E81} (lId1);
+\draw[arr] (lPrev) -- (lId0);
+\draw[arr] (lMain) -- (lId1);
 
-\node[cell,fill=softGreen!38] at (4.30,-1.06)
-  {\ExamplePersistentCurrent};
-\node[widecell,fill=softRed!70] at (10.25,-1.06)
-  {\ExampleSegmentedCurrent};
-\node[cell,fill=softGold!45] at (4.30,-2.48)
-  {\ExamplePersistentLineage};
-\node[widecell,fill=softGold!45] at (10.25,-2.48)
-  {\ExampleSegmentedLineage};
+\node[missbox] at (3.55,-1.55)
+  {\textbf{current-identity-only misses}\\[2pt]
+   E11: \textbf{previous repair}\\
+   P44 condition: \textbf{0}\quad
+   P126 material: \textbf{0}\quad
+   P32 technique: \textbf{0}};
+
+\node[tag,fill=softBlue,draw=sourceBlue!45,text=sourceBlue!85!black]
+  at (3.55,-2.55) {predecessor has no reachable P44/P126/P32 values};
+
+% Maximal split diagnostic panel
+\node[episode] (rMain) at (9.40,1.48) {Main\\conservation\\event};
+\node[episode] (rPrev) at (13.10,1.48) {Previous\\repair};
+\draw[arr,diagnosticRed] (rMain) -- node[cue,above=2pt] {URI order} (rPrev);
+
+\node[identity] (rId0) at (9.40,0.37) {identity\\1};
+\node[current] (rId1) at (13.10,0.37) {current\\identity};
+\draw[arr] (rId0) -- node[cue,above=2pt] {E81} (rId1);
+\draw[arr] (rMain) -- (rId0);
+\draw[arr] (rPrev) -- (rId1);
+
+\node[missbox,fill=softRed!42] at (11.25,-1.55)
+  {\textbf{current-identity-only misses}\\[2pt]
+   E11: \textbf{main conservation event}\\
+   P44 condition: \textbf{6}\quad
+   P126 material: \textbf{12}\quad
+   P32 technique: \textbf{7}};
+
+\node[tag,fill=softRed,draw=diagnosticRed!45,text=diagnosticRed!85!black]
+  at (11.25,-2.55) {property-rich root moved outside current scope};
 
 \end{tikzpicture}
 \end{document}
