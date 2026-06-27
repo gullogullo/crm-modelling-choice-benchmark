@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+ xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+ xmlns:crm="http://www.cidoc-crm.org/cidoc-crm/">
+  <crm:E22_Man-Made_Object rdf:about="http://example.org/book">
+    <rdfs:label>Book</rdfs:label>
+    <crm:P108i_was_produced_by rdf:resource="http://example.org/production"/>
+    <crm:P46_is_composed_of rdf:resource="http://example.org/board"/>
+    <crm:P31i_was_modified_by rdf:resource="http://example.org/treatment"/>
+  </crm:E22_Man-Made_Object>
+  <crm:E22_Man-Made_Object rdf:about="http://example.org/board">
+    <rdfs:label>Board</rdfs:label>
+    <crm:P31i_was_modified_by rdf:resource="http://example.org/treatment"/>
+  </crm:E22_Man-Made_Object>
+  <crm:E11_Modification rdf:about="http://example.org/treatment">
+    <rdfs:label>Board treatment</rdfs:label>
+  </crm:E11_Modification>
+</rdf:RDF>

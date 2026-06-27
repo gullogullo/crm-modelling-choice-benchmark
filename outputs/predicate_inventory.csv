@@ -1,0 +1,49 @@
+predicate_uri,predicate_local_name,source_triple_count,record_count,evaluated,scope_status
+http://www.cidoc-crm.org/cidoc-crm/O12_has_dimension,O12_has_dimension,14,5,False,present in source but outside this task-defined query scope
+http://www.cidoc-crm.org/cidoc-crm/O25_contains,O25_contains,21,5,False,present in source but outside this task-defined query scope
+http://www.cidoc-crm.org/cidoc-crm/P108i_was_produced_by,P108i_was_produced_by,269,103,False,present in source but outside this task-defined query scope
+http://www.cidoc-crm.org/cidoc-crm/P110_augmented,P110_augmented,99,52,False,present in source but outside this task-defined query scope
+http://www.cidoc-crm.org/cidoc-crm/P111_added,P111_added,172,52,False,present in source but outside this task-defined query scope
+http://www.cidoc-crm.org/cidoc-crm/P111i_was_added_by,P111i_was_added_by,307,130,False,present in source but outside this task-defined query scope
+http://www.cidoc-crm.org/cidoc-crm/P113i_was_removed_by,P113i_was_removed_by,81,36,False,present in source but outside this task-defined query scope
+http://www.cidoc-crm.org/cidoc-crm/P126_employed,P126_employed,1068,149,True,included competency-query path
+http://www.cidoc-crm.org/cidoc-crm/P129i_is_subject_of,P129i_is_subject_of,2,2,False,present in source but outside this task-defined query scope
+http://www.cidoc-crm.org/cidoc-crm/P134i_was_continued_by,P134i_was_continued_by,104,52,False,present in source but outside this task-defined query scope
+http://www.cidoc-crm.org/cidoc-crm/P14.1_in_the_role_of,P14.1_in_the_role_of,108,91,False,present in source but outside this task-defined query scope
+http://www.cidoc-crm.org/cidoc-crm/P140_assigned_attribute_to,P140_assigned_attribute_to,160,158,False,present in source but outside this task-defined query scope
+http://www.cidoc-crm.org/cidoc-crm/P14_carried_out_by,P14_carried_out_by,108,91,False,present in source but outside this task-defined query scope
+http://www.cidoc-crm.org/cidoc-crm/P156_occupies,P156_occupies,15,15,False,present in source but outside this task-defined query scope
+http://www.cidoc-crm.org/cidoc-crm/P160_has_temporal_projection,P160_has_temporal_projection,53,51,False,present in source but outside this task-defined query scope
+http://www.cidoc-crm.org/cidoc-crm/P16_used_specific_object,P16_used_specific_object,30,5,False,present in source but outside this task-defined query scope
+http://www.cidoc-crm.org/cidoc-crm/P183_ends_before_the_start_of,P183_ends_before_the_start_of,10,10,False,present in source but outside this task-defined query scope
+http://www.cidoc-crm.org/cidoc-crm/P190_has_symbolic_content,P190_has_symbolic_content,212,106,False,present in source but outside this task-defined query scope
+http://www.cidoc-crm.org/cidoc-crm/P1_is_identified_by,P1_is_identified_by,459,158,False,present in source but outside this task-defined query scope
+http://www.cidoc-crm.org/cidoc-crm/P2_has_type,P2_has_type,5839,158,False,present in source but outside this task-defined query scope
+http://www.cidoc-crm.org/cidoc-crm/P31i_was_modified_by,P31i_was_modified_by,925,151,True,included competency-query path
+http://www.cidoc-crm.org/cidoc-crm/P32_used_general_technique,P32_used_general_technique,960,150,True,included competency-query path
+http://www.cidoc-crm.org/cidoc-crm/P33_used_specific_technique,P33_used_specific_technique,94,37,False,present in source but outside this task-defined query scope
+http://www.cidoc-crm.org/cidoc-crm/P34_concerned,P34_concerned,79,52,False,present in source but outside this task-defined query scope
+http://www.cidoc-crm.org/cidoc-crm/P35_has_identified,P35_has_identified,255,52,False,present in source but outside this task-defined query scope
+http://www.cidoc-crm.org/cidoc-crm/P3_has_note,P3_has_note,99,59,False,present in source but outside this task-defined query scope
+http://www.cidoc-crm.org/cidoc-crm/P43_has_dimension,P43_has_dimension,65,15,False,present in source but outside this task-defined query scope
+http://www.cidoc-crm.org/cidoc-crm/P44_has_condition,P44_has_condition,844,154,True,included competency-query path
+http://www.cidoc-crm.org/cidoc-crm/P45_consists_of,P45_consists_of,295,101,False,present in source but outside this task-defined query scope
+http://www.cidoc-crm.org/cidoc-crm/P46_is_composed_of,P46_is_composed_of,1554,158,True,included competency-query path
+http://www.cidoc-crm.org/cidoc-crm/P48_has_preferred_identifier,P48_has_preferred_identifier,34,34,False,present in source but outside this task-defined query scope
+http://www.cidoc-crm.org/cidoc-crm/P4_has_time-span,P4_has_time-span,358,155,False,present in source but outside this task-defined query scope
+http://www.cidoc-crm.org/cidoc-crm/P50_has_current_keeper,P50_has_current_keeper,106,106,False,present in source but outside this task-defined query scope
+http://www.cidoc-crm.org/cidoc-crm/P55_has_current_location,P55_has_current_location,597,150,False,present in source but outside this task-defined query scope
+http://www.cidoc-crm.org/cidoc-crm/P56_bears_feature,P56_bears_feature,160,106,False,present in source but outside this task-defined query scope
+http://www.cidoc-crm.org/cidoc-crm/P57_has_number_of_parts,P57_has_number_of_parts,5,5,False,present in source but outside this task-defined query scope
+http://www.cidoc-crm.org/cidoc-crm/P59_has_section,P59_has_section,1392,157,False,present in source but outside this task-defined query scope
+http://www.cidoc-crm.org/cidoc-crm/P70_documents,P70_documents,173,158,False,present in source but outside this task-defined query scope
+http://www.cidoc-crm.org/cidoc-crm/P7_took_place_at,P7_took_place_at,524,48,False,present in source but outside this task-defined query scope
+http://www.cidoc-crm.org/cidoc-crm/P82a_begin_of_the_begin,P82a_begin_of_the_begin,278,157,False,present in source but outside this task-defined query scope
+http://www.cidoc-crm.org/cidoc-crm/P82b_end_of_the_end,P82b_end_of_the_end,380,155,False,present in source but outside this task-defined query scope
+http://www.cidoc-crm.org/cidoc-crm/P86_falls_within,P86_falls_within,144,106,False,present in source but outside this task-defined query scope
+http://www.cidoc-crm.org/cidoc-crm/P89_falls_within,P89_falls_within,24,5,False,present in source but outside this task-defined query scope
+http://www.cidoc-crm.org/cidoc-crm/P8_took_place_on_or_within,P8_took_place_on_or_within,208,59,False,present in source but outside this task-defined query scope
+http://www.cidoc-crm.org/cidoc-crm/P90_has_value,P90_has_value,79,16,False,present in source but outside this task-defined query scope
+http://www.cidoc-crm.org/cidoc-crm/P91_has_unit,P91_has_unit,65,16,False,present in source but outside this task-defined query scope
+http://www.cidoc-crm.org/cidoc-crm/P9_consists_of,P9_consists_of,156,52,False,present in source but outside this task-defined query scope
+http://www.cidoc-crm.org/cidoc-crm/P9i_forms_part_of,P9i_forms_part_of,1092,105,False,present in source but outside this task-defined query scope

@@ -1,7 +1,0 @@
-PREFIX ex: <http://example.org/remake/>
-PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
-SELECT DISTINCT ?event WHERE {
-  ?event a crm:E13_Attribute_Assignment ;
-         ex:eventKind ?kind .
-  FILTER(?kind IN ("attribution_change", "classification_change"))
-}

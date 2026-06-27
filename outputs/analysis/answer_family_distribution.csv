@@ -1,0 +1,5 @@
+query_family,answer_family,records_affected,total_index_recovered,mean_per_affected_record,median_per_affected_record,max_per_record
+e11_modification,E11 modifications,105,756,7.2,7,16
+condition,Conditions,95,433,4.557894736842106,5,11
+material,Materials,24,90,3.75,3.5,10
+technique,Techniques,105,458,4.3619047619047615,4,10

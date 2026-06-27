@@ -1,21 +1,5 @@
-.DS_Store
-.pytest_cache/
 __pycache__/
 *.py[cod]
-*.egg-info/
-.venv/
-dist/
-build/
-
-# Downloaded external source data
+.DS_Store
 data/external/
-
-# Rebuildable graph grids and transient outputs
-outputs/graphs/
-outputs/profile_graphs/*
-!outputs/profile_graphs/profile_c/
-outputs/profile_graphs/profile_c/*
-!outputs/profile_graphs/profile_c/tier0_k_1.ttl
-
-# Temporary archives
 *.zip

@@ -1,0 +1,9 @@
+{
+  "source_id": "ligatus_lcd_board_reattachment_pilot",
+  "project_page": "https://www.ligatus.org.uk/lcd/node/255",
+  "repository": "https://github.com/linked-conservation-data/board-pilot-data",
+  "repository_archive": "https://github.com/linked-conservation-data/board-pilot-data/archive/762213835c6c6cdd20fcadb4ded90119ae3ee147.zip",
+  "repository_commit": "762213835c6c6cdd20fcadb4ded90119ae3ee147",
+  "repository_commit_date": "2021-01-22T16:40:33Z",
+  "expected_archive_root": "board-pilot-data-762213835c6c6cdd20fcadb4ded90119ae3ee147"
+}

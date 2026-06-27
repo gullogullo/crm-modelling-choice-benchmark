@@ -1,8 +1,0 @@
-PREFIX ex: <http://example.org/remake/>
-PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
-SELECT DISTINCT ?maker WHERE {
-  ?production a crm:E12_Production ;
-              crm:P14_carried_out_by ?maker ;
-              crm:P108_has_produced ?current .
-  ?current ex:isCurrent true .
-}
