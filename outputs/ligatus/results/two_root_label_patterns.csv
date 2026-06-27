@@ -1,5 +1,0 @@
-root_label_pattern,record_count,source_semantics_rules,example_records
-treatment steps || component reattachment,27,no_supported_order:27,sul:1724_illustrationsof_birds1865 || sul:2032_JohnsonDictionary1755 || sul:2033_AtlasCoelestis1781 || sul:3176_FifthReader1904 || sul:3179_PorterAnalysis1841 || sul:317_TerenceComoedia1541 || sul:3181_MurrayEnglishReader1841 || sul:318_DavenantWorks_unk
-component reattachment || treatment steps,18,no_supported_order:18,sul:2030_GrayPoems1800 || sul:3174_EnglishReader1818 || sul:3182_PorterRhetorical1854 || sul:3191_HannoverSha-areTsiyon1682 || sul:3827_Anacreontea1796 || sul:4434_MissionMusicChoirBook1770 || sul:4851_Sefermenor_eryan || sul:513_WilliamofOckhamDialogus1476
-main conservation event || previous repair,6,previous_repair_before_main_event:6,bod:AA106Art || bod:ArchAf134 || bod:ArchBc4 || bod:MsBOM187 || bod:MsDouce88 || tna:WO69-905
-previous repair || main conservation event,5,parsed_dates:1 || previous_repair_before_main_event:4,bod:ArchFb3 || bod:C822Line || bod:Incdf214942 || bod:VetAld39 || loc:1657_001

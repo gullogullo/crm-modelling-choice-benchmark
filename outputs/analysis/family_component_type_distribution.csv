@@ -1,0 +1,51 @@
+query_family,normalized_component_type,index_recovered_answer_component_attribution_count
+condition,left board,143
+condition,right board,133
+condition,textblock,75
+condition,sewing structure,19
+condition,spine-section,16
+condition,cover,13
+condition,left endleaves,13
+condition,right endleaves,11
+condition,head endband,3
+condition,left-section,3
+condition,right-section,3
+condition,tail endband,1
+e11_modification,textblock,178
+e11_modification,left board,170
+e11_modification,right board,153
+e11_modification,cover,132
+e11_modification,left endleaves,28
+e11_modification,sewing structure,27
+e11_modification,right endleaves,23
+e11_modification,spine-section,19
+e11_modification,left-section,8
+e11_modification,right-section,7
+e11_modification,tail endband,5
+e11_modification,head endband,4
+e11_modification,spine lining,2
+material,textblock,30
+material,left endleaves,17
+material,left board,13
+material,cover,12
+material,left-section,11
+material,right endleaves,11
+material,right-section,10
+material,tail endband,9
+material,head endband,6
+material,right board,6
+material,sewing structure,6
+material,spine-section,6
+material,spine lining,2
+technique,textblock,167
+technique,left board,153
+technique,right board,137
+technique,cover,114
+technique,sewing structure,27
+technique,left endleaves,22
+technique,right endleaves,19
+technique,spine-section,15
+technique,tail endband,5
+technique,head endband,4
+technique,left-section,3
+technique,right-section,3

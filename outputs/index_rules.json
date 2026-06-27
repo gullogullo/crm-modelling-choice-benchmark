@@ -1,0 +1,95 @@
+{
+  "classes": {
+    "described_object": "http://www.cidoc-crm.org/cidoc-crm/E22_Man-Made_Object",
+    "modification": "http://www.cidoc-crm.org/cidoc-crm/E11_Modification"
+  },
+  "competency_query": {
+    "fully_articulated_path_profile_paths": {
+      "condition": "crm:P44_has_condition",
+      "e11_modification": "crm:P31i_was_modified_by",
+      "material": "crm:P31i_was_modified_by / crm:P126_employed",
+      "technique": "crm:P31i_was_modified_by / crm:P32_used_general_technique"
+    },
+    "shortcut_index_profile_additions": {
+      "condition": "benchmark:indexCondition",
+      "e11_modification": "benchmark:indexModification",
+      "material": "benchmark:indexModification / crm:P126_employed",
+      "technique": "benchmark:indexModification / crm:P32_used_general_technique"
+    },
+    "start_node": "described object"
+  },
+  "deduplication": {
+    "answer_identity": "URI-level set comparison within each record and query family",
+    "labels": "Labels are reported for readability but are not used to merge answers",
+    "provenance": "All distinct P46 component paths and supporting E11 activities for a URI-level index-recovered answer are retained as JSON arrays in the trace row"
+  },
+  "described_object_selection": {
+    "final_tie_breaker": "lexically first URI",
+    "first_tie_breaker": "candidate having P108i_was_produced_by",
+    "primary_rule": "E22 object with the largest transitive P46_is_composed_of closure",
+    "rationale": "The described whole object is structurally distinguished from its E22 components without using record labels or identifiers. The same transitive P46 closure delimits the fully articulated paths evaluated by the competency query."
+  },
+  "experiment_id": "ligatus_path_index_answer_set_comparison",
+  "fully_articulated_path_definition": {
+    "component_membership": "only nodes in the described object's transitive P46 closure qualify",
+    "rationale": "The experiment evaluates declared P46 conservation paths rather than treating every non-object P31i target as a component.",
+    "rule": "transitive P46_is_composed_of path from the described object to a component, followed by P31i_was_modified_by to E11 or P44_has_condition to a condition"
+  },
+  "index_rules": [
+    {
+      "id": "e11_index_rule",
+      "index_triple": "?described_object benchmark:indexModification ?e11",
+      "interpretation": "Indexes an E11 that modifies a P46 component without asserting that the E11 directly modified the described object. P126 and P32 values remain CRM statements on the source E11.",
+      "label": "E11 index rule",
+      "role": "e11_index",
+      "source_path": "?described_object crm:P46_is_composed_of+ ?component . ?component crm:P31i_was_modified_by ?e11 . ?e11 rdf:type crm:E11_Modification"
+    },
+    {
+      "id": "condition_index_rule",
+      "index_triple": "?described_object benchmark:indexCondition ?condition",
+      "interpretation": "Indexes P44 conditions only for components that are also linked to a typed E11 through P31i. This Ligatus task constraint limits the index to treatment-relevant component contexts; P44 conditions without that E11 link remain outside the index and are diagnosed separately.",
+      "label": "Condition index rule",
+      "role": "condition_index",
+      "source_path": "?described_object crm:P46_is_composed_of+ ?component . ?component crm:P31i_was_modified_by ?e11 . ?e11 rdf:type crm:E11_Modification . ?component crm:P44_has_condition ?condition"
+    }
+  ],
+  "named_graphs": {
+    "index_graph_prefix": "urn:ligatus-object-scope:index:",
+    "source_graph_prefix": "urn:ligatus-object-scope:source:"
+  },
+  "namespaces": {
+    "benchmark": "https://w3id.org/ligatus-object-scope-benchmark/",
+    "crm": "http://www.cidoc-crm.org/cidoc-crm/",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#"
+  },
+  "predicates": {
+    "composition": "http://www.cidoc-crm.org/cidoc-crm/P46_is_composed_of",
+    "condition": "http://www.cidoc-crm.org/cidoc-crm/P44_has_condition",
+    "index_condition": "https://w3id.org/ligatus-object-scope-benchmark/indexCondition",
+    "index_modification": "https://w3id.org/ligatus-object-scope-benchmark/indexModification",
+    "label": "http://www.w3.org/2000/01/rdf-schema#label",
+    "material": "http://www.cidoc-crm.org/cidoc-crm/P126_employed",
+    "modified_by": "http://www.cidoc-crm.org/cidoc-crm/P31i_was_modified_by",
+    "production": "http://www.cidoc-crm.org/cidoc-crm/P108i_was_produced_by",
+    "rdf_type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+    "technique": "http://www.cidoc-crm.org/cidoc-crm/P32_used_general_technique"
+  },
+  "profiles": {
+    "fully_articulated_path_profile": {
+      "index_roles": [],
+      "retrieval_commitment": "object-level answers are returned only when directly asserted with CRM properties; component evidence remains available through fully articulated P46 paths",
+      "source_triples": "preserved"
+    },
+    "shortcut_index_profile": {
+      "index_graph": "separate named graph",
+      "index_roles": [
+        "e11_index",
+        "condition_index"
+      ],
+      "semantic_status": "benchmark access index; custom predicates do not assert CRM P31i or P44 relations between the described object and component evidence",
+      "source_triples": "preserved"
+    }
+  },
+  "record_discovery_glob": "*/individual-records/*.rdf"
+}

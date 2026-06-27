@@ -1,8 +1,0 @@
-PREFIX ex: <http://example.org/remake/>
-PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
-SELECT DISTINCT ?entity WHERE {
-  ?current ex:isCurrent true .
-  { ?current crm:P45_consists_of ?entity . }
-  UNION
-  { ?current crm:P46_is_composed_of ?entity . }
-}

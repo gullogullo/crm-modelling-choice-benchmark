@@ -1,4 +1,0 @@
-predicate_id,predicate_uri,attached_to_target,attached_to_event,attached_elsewhere,captured_location,captured_statement_count,uncaptured_statement_count,all_statements_captured
-P44,http://www.cidoc-crm.org/cidoc-crm/P44_has_condition,433,0,411,target,433,411,False
-P126,http://www.cidoc-crm.org/cidoc-crm/P126_employed,0,623,445,event,623,445,False
-P32,http://www.cidoc-crm.org/cidoc-crm/P32_used_general_technique,0,702,258,event,702,258,False

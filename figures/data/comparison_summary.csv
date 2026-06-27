@@ -1,5 +1,0 @@
-comparison,gap_percent,gap_record_count,record_count
-"persistent vs segmented, current-local",7.0,11,158
-"persistent vs segmented, lineage-wide",0.0,0,158
-"persistent, current-local vs lineage-wide",0.0,0,158
-"segmented, current-local vs lineage-wide",7.0,11,158

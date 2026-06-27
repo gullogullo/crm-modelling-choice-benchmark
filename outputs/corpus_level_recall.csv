@@ -1,0 +1,5 @@
+query_family,record_count,fully_articulated_path_answer_count,index_profile_answer_count,index_recovered_answer_count,object_level_recall,dark_record_count,dark_record_rate_all_records,records_with_index_path_answers,dark_record_rate_among_records_with_answers
+e11_modification,158,117,873,756,0.13402061855670103,0,0.0,106,0.0
+condition,158,0,433,433,0.0,95,0.6012658227848101,95,1.0
+material,158,467,557,90,0.8384201077199281,21,0.13291139240506328,97,0.21649484536082475
+technique,158,0,458,458,0.0,105,0.6645569620253164,105,1.0

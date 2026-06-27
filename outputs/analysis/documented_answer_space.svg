@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="480" viewBox="0 0 1200 480" role="img">
+<title>Documented URI-level answer space by query family</title>
+<rect width="100%" height="100%" fill="#ffffff"/>
+<g font-family="Arial, Helvetica, sans-serif" fill="#202428">
+<rect x="230" y="22" width="17" height="17" fill="#31688e"/>
+<text x="254" y="37" font-size="13">Directly visible</text>
+<rect x="515" y="22" width="17" height="17" fill="#35b779"/>
+<text x="539" y="37" font-size="13">Index-recovered</text>
+<rect x="800" y="22" width="17" height="17" fill="#a8adb2"/>
+<text x="824" y="37" font-size="13">Outside implemented paths</text>
+<text x="215" y="137" text-anchor="end" font-size="16">E11 modifications</text>
+<rect x="230.00" y="104" width="106.58" height="52" fill="#31688e"><title>E11 modifications; Directly visible: 117</title></rect>
+<text x="283.29" y="137" text-anchor="middle" font-size="14" fill="#ffffff">117</text>
+<rect x="336.58" y="104" width="688.68" height="52" fill="#35b779"><title>E11 modifications; Index-recovered: 756</title></rect>
+<text x="680.92" y="137" text-anchor="middle" font-size="14" fill="#ffffff">756</text>
+<rect x="1025.26" y="104" width="94.74" height="52" fill="#a8adb2"><title>E11 modifications; Outside implemented paths: 104</title></rect>
+<text x="1072.63" y="137" text-anchor="middle" font-size="14" fill="#ffffff">104</text>
+<text x="1130.00" y="137" font-size="14">977</text>
+<text x="215" y="219" text-anchor="end" font-size="16">Conditions</text>
+<rect x="230.00" y="186" width="0.00" height="52" fill="#31688e"><title>Conditions; Directly visible: 0</title></rect>
+<rect x="230.00" y="186" width="394.44" height="52" fill="#35b779"><title>Conditions; Index-recovered: 433</title></rect>
+<text x="427.22" y="219" text-anchor="middle" font-size="14" fill="#ffffff">433</text>
+<rect x="624.44" y="186" width="365.29" height="52" fill="#a8adb2"><title>Conditions; Outside implemented paths: 401</title></rect>
+<text x="807.09" y="219" text-anchor="middle" font-size="14" fill="#ffffff">401</text>
+<text x="999.73" y="219" font-size="14">834</text>
+<text x="215" y="301" text-anchor="end" font-size="16">Materials</text>
+<rect x="230.00" y="268" width="425.41" height="52" fill="#31688e"><title>Materials; Directly visible: 467</title></rect>
+<text x="442.71" y="301" text-anchor="middle" font-size="14" fill="#ffffff">467</text>
+<rect x="655.41" y="268" width="81.99" height="52" fill="#35b779"><title>Materials; Index-recovered: 90</title></rect>
+<text x="696.41" y="301" text-anchor="middle" font-size="14" fill="#ffffff">90</text>
+<rect x="737.40" y="268" width="223.18" height="52" fill="#a8adb2"><title>Materials; Outside implemented paths: 245</title></rect>
+<text x="848.99" y="301" text-anchor="middle" font-size="14" fill="#ffffff">245</text>
+<text x="970.58" y="301" font-size="14">802</text>
+<text x="215" y="383" text-anchor="end" font-size="16">Techniques</text>
+<rect x="230.00" y="350" width="0.00" height="52" fill="#31688e"><title>Techniques; Directly visible: 0</title></rect>
+<rect x="230.00" y="350" width="417.22" height="52" fill="#35b779"><title>Techniques; Index-recovered: 458</title></rect>
+<text x="438.61" y="383" text-anchor="middle" font-size="14" fill="#ffffff">458</text>
+<rect x="647.22" y="350" width="168.53" height="52" fill="#a8adb2"><title>Techniques; Outside implemented paths: 185</title></rect>
+<text x="731.48" y="383" text-anchor="middle" font-size="14" fill="#ffffff">185</text>
+<text x="825.74" y="383" font-size="14">643</text>
+<text x="675.0" y="455" text-anchor="middle" font-size="15">Distinct URI answers per record, summed across 158 records</text>
+</g>
+</svg>

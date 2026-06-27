@@ -1,7 +1,0 @@
-PREFIX ex: <http://example.org/remake/>
-PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
-SELECT DISTINCT ?condition WHERE {
-  ?current ex:isCurrent true .
-  ?lineageObject (crm:P123_resulted_in/^crm:P124_transformed)* ?current ;
-                 crm:P44_has_condition ?condition .
-}

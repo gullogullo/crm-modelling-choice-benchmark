@@ -1,0 +1,5 @@
+query_family,records_affected,uri_level_index_recovered_answers,component_attribution_incidences,distinct_normalized_component_types,index_dependent_by_construction
+e11_modification,105,756,756,13,True
+technique,105,458,669,12,True
+condition,95,433,433,12,True
+material,24,90,139,13,True

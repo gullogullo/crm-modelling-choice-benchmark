@@ -1,6 +1,0 @@
-PREFIX ex: <http://example.org/remake/>
-
-SELECT DISTINCT ?current WHERE {
-  ?current ex:hasLineageMaker ?maker ;
-           ex:isCurrent true .
-}
