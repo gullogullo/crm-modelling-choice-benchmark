@@ -18,6 +18,7 @@ COLORS = {
     "material": "#d2a62c",
     "technique": "#d95f59",
 }
+TEXT_SIZE_BUMP = 2
 
 
 def read_csv(path: Path) -> list[dict[str, str]]:
@@ -39,9 +40,10 @@ def text(
     weight: str = "normal",
     fill: str = "#20262b",
 ) -> str:
+    rendered_size = size + TEXT_SIZE_BUMP
     return (
         f'<text x="{x}" y="{y}" text-anchor="{anchor}" '
-        f'font-size="{size}" font-weight="{weight}" fill="{fill}">'
+        f'font-size="{rendered_size}" font-weight="{weight}" fill="{fill}">'
         f"{esc(value)}</text>"
     )
 
@@ -79,6 +81,28 @@ def node(
     ]
 
 
+def routed_arrow(
+    points: list[tuple[float, float]],
+    *,
+    stroke: str = "#66737b",
+    stroke_width: float = 1.5,
+    marker: str = "arrow-source",
+    dash: str | None = None,
+) -> str:
+    """Draw an arrow through explicit, editable turning points."""
+    commands = " ".join(
+        ("M" if index == 0 else "L") + f" {x} {y}"
+        for index, (x, y) in enumerate(points)
+    )
+    dash_attribute = f' stroke-dasharray="{dash}"' if dash else ""
+    return (
+        f'<path d="{commands}" fill="none" stroke="{stroke}" '
+        f'stroke-width="{stroke_width}"{dash_attribute} '
+        f'stroke-linecap="round" stroke-linejoin="round" '
+        f'marker-end="url(#{marker})"/>'
+    )
+
+
 def source_graph(column_x: float) -> list[str]:
     object_x = column_x + 340
     component_x = column_x + 340
@@ -89,6 +113,8 @@ def source_graph(column_x: float) -> list[str]:
     p44_x = column_x + 520
     p126_x = column_x + 95
     p32_x = column_x + 265
+    root_turn_y = 310
+    detail_turn_y = 435
 
     lines = [
         box(object_x - 105, 112, 210, 46, fill="#e8eef1", stroke="#52616a"),
@@ -104,32 +130,46 @@ def source_graph(column_x: float) -> list[str]:
 
         text(object_x + 13, 194, "P46+", size=14, fill="#59656c"),
 
-        f'<path d="M {component_x - 62} 270 '
-        f'C {component_x - 88} 315, {e11_x} 312, {e11_x} {evidence_y - 23}" '
-        f'fill="none" stroke="#66737b" stroke-width="1.5" '
-        f'stroke-linecap="round" stroke-linejoin="round" '
-        f'marker-end="url(#arrow-source)"/>',
+        routed_arrow(
+            [
+                (component_x - 62, 270),
+                (component_x - 62, root_turn_y),
+                (e11_x, root_turn_y),
+                (e11_x, evidence_y - 23),
+            ]
+        ),
 
-        f'<path d="M {component_x + 62} 270 '
-        f'C {component_x + 88} 315, {p44_x} 312, {p44_x} {evidence_y - 23}" '
-        f'fill="none" stroke="#66737b" stroke-width="1.5" '
-        f'stroke-linecap="round" stroke-linejoin="round" '
-        f'marker-end="url(#arrow-source)"/>',
+        routed_arrow(
+            [
+                (component_x + 62, 270),
+                (component_x + 62, root_turn_y),
+                (p44_x, root_turn_y),
+                (p44_x, evidence_y - 23),
+            ]
+        ),
 
-        text(column_x + 170, 330, "P31i", size=14, anchor="end", fill="#59656c"),
-        text(column_x + 520, 330, "P44", size=14, fill="#59656c"),
+        text(column_x + 170, 301, "P31i", size=14, anchor="end", fill="#59656c"),
+        text(column_x + 520, 301, "P44", size=14, fill="#59656c"),
 
-        f'<path d="M {e11_x - 28} {evidence_y + 23} '
-        f'C {e11_x - 35} 445, {p126_x} 445, {p126_x} {detail_y - 23}" '
-        f'fill="none" stroke="#66737b" stroke-width="1.4" '
-        f'stroke-linecap="round" stroke-linejoin="round" '
-        f'marker-end="url(#arrow-source)"/>',
+        routed_arrow(
+            [
+                (e11_x - 28, evidence_y + 23),
+                (e11_x - 28, detail_turn_y),
+                (p126_x, detail_turn_y),
+                (p126_x, detail_y - 23),
+            ],
+            stroke_width=1.4,
+        ),
 
-        f'<path d="M {e11_x + 28} {evidence_y + 23} '
-        f'C {e11_x + 35} 445, {p32_x} 445, {p32_x} {detail_y - 23}" '
-        f'fill="none" stroke="#66737b" stroke-width="1.4" '
-        f'stroke-linecap="round" stroke-linejoin="round" '
-        f'marker-end="url(#arrow-source)"/>',
+        routed_arrow(
+            [
+                (e11_x + 28, evidence_y + 23),
+                (e11_x + 28, detail_turn_y),
+                (p32_x, detail_turn_y),
+                (p32_x, detail_y - 23),
+            ],
+            stroke_width=1.4,
+        ),
 
         text(column_x + 120, 426, "P126", size=14, anchor="end", fill="#59656c"),
         text(column_x + 250, 426, "P32", size=14, fill="#59656c"),
@@ -164,38 +204,44 @@ def index_arcs(column_x: float) -> list[str]:
     object_x = column_x + 340
     e11_x = column_x + 175
     p44_x = column_x + 520
-
-    left_end_x = object_x - 58
-    right_end_x = object_x + 65
-    end_y = 158
-
-    # Tune these.
-    left_pull_x = column_x + 55
-    right_pull_x = column_x + 665
-    pull_y = 305
-
-    # This controls where the arcs start turning vertical.
-    # Smaller = turn higher / earlier.
-    # Larger = turn lower / later.
-    approach_y = 245
+    top_lane_y = 185
+    lower_turn_y = 326
+    left_lane_x = column_x + 118
+    right_lane_x = column_x + 640
 
     return [
-        f'<path d="M {e11_x - 30} 352 '
-        f'C {left_pull_x} {pull_y}, {left_end_x} {approach_y}, {left_end_x} {end_y}" '
-        f'fill="none" stroke="#a0447a" stroke-width="3" '
-        f'stroke-dasharray="8 5" '
-        f'stroke-linecap="round" stroke-linejoin="round" '
-        f'marker-end="url(#arrow-index)"/>',
+        routed_arrow(
+            [
+                (object_x - 72, 158),
+                (object_x - 72, top_lane_y),
+                (left_lane_x, top_lane_y),
+                (left_lane_x, lower_turn_y),
+                (e11_x - 30, lower_turn_y),
+                (e11_x - 30, 352),
+            ],
+            stroke="#a0447a",
+            stroke_width=3,
+            marker="arrow-index",
+            dash="8 5",
+        ),
 
-        f'<path d="M {p44_x + 30} 352 '
-        f'C {right_pull_x} {pull_y}, {right_end_x} {approach_y}, {right_end_x} {end_y}" '
-        f'fill="none" stroke="#a0447a" stroke-width="3" '
-        f'stroke-dasharray="8 5" '
-        f'stroke-linecap="round" stroke-linejoin="round" '
-        f'marker-end="url(#arrow-index)"/>',
+        routed_arrow(
+            [
+                (object_x + 72, 158),
+                (object_x + 72, top_lane_y),
+                (right_lane_x, top_lane_y),
+                (right_lane_x, lower_turn_y),
+                (p44_x + 30, lower_turn_y),
+                (p44_x + 30, 352),
+            ],
+            stroke="#a0447a",
+            stroke_width=3,
+            marker="arrow-index",
+            dash="8 5",
+        ),
 
-        text(column_x + 110, 235, "indexed E11", size=15, anchor="end", fill="#7b2e5b"),
-        text(column_x + 525, 185, "indexed condition", size=15, fill="#7b2e5b"),
+        text(column_x + 105, 248, "indexed E11", size=15, anchor="end", fill="#7b2e5b"),
+        text(column_x + 500, 248, "indexed condition", size=15, fill="#7b2e5b"),
     ]
 
 
@@ -212,8 +258,8 @@ def result_strip(
     )
 
     lines = [
-        text(column_x + 40, 550, "Object query", size=16, weight="bold"),
-        box(column_x + 145, 523, 500, 50, fill="#f7f9fa", stroke="#9aa4aa"),
+        text(column_x + 30, 550, "Object query", size=16, weight="bold"),
+        box(column_x + 155, 523, 490, 50, fill="#f7f9fa", stroke="#9aa4aa"),
     ]
 
     for index, (label, family) in enumerate(labels):
@@ -327,7 +373,7 @@ def generate() -> Path:
         box(748, 28, 732, 590, stroke="#aab3b8"),
 
         text(370, 67, "Fully-articulated path profile", size=22, anchor="middle", weight="bold"),
-        text(1114, 67, "Shortcut/index profile", size=22, anchor="middle", weight="bold"),
+        text(1114, 67, "Retrieval-index profile", size=22, anchor="middle", weight="bold"),
 
         text(370, 92, RECORD_ID, size=15, anchor="middle", fill="#667078"),
         text(1114, 92, "same record, same object query", size=15, anchor="middle", fill="#667078"),
@@ -369,10 +415,10 @@ def generate() -> Path:
 
             text(475, 727, "Described object", size=18, weight="bold"),
             text(645, 727, "indexCondition", size=17, fill="#7b2e5b"),
-            text(780, 727, answer_label, size=18, weight="bold", fill=COLORS["condition"]),
+            text(800, 727, answer_label, size=18, weight="bold", fill=COLORS["condition"]),
 
-            text(860, 727, "indexed by", size=17, fill="#59656c"),
-            text(965, 727, rule_id, size=17, weight="bold", fill="#7b2e5b"),
+            text(885, 727, "indexed by", size=17, fill="#59656c"),
+            text(995, 727, rule_id, size=17, weight="bold", fill="#7b2e5b"),
         ]
     )
 
