@@ -8,88 +8,88 @@
 <g font-family="Arial, Helvetica, sans-serif">
 <rect x="20" y="28" width="700" height="590" rx="6" fill="#ffffff" stroke="#aab3b8" stroke-width="1.4"/>
 <rect x="748" y="28" width="732" height="590" rx="6" fill="#ffffff" stroke="#aab3b8" stroke-width="1.4"/>
-<text x="370" y="67" text-anchor="middle" font-size="22" font-weight="bold" fill="#20262b">Fully-articulated path profile</text>
-<text x="1114" y="67" text-anchor="middle" font-size="22" font-weight="bold" fill="#20262b">Shortcut/index profile</text>
-<text x="370" y="92" text-anchor="middle" font-size="15" font-weight="normal" fill="#667078">bod:23197d1</text>
-<text x="1114" y="92" text-anchor="middle" font-size="15" font-weight="normal" fill="#667078">same record, same object query</text>
+<text x="370" y="67" text-anchor="middle" font-size="24" font-weight="bold" fill="#20262b">Fully-articulated path profile</text>
+<text x="1114" y="67" text-anchor="middle" font-size="24" font-weight="bold" fill="#20262b">Retrieval-index profile</text>
+<text x="370" y="92" text-anchor="middle" font-size="17" font-weight="normal" fill="#667078">bod:23197d1</text>
+<text x="1114" y="92" text-anchor="middle" font-size="17" font-weight="normal" fill="#667078">same record, same object query</text>
 <rect x="269" y="112" width="210" height="46" rx="6" fill="#e8eef1" stroke="#52616a" stroke-width="1.4"/>
-<text x="374" y="141" text-anchor="middle" font-size="17" font-weight="bold" fill="#20262b">Described object</text>
+<text x="374" y="141" text-anchor="middle" font-size="19" font-weight="bold" fill="#20262b">Described object</text>
 <rect x="249" y="220" width="250" height="50" rx="6" fill="#edf2f4" stroke="#718089" stroke-width="1.4"/>
-<text x="374" y="251" text-anchor="middle" font-size="15" font-weight="bold" fill="#20262b">P46 component structure</text>
+<text x="374" y="251" text-anchor="middle" font-size="17" font-weight="bold" fill="#20262b">P46 component structure</text>
 <path d="M 374 158 L 374 220" fill="none" stroke="#66737b" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-source)"/>
-<text x="387" y="194" text-anchor="start" font-size="14" font-weight="normal" fill="#59656c">P46+</text>
-<path d="M 312 270 C 286 315, 209 312, 209 352" fill="none" stroke="#66737b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-source)"/>
-<path d="M 436 270 C 462 315, 554 312, 554 352" fill="none" stroke="#66737b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-source)"/>
-<text x="204" y="330" text-anchor="end" font-size="14" font-weight="normal" fill="#59656c">P31i</text>
-<text x="554" y="330" text-anchor="start" font-size="14" font-weight="normal" fill="#59656c">P44</text>
-<path d="M 181 398 C 174 445, 129 445, 129 457" fill="none" stroke="#66737b" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-source)"/>
-<path d="M 237 398 C 244 445, 299 445, 299 457" fill="none" stroke="#66737b" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-source)"/>
-<text x="154" y="426" text-anchor="end" font-size="14" font-weight="normal" fill="#59656c">P126</text>
-<text x="284" y="426" text-anchor="start" font-size="14" font-weight="normal" fill="#59656c">P32</text>
+<text x="387" y="194" text-anchor="start" font-size="16" font-weight="normal" fill="#59656c">P46+</text>
+<path d="M 312 270 L 312 310 L 209 310 L 209 352" fill="none" stroke="#66737b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-source)"/>
+<path d="M 436 270 L 436 310 L 554 310 L 554 352" fill="none" stroke="#66737b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-source)"/>
+<text x="204" y="301" text-anchor="end" font-size="16" font-weight="normal" fill="#59656c">P31i</text>
+<text x="554" y="301" text-anchor="start" font-size="16" font-weight="normal" fill="#59656c">P44</text>
+<path d="M 181 398 L 181 435 L 129 435 L 129 457" fill="none" stroke="#66737b" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-source)"/>
+<path d="M 237 398 L 237 435 L 299 435 L 299 457" fill="none" stroke="#66737b" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-source)"/>
+<text x="154" y="426" text-anchor="end" font-size="16" font-weight="normal" fill="#59656c">P126</text>
+<text x="284" y="426" text-anchor="start" font-size="16" font-weight="normal" fill="#59656c">P32</text>
 <rect x="153.0" y="353" width="112" height="44" rx="6" fill="#dbe9f2" stroke="#31688e" stroke-width="1.4"/>
-<text x="209" y="380" text-anchor="middle" font-size="15" font-weight="bold" fill="#20262b">16 E11</text>
+<text x="209" y="380" text-anchor="middle" font-size="17" font-weight="bold" fill="#20262b">16 E11</text>
 <rect x="498.0" y="353" width="112" height="44" rx="6" fill="#daf0e3" stroke="#35b779" stroke-width="1.4"/>
-<text x="554" y="380" text-anchor="middle" font-size="15" font-weight="bold" fill="#20262b">11 P44</text>
+<text x="554" y="380" text-anchor="middle" font-size="17" font-weight="bold" fill="#20262b">11 P44</text>
 <rect x="73.0" y="458" width="112" height="44" rx="6" fill="#faedbf" stroke="#d2a62c" stroke-width="1.4"/>
-<text x="129" y="485" text-anchor="middle" font-size="15" font-weight="bold" fill="#20262b">2 P126</text>
+<text x="129" y="485" text-anchor="middle" font-size="17" font-weight="bold" fill="#20262b">2 P126</text>
 <rect x="243.0" y="458" width="112" height="44" rx="6" fill="#f5d9d7" stroke="#d95f59" stroke-width="1.4"/>
-<text x="299" y="485" text-anchor="middle" font-size="15" font-weight="bold" fill="#20262b">4 P32</text>
+<text x="299" y="485" text-anchor="middle" font-size="17" font-weight="bold" fill="#20262b">4 P32</text>
 <line x1="269" y1="135" x2="165" y2="135" stroke="#66737b" stroke-width="1.6" stroke-linecap="round" marker-end="url(#arrow-source)"/>
-<text x="218" y="158" text-anchor="middle" font-size="14" font-weight="normal" fill="#59656c">source P31i</text>
+<text x="218" y="158" text-anchor="middle" font-size="16" font-weight="normal" fill="#59656c">source P31i</text>
 <rect x="53.0" y="113" width="112" height="44" rx="6" fill="#dbe9f2" stroke="#31688e" stroke-width="1.4"/>
-<text x="109" y="140" text-anchor="middle" font-size="15" font-weight="bold" fill="#20262b">1 E11</text>
+<text x="109" y="140" text-anchor="middle" font-size="17" font-weight="bold" fill="#20262b">1 E11</text>
 <rect x="997" y="112" width="210" height="46" rx="6" fill="#e8eef1" stroke="#52616a" stroke-width="1.4"/>
-<text x="1102" y="141" text-anchor="middle" font-size="17" font-weight="bold" fill="#20262b">Described object</text>
+<text x="1102" y="141" text-anchor="middle" font-size="19" font-weight="bold" fill="#20262b">Described object</text>
 <rect x="977" y="220" width="250" height="50" rx="6" fill="#edf2f4" stroke="#718089" stroke-width="1.4"/>
-<text x="1102" y="251" text-anchor="middle" font-size="15" font-weight="bold" fill="#20262b">P46 component structure</text>
+<text x="1102" y="251" text-anchor="middle" font-size="17" font-weight="bold" fill="#20262b">P46 component structure</text>
 <path d="M 1102 158 L 1102 220" fill="none" stroke="#66737b" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-source)"/>
-<text x="1115" y="194" text-anchor="start" font-size="14" font-weight="normal" fill="#59656c">P46+</text>
-<path d="M 1040 270 C 1014 315, 937 312, 937 352" fill="none" stroke="#66737b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-source)"/>
-<path d="M 1164 270 C 1190 315, 1282 312, 1282 352" fill="none" stroke="#66737b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-source)"/>
-<text x="932" y="330" text-anchor="end" font-size="14" font-weight="normal" fill="#59656c">P31i</text>
-<text x="1282" y="330" text-anchor="start" font-size="14" font-weight="normal" fill="#59656c">P44</text>
-<path d="M 909 398 C 902 445, 857 445, 857 457" fill="none" stroke="#66737b" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-source)"/>
-<path d="M 965 398 C 972 445, 1027 445, 1027 457" fill="none" stroke="#66737b" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-source)"/>
-<text x="882" y="426" text-anchor="end" font-size="14" font-weight="normal" fill="#59656c">P126</text>
-<text x="1012" y="426" text-anchor="start" font-size="14" font-weight="normal" fill="#59656c">P32</text>
+<text x="1115" y="194" text-anchor="start" font-size="16" font-weight="normal" fill="#59656c">P46+</text>
+<path d="M 1040 270 L 1040 310 L 937 310 L 937 352" fill="none" stroke="#66737b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-source)"/>
+<path d="M 1164 270 L 1164 310 L 1282 310 L 1282 352" fill="none" stroke="#66737b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-source)"/>
+<text x="932" y="301" text-anchor="end" font-size="16" font-weight="normal" fill="#59656c">P31i</text>
+<text x="1282" y="301" text-anchor="start" font-size="16" font-weight="normal" fill="#59656c">P44</text>
+<path d="M 909 398 L 909 435 L 857 435 L 857 457" fill="none" stroke="#66737b" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-source)"/>
+<path d="M 965 398 L 965 435 L 1027 435 L 1027 457" fill="none" stroke="#66737b" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-source)"/>
+<text x="882" y="426" text-anchor="end" font-size="16" font-weight="normal" fill="#59656c">P126</text>
+<text x="1012" y="426" text-anchor="start" font-size="16" font-weight="normal" fill="#59656c">P32</text>
 <rect x="881.0" y="353" width="112" height="44" rx="6" fill="#dbe9f2" stroke="#31688e" stroke-width="1.4"/>
-<text x="937" y="380" text-anchor="middle" font-size="15" font-weight="bold" fill="#20262b">16 E11</text>
+<text x="937" y="380" text-anchor="middle" font-size="17" font-weight="bold" fill="#20262b">16 E11</text>
 <rect x="1226.0" y="353" width="112" height="44" rx="6" fill="#daf0e3" stroke="#35b779" stroke-width="1.4"/>
-<text x="1282" y="380" text-anchor="middle" font-size="15" font-weight="bold" fill="#20262b">11 P44</text>
+<text x="1282" y="380" text-anchor="middle" font-size="17" font-weight="bold" fill="#20262b">11 P44</text>
 <rect x="801.0" y="458" width="112" height="44" rx="6" fill="#faedbf" stroke="#d2a62c" stroke-width="1.4"/>
-<text x="857" y="485" text-anchor="middle" font-size="15" font-weight="bold" fill="#20262b">2 P126</text>
+<text x="857" y="485" text-anchor="middle" font-size="17" font-weight="bold" fill="#20262b">2 P126</text>
 <rect x="971.0" y="458" width="112" height="44" rx="6" fill="#f5d9d7" stroke="#d95f59" stroke-width="1.4"/>
-<text x="1027" y="485" text-anchor="middle" font-size="15" font-weight="bold" fill="#20262b">4 P32</text>
+<text x="1027" y="485" text-anchor="middle" font-size="17" font-weight="bold" fill="#20262b">4 P32</text>
 <line x1="997" y1="135" x2="893" y2="135" stroke="#66737b" stroke-width="1.6" stroke-linecap="round" marker-end="url(#arrow-source)"/>
-<text x="946" y="158" text-anchor="middle" font-size="14" font-weight="normal" fill="#59656c">source P31i</text>
+<text x="946" y="158" text-anchor="middle" font-size="16" font-weight="normal" fill="#59656c">source P31i</text>
 <rect x="781.0" y="113" width="112" height="44" rx="6" fill="#dbe9f2" stroke="#31688e" stroke-width="1.4"/>
-<text x="837" y="140" text-anchor="middle" font-size="15" font-weight="bold" fill="#20262b">1 E11</text>
-<path d="M 907 352 C 817 305, 1044 245, 1044 158" fill="none" stroke="#a0447a" stroke-width="3" stroke-dasharray="8 5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-index)"/>
-<path d="M 1312 352 C 1427 305, 1167 245, 1167 158" fill="none" stroke="#a0447a" stroke-width="3" stroke-dasharray="8 5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-index)"/>
-<text x="872" y="235" text-anchor="end" font-size="15" font-weight="normal" fill="#7b2e5b">indexed E11</text>
-<text x="1287" y="185" text-anchor="start" font-size="15" font-weight="normal" fill="#7b2e5b">indexed condition</text>
-<text x="74" y="550" text-anchor="start" font-size="16" font-weight="bold" fill="#20262b">Object query</text>
-<rect x="179" y="523" width="500" height="50" rx="6" fill="#f7f9fa" stroke="#9aa4aa" stroke-width="1.4"/>
-<text x="209" y="554" text-anchor="start" font-size="15" font-weight="bold" fill="#31688e">E11 1</text>
-<text x="330" y="554" text-anchor="start" font-size="15" font-weight="bold" fill="#35b779">P44 0</text>
-<text x="451" y="554" text-anchor="start" font-size="15" font-weight="bold" fill="#d2a62c">P126 0</text>
-<text x="572" y="554" text-anchor="start" font-size="15" font-weight="bold" fill="#d95f59">P32 0</text>
-<text x="802" y="550" text-anchor="start" font-size="16" font-weight="bold" fill="#20262b">Object query</text>
-<rect x="907" y="523" width="500" height="50" rx="6" fill="#f7f9fa" stroke="#9aa4aa" stroke-width="1.4"/>
-<text x="937" y="554" text-anchor="start" font-size="15" font-weight="bold" fill="#31688e">E11 17 (+16)</text>
-<text x="1058" y="554" text-anchor="start" font-size="15" font-weight="bold" fill="#35b779">P44 11 (+11)</text>
-<text x="1179" y="554" text-anchor="start" font-size="15" font-weight="bold" fill="#d2a62c">P126 2 (+2)</text>
-<text x="1300" y="554" text-anchor="start" font-size="15" font-weight="bold" fill="#d95f59">P32 4 (+4)</text>
-<text x="34" y="662" text-anchor="start" font-size="21" font-weight="bold" fill="#20262b">One index trace</text>
+<text x="837" y="140" text-anchor="middle" font-size="17" font-weight="bold" fill="#20262b">1 E11</text>
+<path d="M 1030 158 L 1030 185 L 880 185 L 880 326 L 907 326 L 907 352" fill="none" stroke="#a0447a" stroke-width="3" stroke-dasharray="8 5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-index)"/>
+<path d="M 1174 158 L 1174 185 L 1402 185 L 1402 326 L 1312 326 L 1312 352" fill="none" stroke="#a0447a" stroke-width="3" stroke-dasharray="8 5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-index)"/>
+<text x="867" y="248" text-anchor="end" font-size="17" font-weight="normal" fill="#7b2e5b">indexed E11</text>
+<text x="1262" y="248" text-anchor="start" font-size="17" font-weight="normal" fill="#7b2e5b">indexed condition</text>
+<text x="64" y="550" text-anchor="start" font-size="18" font-weight="bold" fill="#20262b">Object query</text>
+<rect x="189" y="523" width="490" height="50" rx="6" fill="#f7f9fa" stroke="#9aa4aa" stroke-width="1.4"/>
+<text x="209" y="554" text-anchor="start" font-size="17" font-weight="bold" fill="#31688e">E11 1</text>
+<text x="330" y="554" text-anchor="start" font-size="17" font-weight="bold" fill="#35b779">P44 0</text>
+<text x="451" y="554" text-anchor="start" font-size="17" font-weight="bold" fill="#d2a62c">P126 0</text>
+<text x="572" y="554" text-anchor="start" font-size="17" font-weight="bold" fill="#d95f59">P32 0</text>
+<text x="792" y="550" text-anchor="start" font-size="18" font-weight="bold" fill="#20262b">Object query</text>
+<rect x="917" y="523" width="490" height="50" rx="6" fill="#f7f9fa" stroke="#9aa4aa" stroke-width="1.4"/>
+<text x="937" y="554" text-anchor="start" font-size="17" font-weight="bold" fill="#31688e">E11 17 (+16)</text>
+<text x="1058" y="554" text-anchor="start" font-size="17" font-weight="bold" fill="#35b779">P44 11 (+11)</text>
+<text x="1179" y="554" text-anchor="start" font-size="17" font-weight="bold" fill="#d2a62c">P126 2 (+2)</text>
+<text x="1300" y="554" text-anchor="start" font-size="17" font-weight="bold" fill="#d95f59">P32 4 (+4)</text>
+<text x="34" y="662" text-anchor="start" font-size="23" font-weight="bold" fill="#20262b">One index trace</text>
 <rect x="34" y="680" width="1432" height="76" rx="6" fill="#f7f9fa" stroke="#9aa4aa" stroke-width="1.4"/>
-<text x="62" y="727" text-anchor="start" font-size="18" font-weight="bold" fill="#20262b">Spine-section</text>
-<text x="222" y="727" text-anchor="start" font-size="17" font-weight="normal" fill="#59656c">P44</text>
-<text x="275" y="727" text-anchor="start" font-size="18" font-weight="bold" fill="#35b779">Dry</text>
-<text x="420" y="727" text-anchor="start" font-size="21" font-weight="bold" fill="#7b2e5b">=&gt;</text>
-<text x="475" y="727" text-anchor="start" font-size="18" font-weight="bold" fill="#20262b">Described object</text>
-<text x="645" y="727" text-anchor="start" font-size="17" font-weight="normal" fill="#7b2e5b">indexCondition</text>
-<text x="780" y="727" text-anchor="start" font-size="18" font-weight="bold" fill="#35b779">Dry</text>
-<text x="860" y="727" text-anchor="start" font-size="17" font-weight="normal" fill="#59656c">indexed by</text>
-<text x="965" y="727" text-anchor="start" font-size="17" font-weight="bold" fill="#7b2e5b">condition_index_rule</text>
+<text x="62" y="727" text-anchor="start" font-size="20" font-weight="bold" fill="#20262b">Spine-section</text>
+<text x="222" y="727" text-anchor="start" font-size="19" font-weight="normal" fill="#59656c">P44</text>
+<text x="275" y="727" text-anchor="start" font-size="20" font-weight="bold" fill="#35b779">Dry</text>
+<text x="420" y="727" text-anchor="start" font-size="23" font-weight="bold" fill="#7b2e5b">=&gt;</text>
+<text x="475" y="727" text-anchor="start" font-size="20" font-weight="bold" fill="#20262b">Described object</text>
+<text x="645" y="727" text-anchor="start" font-size="19" font-weight="normal" fill="#7b2e5b">indexCondition</text>
+<text x="800" y="727" text-anchor="start" font-size="20" font-weight="bold" fill="#35b779">Dry</text>
+<text x="885" y="727" text-anchor="start" font-size="19" font-weight="normal" fill="#59656c">indexed by</text>
+<text x="995" y="727" text-anchor="start" font-size="19" font-weight="bold" fill="#7b2e5b">condition_index_rule</text>
 </g>
 </svg>

@@ -229,19 +229,19 @@ def write_record_composition(
     for index, (family, label, _) in enumerate(FAMILIES):
         column = index % 2
         row_index = index // 2
-        x = 1405 + column * 270
+        x = 1375 + column * 330
         y = 140 + row_index * 205
         row = stats_by_family[family]
         lines.append(f'<rect x="{x}" y="{y}" width="22" height="22" fill="{COLORS[family]}"/>')
-        lines.append(f'<text x="{x + 32}" y="{y + 20}" font-size="22" font-weight="bold">{html.escape(label)}</text>')
+        lines.append(f'<text x="{x + 32}" y="{y + 22}" font-size="29" font-weight="bold">{html.escape(label)}</text>')
         lines.append(
-            f'<text x="{x}" y="{y + 57}" font-size="18">total {row["total_index_recovered"]}</text>'
+            f'<text x="{x}" y="{y + 62}" font-size="25">total {row["total_index_recovered"]}</text>'
         )
         lines.append(
-            f'<text x="{x}" y="{y + 88}" font-size="18">mean affected {row["mean_per_affected_record"]:.2f}</text>'
+            f'<text x="{x}" y="{y + 97}" font-size="25">mean affected {row["mean_per_affected_record"]:.2f}</text>'
         )
         lines.append(
-            f'<text x="{x}" y="{y + 119}" font-size="18">median {row["median_per_affected_record"]} · max {row["max_per_record"]}</text>'
+            f'<text x="{x}" y="{y + 132}" font-size="25">median {row["median_per_affected_record"]} · max {row["max_per_record"]}</text>'
         )
     for index, row in enumerate(distribution):
         x = left + index * bar_width
@@ -264,12 +264,12 @@ def write_record_composition(
     lines.append(f'<line x1="{left}" y1="{top + plot_height}" x2="{left + plot_width}" y2="{top + plot_height}" stroke="#4b5258"/>')
     for tick in range(0, maximum + 1, 10):
         y = top + plot_height - plot_height * tick / maximum
-        lines.append(f'<text x="{left - 11}" y="{y + 6:.2f}" text-anchor="end" font-size="18">{tick}</text>')
+        lines.append(f'<text x="{left - 11}" y="{y + 8:.2f}" text-anchor="end" font-size="24">{tick}</text>')
     for rank in (1, 20, 40, 60, 80, 100, 120, 140, len(distribution)):
         x = left + (rank - 0.5) * bar_width
-        lines.append(f'<text x="{x:.2f}" y="{top + plot_height + 30}" text-anchor="middle" font-size="17">{rank}</text>')
-    lines.append(f'<text x="32" y="{top + plot_height / 2}" transform="rotate(-90 32 {top + plot_height / 2})" text-anchor="middle" font-size="22">Index-recovered answers</text>')
-    lines.append(f'<text x="{left + plot_width / 2}" y="{height - 20}" text-anchor="middle" font-size="22">Records ranked by total index-recovered answers</text>')
+        lines.append(f'<text x="{x:.2f}" y="{top + plot_height + 34}" text-anchor="middle" font-size="23">{rank}</text>')
+    lines.append(f'<text x="28" y="{top + plot_height / 2}" transform="rotate(-90 28 {top + plot_height / 2})" text-anchor="middle" font-size="29">Index-recovered answers</text>')
+    lines.append(f'<text x="{left + plot_width / 2}" y="{height - 15}" text-anchor="middle" font-size="29">Records ranked by total index-recovered answers</text>')
     lines.extend(["</g>", "</svg>"])
     path.write_text("\n".join(lines) + "\n", encoding="utf-8")
 

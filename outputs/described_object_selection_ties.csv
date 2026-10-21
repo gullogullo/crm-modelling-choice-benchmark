@@ -1,0 +1,4 @@
+record_id,candidate_uri,closure_size,has_P108i,selected,selection_reason
+sul:6342_TravelsInNewEngland_dbrock,https://searchworks.stanford.edu/view/8707892#item_volume1,7,False,True,selected_by_lexical_uri
+sul:6342_TravelsInNewEngland_dbrock,https://searchworks.stanford.edu/view/8707892#item_volume2,7,False,False,not_selected
+sul:6342_TravelsInNewEngland_dbrock,https://searchworks.stanford.edu/view/8707892#item_volume4,7,False,False,not_selected

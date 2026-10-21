@@ -169,7 +169,7 @@ def _typed_subjects(graph: set[Triple], class_uri: str, rdf_type: str) -> set[Te
     return _subjects(graph, rdf_type, Term("uri", class_uri))
 
 
-def _described_object(graph: set[Triple], config: dict) -> Term:
+def _described_object_selection(graph: set[Triple], config: dict) -> tuple[Term, dict]:
     predicates = config["predicates"]
     candidates = _typed_subjects(
         graph, config["classes"]["described_object"], predicates["rdf_type"]
@@ -177,6 +177,7 @@ def _described_object(graph: set[Triple], config: dict) -> Term:
     if not candidates:
         raise ValueError("record contains no configured described-object class")
     composition = predicates["composition"]
+    production_predicate = predicates["production"]
 
     def closure_size(candidate: Term) -> int:
         seen = set()
@@ -191,15 +192,118 @@ def _described_object(graph: set[Triple], config: dict) -> Term:
 
     closure_sizes = {candidate: closure_size(candidate) for candidate in candidates}
     maximum = max(closure_sizes.values())
-    structural_candidates = {
+    largest_candidates = {
         candidate for candidate, size in closure_sizes.items() if size == maximum
+    }
+    production_flags = {
+        candidate: bool(_objects(graph, candidate, production_predicate))
+        for candidate in largest_candidates
     }
     produced = {
         candidate
-        for candidate in structural_candidates
-        if _objects(graph, candidate, predicates["production"])
+        for candidate, has_production in production_flags.items()
+        if has_production
     }
-    return sorted(produced or structural_candidates)[0]
+    selected_candidates = produced or largest_candidates
+    selected = sorted(selected_candidates)[0]
+
+    tie = len(largest_candidates) > 1
+    if not tie:
+        selection_reason = "unique_largest_closure"
+    elif produced and len(produced) == 1:
+        selection_reason = "selected_by_P108i"
+    else:
+        selection_reason = "selected_by_lexical_uri"
+
+    return selected, {
+        "candidates": candidates,
+        "closure_sizes": closure_sizes,
+        "production_flags": production_flags,
+        "largest_candidates": largest_candidates,
+        "selected": selected,
+        "tie": tie,
+        "resolved_by_p108i": tie and len(produced) == 1,
+        "resolved_by_lexical_uri": tie and not (produced and len(produced) == 1),
+        "selection_reason": selection_reason,
+    }
+
+
+def _described_object(graph: set[Triple], config: dict) -> Term:
+    selected, _ = _described_object_selection(graph, config)
+    return selected
+
+
+def _described_object_selection_diagnostics(
+    results: list[RecordResult], config: dict
+) -> tuple[list[dict], list[dict]]:
+    metrics = {
+        "total_records": 0,
+        "records_with_single_E22_candidate": 0,
+        "records_with_multiple_E22_candidates": 0,
+        "records_unambiguous_by_largest_closure": 0,
+        "records_with_largest_closure_tie": 0,
+        "ties_resolved_by_P108i": 0,
+        "ties_resolved_by_lexical_uri": 0,
+    }
+    maximum_number_of_tied_candidates = 0
+    tie_rows: list[dict] = []
+
+    for result in results:
+        selected, diagnostic = _described_object_selection(result.source, config)
+        if selected != result.described_object:
+            raise ValueError(
+                f"described-object selection mismatch for {result.record_id}: "
+                f"{selected.value} != {result.described_object.value}"
+            )
+
+        metrics["total_records"] += 1
+        if len(diagnostic["candidates"]) == 1:
+            metrics["records_with_single_E22_candidate"] += 1
+        else:
+            metrics["records_with_multiple_E22_candidates"] += 1
+
+        if diagnostic["tie"]:
+            metrics["records_with_largest_closure_tie"] += 1
+            if diagnostic["resolved_by_p108i"]:
+                metrics["ties_resolved_by_P108i"] += 1
+            if diagnostic["resolved_by_lexical_uri"]:
+                metrics["ties_resolved_by_lexical_uri"] += 1
+            maximum_number_of_tied_candidates = max(
+                maximum_number_of_tied_candidates,
+                len(diagnostic["largest_candidates"]),
+            )
+            for candidate in sorted(diagnostic["largest_candidates"]):
+                tie_rows.append(
+                    {
+                        "record_id": result.record_id,
+                        "candidate_uri": candidate.value,
+                        "closure_size": diagnostic["closure_sizes"][candidate],
+                        "has_P108i": diagnostic["production_flags"][candidate],
+                        "selected": candidate == diagnostic["selected"],
+                        "selection_reason": (
+                            diagnostic["selection_reason"]
+                            if candidate == diagnostic["selected"]
+                            else "not_selected"
+                        ),
+                    }
+                )
+        else:
+            metrics["records_unambiguous_by_largest_closure"] += 1
+            maximum_number_of_tied_candidates = max(
+                maximum_number_of_tied_candidates, 1
+            )
+
+    summary_rows = [
+        {"metric": "total_records", "value": metrics["total_records"]},
+        {"metric": "records_with_single_E22_candidate", "value": metrics["records_with_single_E22_candidate"]},
+        {"metric": "records_with_multiple_E22_candidates", "value": metrics["records_with_multiple_E22_candidates"]},
+        {"metric": "records_unambiguous_by_largest_closure", "value": metrics["records_unambiguous_by_largest_closure"]},
+        {"metric": "records_with_largest_closure_tie", "value": metrics["records_with_largest_closure_tie"]},
+        {"metric": "ties_resolved_by_P108i", "value": metrics["ties_resolved_by_P108i"]},
+        {"metric": "ties_resolved_by_lexical_uri", "value": metrics["ties_resolved_by_lexical_uri"]},
+        {"metric": "maximum_number_of_tied_candidates", "value": maximum_number_of_tied_candidates},
+    ]
+    return summary_rows, tie_rows
 
 
 def _labels(graph: set[Triple], label_predicate: str) -> dict[Term, str]:
@@ -1367,6 +1471,26 @@ def run(source_dir: Path, output_dir: Path, config_path: Path) -> list[RecordRes
         output_dir / "condition_outside_path_summary.csv",
         condition_outside_summary,
     )
+    selection_summary_rows, selection_tie_rows = _described_object_selection_diagnostics(
+        results, config
+    )
+    _write_csv(
+        output_dir / "described_object_selection_summary.csv",
+        selection_summary_rows,
+        ["metric", "value"],
+    )
+    _write_csv(
+        output_dir / "described_object_selection_ties.csv",
+        selection_tie_rows,
+        [
+            "record_id",
+            "candidate_uri",
+            "closure_size",
+            "has_P108i",
+            "selected",
+            "selection_reason",
+        ],
+    )
     _write_csv(
         output_dir / "unaffected_record_diagnostic.csv",
         unaffected_rows,
@@ -1433,7 +1557,19 @@ def main() -> None:
         default=root / "config" / "index_rules.json",
     )
     args = parser.parse_args()
-    run(args.source_dir, args.output_dir, args.config)
+    results = run(args.source_dir, args.output_dir, args.config)
+    config = json.loads(args.config.read_text(encoding="utf-8"))
+    selection_summary_rows, _ = _described_object_selection_diagnostics(
+        results, config
+    )
+    summary_values = {row["metric"]: int(row["value"]) for row in selection_summary_rows}
+    print(
+        f"Described-object selection: {summary_values['total_records']} records; "
+        f"{summary_values['records_unambiguous_by_largest_closure']} unambiguous by largest P46 closure; "
+        f"{summary_values['records_with_largest_closure_tie']} largest-closure ties; "
+        f"{summary_values['ties_resolved_by_P108i']} resolved by P108i; "
+        f"{summary_values['ties_resolved_by_lexical_uri']} resolved by lexical URI."
+    )
 
 
 if __name__ == "__main__":

@@ -1,0 +1,9 @@
+metric,value
+total_records,158
+records_with_single_E22_candidate,51
+records_with_multiple_E22_candidates,107
+records_unambiguous_by_largest_closure,157
+records_with_largest_closure_tie,1
+ties_resolved_by_P108i,0
+ties_resolved_by_lexical_uri,1
+maximum_number_of_tied_candidates,3
